@@ -1,0 +1,39 @@
+.profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.btn-profile {
+    background: none;
+    border: none;
+}
+
+.content-dash {
+    border: 1px solid rgb(228, 228, 228);
+    padding: 30px 20px;
+    border-radius: 3px;
+}
+
+.btn-continue {
+    background: none;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-join {
+    background: none;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-view-all {
+    cursor: pointer;
+}
+
+.btn-view-all:hover {
+    text-decoration: underline;
+}

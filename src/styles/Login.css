@@ -13,7 +13,7 @@
     width: 350px;
     background-color: #333333;
     color: white;
-    animation: aparecer 0.3s normal;
+    /* animation: aparecer 0.3s normal; */
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
@@ -33,7 +33,6 @@
 .login-content {
     background-color: #EAEAEA;
     height: 100vh;
-    font-size: 0.9rem;
 }
 
 .box-login {
@@ -50,4 +49,18 @@
     padding: 7px 0px;
     border-radius: 5px;
     border: none;
+}
+
+.icon-load {
+    animation: load 3s infinite linear;
+}
+
+@keyframes load {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -63,14 +63,16 @@ export const RegisterApp = () => {
                     <div className="col-md-4">
                         <div className="mt-3 box-login">
                             <div className="card-body">
-                                <h3 className="card-title text-center">Únete a CodeChallenge</h3>
-                                <p className="text-center">¡Comienza tu viaje de codificación hoy!</p>
-                                <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="text-center">
+                                    <img src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-computer-security-logo-design-png-image_8091046.png" alt="login-img" style={{ width: '60px' }} />
+                                </div>
+                                <h3 className="card-title text-center" style={{ color: 'white', letterSpacing: '1px' }}>Únete a Flyfar</h3>
+                                <p className="text-center" style={{ color: 'gray', letterSpacing: '1px' }}>¡Comienza tu viaje de codificación hoy!</p>
+                                <form className='mt-4' onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mb-3">
-                                        <label htmlFor="email" className="form-label">Correo Electrónico</label>
+                                        <label htmlFor="email" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Correo electrónico</label>
                                         <input
                                             type="email"
-                                            className="form-control"
                                             id="email"
                                             {...register('email', {
                                                 required: "El correo electrónico es requerido",
@@ -80,20 +82,18 @@ export const RegisterApp = () => {
                                         {errors.email && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.email.message}</p>}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="username" className="form-label">Nombre de Usuario</label>
+                                        <label htmlFor="username" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Nombre de Usuario</label>
                                         <input
                                             type="text"
-                                            className="form-control"
                                             id="username"
                                             {...register('username', { required: "El nombre de usuario es requerido" })}
                                         />
                                         {errors.username && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.username.message}</p>}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="password" className="form-label">Contraseña</label>
+                                        <label htmlFor="password" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Contraseña</label>
                                         <input
                                             type="password"
-                                            className="form-control"
                                             id="password"
                                             {...register('password', {
                                                 required: "La contraseña es requerida",
@@ -106,7 +106,7 @@ export const RegisterApp = () => {
                                         {errors.password && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.password.message}</p>}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="confirmPassword" className="form-label">Confirmar Contraseña</label>
+                                        <label htmlFor="confirmPassword" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Confirmar contraseña</label>
                                         <input
                                             type="password"
                                             className="form-control"
@@ -119,13 +119,13 @@ export const RegisterApp = () => {
                                         />
                                         {errors.confirmPassword && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.confirmPassword.message}</p>}
                                     </div>
-                                    <button type="submit" className="btn-main w-100">
+                                    <button type="submit" style={{ letterSpacing: '1px' }} className='btn-login'>
                                         {isLoading ? (<i class="fa-solid fa-spinner icon-load"></i>) : 'Registrarse'}
                                     </button>
                                 </form>
                                 <hr />
                                 <div className="text-center mt-3">
-                                    <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión aquí</Link></p>
+                                    <p><span style={{ color: 'white' }}>¿Ya tienes una cuenta?</span> <Link className='ms-2' style={{ color: '#06BEFF' }} to='/login'>Inicia sesión aquí</Link></p>
                                 </div>
                             </div>
                         </div>

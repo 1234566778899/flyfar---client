@@ -30,16 +30,15 @@ export const TabSendRequestApp = ({ close, user, socket, owner }) => {
     }
     return (
         <div className='tab-req' >
-            <div style={{ width: '350px' }}>
+            <div className='card-add' style={{ width: '350px' }}>
                 <form onSubmit={handleSubmit(sendRequest)}>
-                    <h3 className='text-center'>Agregar un amigo</h3>
-                    <p style={{ color: '#555' }} className='mt-2'>Ingresa el correo electrónico para solicitar ser amigos</p>
-                    <input type="text" {...register('email', { required: true })} className='form-control' placeholder='Correo eletrónico aqui' />
-                    <div className="d-flex mt-2">
-                        <button type='button' className='btn btn-outline-secondary w-100 me-2' onClick={() => close()}>Cancelar</button>
-                        <button type="submit" className="btn-main w-100">
-                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar solicitud'}
+                    <h5 className='text-center text-light'>Añadir amigo</h5>
+                    <input className='mt-2' type="text" {...register('email', { required: true })} placeholder='Correo eletrónico aqui' />
+                    <div className="d-flex mt-3">
+                        <button type="submit" className="me-2 btn-accept w-100">
+                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'ACEPTAR'}
                         </button>
+                        <button type='button' className='ms-2 btn-cancel w-100 ' onClick={() => close()}>CANCELAR</button>
                     </div>
                 </form>
             </div>

@@ -23,12 +23,18 @@
 
 .inp-chat {
     display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 3px 10px;
 }
 
 .inp-chat input {
     width: 100%;
+    background: none;
+    border: none;
     outline: none;
-    padding: 5px 10px;
+    padding: 7px 10px;
+    color: white;
 }
 
 .inp-chat button {
@@ -49,10 +55,14 @@
 
 .btn-ready {
     width: 100%;
-    padding: 7px 0px;
-    border: 1px solid gray;
-    border-radius: 3px;
-    background: none;
+    padding: 15px 0px;
+    border: none;
+    background: linear-gradient(to bottom, #233760, #3B598D);
+    color: white;
+}
+
+button:hover {
+    filter: brightness(1.1);
 }
 
 .btn-view {
@@ -90,13 +100,7 @@
     align-items: center;
 }
 
-.tab-req>div {
-    background-color: white;
-    padding: 30px 20px;
-    border: 5px solid white;
-    border-radius: 3px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
+
 
 .tab-accept {
     position: fixed;
@@ -115,4 +119,82 @@
     border: 1px solid rgb(235, 235, 235);
     border-radius: 3px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-out {
+    width: 100%;
+    background: linear-gradient(to bottom, #311F1F, #472D2E);
+    color: white;
+    border: none;
+    padding: 15px 0px;
+}
+
+.tab-req>div {
+    padding: 30px 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top right, #141718, #262C2D);
+}
+
+.card-add input {
+    width: 100%;
+    background-color: #000000;
+    border: 1px solid gray;
+    padding: 10px 10px;
+    outline: none;
+    color: rgb(191, 191, 191);
+}
+
+.card-add button {
+    background: linear-gradient(to bottom, #25272A, #3E464B);
+    border: none;
+    padding: 10px 0px;
+    color: white;
+    border: 1px solid rgb(128, 128, 128);
+}
+
+.btn-start {
+    background: linear-gradient(to top, #396148, #4C874F);
+    padding: 15px 0px;
+    width: 100%;
+    border: 1px solid gray;
+    color: white;
+}
+
+.content-friends {
+    padding: 10px;
+    background: linear-gradient(to bottom, #212929, #181A1E);
+}
+
+.input-search {
+    display: flex;
+    align-items: center;
+    color: white;
+    border: 1px solid gray;
+    width: 100%;
+}
+
+.input-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: none;
+    color: rgb(207, 207, 207);
+    padding: 7px 10px;
+}
+
+.card-setting {
+    background: #16181A;
+    border: 1px solid gray;
+    padding: 15px;
+    padding-bottom: 30px;
+}
+
+.card-chat {
+    background: #171F25;
+    border: 1px solid gray;
+}
+
+.content-room {
+    background: linear-gradient(to bottom, #202327, #000001);
+    height: 100vh;
 }

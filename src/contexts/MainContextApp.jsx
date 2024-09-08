@@ -12,7 +12,10 @@ const socket = io(`${CONFIG.uri}/`);
 export const MainContextApp = ({ children }) => {
     const [owner, setOwner] = useState(null);
     const { user } = useContext(AuthContext);
+    const [codeRoom, setCodeRoom] = useState(false);
+    const [friends, setFriends] = useState([]);
     const navigate = useNavigate();
+    const [friendsActive, setFriendsActive] = useState([]);
 
     const getUser = () => {
         axios.get(`${CONFIG.uri}/users/retrieve/${user.email}`)
@@ -34,8 +37,18 @@ export const MainContextApp = ({ children }) => {
             //socket.off('')
         }
     }, [])
+    useEffect(() => {
+        if (owner) {
+            socket.on('update_users', data => {
+                setFriendsActive(data);
+            })
+        }
+        return () => {
+            socket.off('update_users');
+        }
+    }, [owner])
     return (
-        <MainContext.Provider value={{ owner, socket }}>
+        <MainContext.Provider value={{ owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
             {children}
         </MainContext.Provider>
     )

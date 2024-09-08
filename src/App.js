@@ -36,8 +36,8 @@ const AdminRoutes = () => (
     <Routes>
       <Route path='' element={<AdminApp />}>
         <Route exact path='/dashboard' element={<DashboardApp />} />
-        <Route exact path='/room/:code' element={<RoomApp />} />
-        <Route exact path='/game/:code' element={<GameApp />} />
+        <Route exact path='/room' element={<RoomApp />} />
+        <Route exact path='/game' element={<GameApp />} />
         <Route exact path='/resume' element={<ResumeApp />} />
       </Route>
     </Routes>

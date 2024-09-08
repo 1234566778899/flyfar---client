@@ -9,6 +9,7 @@ import axios from 'axios';
 import { CONFIG } from '../config';
 import { MainContext } from '../contexts/MainContextApp';
 import { showInfoToast } from '../utils/showInfoToast';
+import { AccepInviteRoomApp } from './AccepInviteRoomApp';
 export const DashboardApp = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -18,11 +19,11 @@ export const DashboardApp = () => {
     const closeTabFriends = () => setTabListFriends(false);
     const [tabRequest, setTabRequest] = useState(false);
     const closeTabRequest = () => setTabRequest(false);
-    const { owner, socket } = useContext(MainContext);
-    const [friends, setFriends] = useState([]);
+    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends } = useContext(MainContext);
     const [nameFriend, setNameFriend] = useState('')
-
-
+    const [tabInvitation, setTabInvitation] = useState(false);
+    const closeInvitation = () => setTabInvitation(false);
+    const [codeInvitation, setCodeInvitation] = useState('');
     const getFriends = () => {
         axios.get(`${CONFIG.uri}/friends/retrieve/${owner._id}`)
             .then(res => {
@@ -38,6 +39,11 @@ export const DashboardApp = () => {
             getFriends();
             socket.on('online_friends', data => {
                 setFriends(data);
+            })
+            socket.on('invite_room', data => {
+                setCodeInvitation(data);
+                setCodeRoom(data)
+                setTabInvitation(true);
             })
             socket.on('send_request', data => {
                 if (data.to == user.email) {
@@ -66,14 +72,27 @@ export const DashboardApp = () => {
             socket.off('online_friends');
         }
     }, [owner])
+    const goRoom = () => {
+        const code = Math.floor(100000 + Math.random() * 900000);
+        setCodeRoom(code);
+        socket.emit('create_room', { code, id: owner._id });
+        navigate('/admin/room')
+    }
 
     return user && owner && (
         <div className='dasboard-content' style={{ fontSize: '0.9rem' }}>
+
             <div className="container">
+                {
+                    codeRoom && (<div className='d-flex justify-content-between align-items-center p-3 border my-4'>
+                        <span className='fw-bold'>Volver a la sala</span>
+                        <button className='btn btn-dark' onClick={() => navigate('/admin/room')}>Unirse</button>
+                    </div>)
+                }
                 <h3 className='fw-bold'>Bienvenido, {owner.username}</h3>
                 <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 5 desafios esta semana!</p>
-                <button className='btn-main px-2' style={{ fontSize: '0.9rem' }} onClick={() => navigate('/admin/room/123')}>Empezar nuevo desafío</button>
-                <div style={{ display: 'grid', gridTemplateColumns: '70% 30%' }}>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '75% 25%' }}>
                     <div className='pe-3'>
                         <div className='content-dash mt-4'>
                             <h4>Desafios actuales</h4>
@@ -116,23 +135,25 @@ export const DashboardApp = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="content-dash mt-4">
-                            <h4>Amigos</h4>
-                            <div style={{ display: 'flex' }}>
-                                <input type="text" className='form-control' placeholder='Buscar amigos' />
+                        <div className="content-friends mt-4" style={{ height: '400px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <div className='input-search'>
+                                    <input type="text" placeholder='Buscar amigos' />
+                                    <i className="fa-solid fa-magnifying-glass me-2"></i>
+                                </div>
                                 <button className='btn btn-dark' onClick={() => setTabActive(true)}>
-                                    <i className="fa-solid fa-plus"></i>
+                                    <i className="fa-solid fa-user-plus"></i>
                                 </button>
                             </div>
                             {
                                 friends.slice(0, 4).map((x, index) => (
                                     <div key={index} style={{ display: 'flex', marginTop: '15px', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }} src="https://vivolabs.es/wp-content/uploads/2022/03/perfil-hombre-vivo.png" alt="img" />
-                                            <div>
-                                                <span className='ms-2'>{x.username}</span><br />
+                                            <img style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '2px' }} src="https://vivolabs.es/wp-content/uploads/2022/03/perfil-hombre-vivo.png" alt="img" />
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <span className='ms-2' style={{ color: 'white' }}>{x.username}</span>
                                                 {
-                                                    x.online ? (<span className='ms-2' style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'green' }}>En linea</span>) : (<span className='ms-2' style={{ fontSize: '0.7rem', color: 'red', fontWeight: 'bold' }}>Desconectado</span>)
+                                                    x.online ? (<span className='ms-2' style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'green' }}>En linea</span>) : (<span className='ms-2' style={{ fontSize: '0.7rem', color: 'gray', fontWeight: 'bold' }}>Desconectado</span>)
                                                 }
                                             </div>
                                         </div>
@@ -150,6 +171,7 @@ export const DashboardApp = () => {
                                 </div>)
                             }
                         </div>
+                        <button className='btn-start mt-2' onClick={() => goRoom()}>EMPEZAR DESAFIO</button>
                     </div>
                 </div>
             </div>
@@ -161,6 +183,9 @@ export const DashboardApp = () => {
             }
             {
                 tabRequest && (<AcceptRequestApp friend={nameFriend} socket={socket} owner={owner} close={closeTabRequest} getFriends={getFriends} />)
+            }
+            {
+                tabInvitation && (<AccepInviteRoomApp close={closeInvitation} code={codeInvitation} />)
             }
             <br />
             <br />

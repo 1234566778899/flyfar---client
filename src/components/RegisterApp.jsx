@@ -120,7 +120,7 @@ export const RegisterApp = () => {
                                         {errors.confirmPassword && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.confirmPassword.message}</p>}
                                     </div>
                                     <button type="submit" style={{ letterSpacing: '1px' }} className='btn-login'>
-                                        {isLoading ? (<i class="fa-solid fa-spinner icon-load"></i>) : 'Registrarse'}
+                                        {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Registrarse'}
                                     </button>
                                 </form>
                                 <hr />

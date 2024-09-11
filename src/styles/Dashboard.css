@@ -1,6 +1,6 @@
 .profile-img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -24,10 +24,15 @@
 }
 
 .btn-join {
+    color: white;
     background: none;
-    border: 1px solid rgb(221, 221, 221);
+    border: none;
     padding: 5px 10px;
-    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.btn-join:hover {
+    transform: translateY(-2px);
 }
 
 .btn-view-all {
@@ -36,4 +41,25 @@
 
 .btn-view-all:hover {
     text-decoration: underline;
+}
+
+.card-menu {
+    width: 200px;
+    position: fixed;
+    background-color: #3D4450;
+    text-align: start;
+    font-size: 0.85rem;
+    transform: translateX(-100px);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.card-menu>div {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.card-menu div:hover {
+    background-color: #DCDEDF;
+    color: rgb(45, 45, 45);
 }

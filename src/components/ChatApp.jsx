@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export const ChatApp = ({ socket, owner, codeRoom }) => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
     const [messages, setMessages] = useState([]);
     const sendMessage = (data) => {
         socket.emit('send_message', { name: owner.username, content: data.message })
+        setValue('message', '')
     }
     useEffect(() => {
         socket.on('recive_message', data => {

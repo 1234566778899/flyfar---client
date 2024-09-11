@@ -42,7 +42,6 @@ export const DashboardApp = () => {
             })
             socket.on('invite_room', data => {
                 setCodeInvitation(data);
-                setCodeRoom(data)
                 setTabInvitation(true);
             })
             socket.on('send_request', data => {
@@ -75,13 +74,12 @@ export const DashboardApp = () => {
     const goRoom = () => {
         const code = Math.floor(100000 + Math.random() * 900000);
         setCodeRoom(code);
-        socket.emit('create_room', { code, id: owner._id });
+        socket.emit('create_room', { code, user: { id: owner._id, username: owner.username } });
         navigate('/admin/room')
     }
 
     return user && owner && (
         <div className='dasboard-content' style={{ fontSize: '0.9rem' }}>
-
             <div className="container">
                 {
                     codeRoom && (<div className='d-flex justify-content-between align-items-center p-3 border my-4'>
@@ -89,12 +87,16 @@ export const DashboardApp = () => {
                         <button className='btn btn-dark' onClick={() => navigate('/admin/room')}>Unirse</button>
                     </div>)
                 }
-                <h3 className='fw-bold'>Bienvenido, {owner.username}</h3>
-                <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 5 desafios esta semana!</p>
+                {
+                    codeRoom == '' && (<div>
+                        <h3 className='fw-bold mt-4'>Bienvenido, {owner.username}</h3>
+                        <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 5 desafios esta semana!</p>
+                    </div>)
+                }
 
                 <div style={{ display: 'grid', gridTemplateColumns: '75% 25%' }}>
                     <div className='pe-3'>
-                        <div className='content-dash mt-4'>
+                        <div className='content-dash mt-2'>
                             <h4>Desafios actuales</h4>
                             <div style={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <div>
@@ -135,7 +137,7 @@ export const DashboardApp = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="content-friends mt-4" style={{ height: '400px' }}>
+                        <div className="content-friends mt-2" style={{ height: '400px' }}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <div className='input-search'>
                                     <input type="text" placeholder='Buscar amigos' />
@@ -153,7 +155,7 @@ export const DashboardApp = () => {
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                                 <span className='ms-2' style={{ color: 'white' }}>{x.username}</span>
                                                 {
-                                                    x.online ? (<span className='ms-2' style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'green' }}>En linea</span>) : (<span className='ms-2' style={{ fontSize: '0.7rem', color: 'gray', fontWeight: 'bold' }}>Desconectado</span>)
+                                                    x.online ? (<span className='ms-2' style={{ fontSize: '0.7rem', fontWeight: 'bold', color: '#2E87BA' }}>En linea</span>) : (<span className='ms-2' style={{ fontSize: '0.7rem', color: 'gray', fontWeight: 'bold' }}>Desconectado</span>)
                                                 }
                                             </div>
                                         </div>

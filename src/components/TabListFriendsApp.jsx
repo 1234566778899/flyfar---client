@@ -19,7 +19,7 @@ export const TabListFriendsApp = ({ friends, close }) => {
                                     <td>{x.username}</td>
                                     <td>{'12/09/2024'}</td>
                                     <td>
-                                        <button style={{ fontSize: '0.7rem' }} className='btn btn-dark'><i className="fa-solid fa-trash"></i></button>
+                                        <button style={{ fontSize: '0.7rem' }}><i className="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             ))

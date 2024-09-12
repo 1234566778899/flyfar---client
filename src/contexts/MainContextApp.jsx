@@ -16,7 +16,8 @@ export const MainContextApp = ({ children }) => {
     const [friends, setFriends] = useState([]);
     const navigate = useNavigate();
     const [friendsActive, setFriendsActive] = useState([]);
-
+    const [settings, setSettings] = useState(null);
+    const [challenge, setChallenge] = useState(null);
     const getUser = () => {
         axios.get(`${CONFIG.uri}/users/retrieve/${user.email}`)
             .then(res => {
@@ -48,7 +49,7 @@ export const MainContextApp = ({ children }) => {
         }
     }, [owner])
     return (
-        <MainContext.Provider value={{ owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
+        <MainContext.Provider value={{ challenge, setChallenge, settings, setSettings, owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
             {children}
         </MainContext.Provider>
     )

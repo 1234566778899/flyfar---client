@@ -1,3 +1,44 @@
 .content-menu {
     background: #F8F9FA;
+    border: 1px solid #C2C7D0;
+    padding-top: 20px;
+}
+
+.menu-option {
+    background: none;
+    border: none;
+    padding: 7px 10px;
+    padding-bottom: 10px;
+    transform: translateY(1px);
+    color: #4f4f4f;
+    font-size: 0.95rem;
+}
+
+.menu-option:hover {
+    color: #1d2228;
+}
+
+.menu-active {
+    background-color: white;
+    border: 1px solid #C2C7D0;
+    border-bottom: 1px solid white;
+    color: #212428;
+}
+
+.btn-test {
+    background: linear-gradient(to bottom, #1F2122, #424A51);
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    border: 1px solid rgb(133, 133, 133);
+    color: white;
+    border-radius: 2px;
+}
+
+.btn-submit {
+    background: linear-gradient(to bottom, #1b425b, #30759d);
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    border: 1px solid rgb(133, 133, 133);
+    color: white;
+    border-radius: 2px;
 }

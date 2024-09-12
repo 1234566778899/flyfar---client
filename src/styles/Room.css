@@ -322,7 +322,7 @@ button:hover {
     align-items: center;
 }
 
-.tab-settings>div {
+.tab-settings>form {
     width: 800px;
     background: linear-gradient(to bottom, #242427, #1D1E21);
     padding: 20px;

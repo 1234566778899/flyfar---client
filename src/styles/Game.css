@@ -35,10 +35,42 @@
 }
 
 .btn-submit {
-    background: linear-gradient(to bottom, #1b425b, #30759d);
-    padding: 10px 25px;
-    font-size: 0.9rem;
-    border: 1px solid rgb(133, 133, 133);
+    background: #2D74FF;
     color: white;
-    border-radius: 2px;
+    padding: 7px 15px;
+    border: 1px solid #5487EA;
+    font-size: 0.9rem;
+    border-radius: 3px;
+}
+
+.item-challenge {
+    padding: 20px;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-challenge button {
+    background: #2D74FF;
+    color: white;
+    padding: 7px 12px;
+    border: 1px solid #5487EA;
+    font-size: 0.9rem;
+}
+
+.btn-c {
+    background: none;
+    border: none;
+}
+
+.progress-bar {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2D74FF;
+    color: white;
+    font-size: 0.9rem;
 }

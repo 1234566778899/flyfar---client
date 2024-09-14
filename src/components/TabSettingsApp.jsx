@@ -26,7 +26,7 @@ export const TabSettingsApp = ({ close }) => {
                             </select>
                         </div>
                         <div className='form-item'>
-                            <span>TIEMPO</span>
+                            <span>TIEMPO (min)</span>
                             <input type="text" {...register('time', { required: true })} />
                         </div>
                     </div>

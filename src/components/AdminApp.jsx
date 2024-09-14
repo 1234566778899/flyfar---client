@@ -3,11 +3,14 @@ import '../styles/Dashboard.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContextApp';
 import { MenuApp } from './MenuApp';
+import { MainContext } from '../contexts/MainContextApp';
 
 export const AdminApp = () => {
     const { user } = useContext(AuthContext);
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
+    const { challenge } = useContext(MainContext);
+    const [timeCap, setTimeCap] = useState(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (isVisible && !event.target.closest('.menu-container') && !event.target.closest('.btn-profile')) {
@@ -22,11 +25,22 @@ export const AdminApp = () => {
     if (!user) {
         navigate('/login')
     }
+    const getTime = () => {
+
+    }
+    useEffect(() => {
+        if (challenge) {
+            setTimeCap(new Date());
+        }
+
+    }, [challenge]);
     return user && (
         <div>
             <nav style={{ background: '#171D25', color: 'white', paddingBottom: '10px' }}>
-                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '10px' }}>
-                    <div></div>
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px' }}>
+                    <div>
+                        <span style={{ fontSize: '1.2rem' }}>{getTime()}</span>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <i className="fa-regular fa-bell me-5" style={{ fontSize: '1.2rem' }}></i>
                         <img className='profile-img' src="https://i.pinimg.com/originals/c6/89/95/c68995aa24906a1320b4d7d10aa374b2.png" alt="img" />

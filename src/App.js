@@ -12,6 +12,8 @@ import { ResumeApp } from './components/ResumeApp';
 import { MainContextApp } from './contexts/MainContextApp';
 import { NotFoundApp } from './components/NotFoundApp';
 import { AdminApp } from './components/AdminApp';
+import { ChallengesApp } from './components/ChallengesApp';
+import { ProgressApp } from './components/ProgressApp';
 
 function App() {
   const firestoreInstance = getAuth(useFirebaseApp());
@@ -37,8 +39,10 @@ const AdminRoutes = () => (
       <Route path='' element={<AdminApp />}>
         <Route exact path='/dashboard' element={<DashboardApp />} />
         <Route exact path='/room' element={<RoomApp />} />
-        <Route exact path='/game' element={<GameApp />} />
+        <Route exact path='/progress' element={<ProgressApp />} />
+        <Route exact path='/game/:id' element={<GameApp />} />
         <Route exact path='/resume' element={<ResumeApp />} />
+        <Route exact path='/challenges' element={<ChallengesApp />} />
       </Route>
     </Routes>
   </MainContextApp>

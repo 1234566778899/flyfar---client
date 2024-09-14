@@ -51,7 +51,7 @@ export const RoomApp = () => {
             axios.get(`${CONFIG.uri}/challenge/${data}`)
                 .then(res => {
                     setChallenge(res.data);
-                    navigate('/admin/game');
+                    navigate('/admin/challenges');
                 })
                 .catch(error => {
                     console.log(error);
@@ -63,6 +63,9 @@ export const RoomApp = () => {
             socket.off('start-challenge');
         }
     }, [])
+    if (friendsActive.length <= 0) {
+        return navigate('/admin/dashboard');
+    }
     return owner && (
         <div className='content-room'>
             <div className='container' style={{ display: 'grid', fontSize: '0.9rem', gridTemplateColumns: '70% 30%' }}>

@@ -11,9 +11,10 @@
 }
 
 .content-dash {
-    border: 1px solid rgb(228, 228, 228);
+    background: white;
+    border: 1px solid #EBEBF3;
     padding: 30px 20px;
-    border-radius: 3px;
+    border-radius: 20px;
 }
 
 .btn-continue {
@@ -62,4 +63,82 @@
 .card-menu div:hover {
     background-color: #DCDEDF;
     color: rgb(45, 45, 45);
+}
+
+.inter {
+    font-family: 'Satoshi', sans-serif;
+}
+
+.cond {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.btn-main {
+    background-color: #135181;
+    padding: 7px 15px;
+    border: none;
+    color: white;
+}
+
+.bar-wait {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #EBEBF3;
+    margin: 10px 0px;
+    border-radius: 5px;
+}
+
+.btn-add-user {
+    background-color: rgb(42, 42, 42);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+}
+
+.tab-friends {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tab-friends>div {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.btn-t {
+    padding: 7px 20px;
+    border: 1px solid rgb(118, 118, 118);
+    background: none;
+    color: white;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-t:hover {
+    background-color: white;
+    color: black;
+}
+
+.menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.menu li {
+    padding: 5px 15px;
 }

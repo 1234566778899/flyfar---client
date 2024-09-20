@@ -4,9 +4,9 @@ import { MainContext } from '../contexts/MainContextApp';
 
 export const TabSettingsApp = ({ close }) => {
     const { register, handleSubmit } = useForm();
-    const { setSettings } = useContext(MainContext);
+    const { setSettings, socket } = useContext(MainContext);
     const saveSetting = (data) => {
-        setSettings(data);
+        socket.emit('send_settings', data);
         close();
     }
     return (

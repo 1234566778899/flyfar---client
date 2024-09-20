@@ -7,19 +7,23 @@
 .avatar {
     width: 100px;
     height: 100px;
-    background: linear-gradient(to bottom, #162550, #2C4474);
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid #676767;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.avatar:hover {
+    background-color: rgb(252, 252, 252);
 }
 
 .btn-add {
     width: 60px;
     height: 60px;
-    background-color: #222222;
-    border: 1px solid gray;
+    background-color: #1b1b1b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,11 +137,11 @@ button:hover {
 
 .tab-accept>div {
     width: 350px;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid rgb(235, 235, 235);
-    border-radius: 3px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top right, #141718, #262C2D);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
 }
 
 
@@ -148,6 +152,8 @@ button:hover {
     background: linear-gradient(to top right, #141718, #262C2D);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
+
+
 
 .card-add input {
     width: 100%;
@@ -184,13 +190,14 @@ button:hover {
 
 .content-friends {
     padding: 10px;
-    background: linear-gradient(to bottom, #212929, #181A1E);
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #B4B4BB;
 }
 
 .input-search {
     display: flex;
     align-items: center;
-    color: white;
     border: 1px solid gray;
     width: 100%;
 }
@@ -200,30 +207,31 @@ button:hover {
     outline: none;
     width: 100%;
     background: none;
-    color: rgb(207, 207, 207);
     padding: 7px 10px;
 }
 
 .card-setting {
-    background: linear-gradient(to bottom, #242427, #1D1E21);
-    padding: 15px;
-    border: 1px solid rgb(133, 133, 133);
+    background: white;
+    padding: 25px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
 }
 
 .card-chat {
     background: #171F25;
-    border: 1px solid gray;
+    border-radius: 3px;
 }
 
 .content-room {
-    background: linear-gradient(to bottom, #202327, #000001);
+    background: #F7F8FD;
     height: 100vh;
 }
 
 .card-joins {
-    background: #30353a;
+    background: white;
     padding: 20px;
-    border: 1px solid rgb(133, 133, 133);
+    border: 1px solid #EBEBF3;
+    border-radius: 10px;
 }
 
 .item-friend {
@@ -305,11 +313,6 @@ button:hover {
     letter-spacing: 0.5px;
 }
 
-.label-title {
-    color: white;
-    letter-spacing: 0.5px;
-}
-
 .tab-settings {
     position: fixed;
     top: 0;
@@ -358,7 +361,7 @@ button:hover {
 }
 
 .form-item span {
-    color: #5D5D5D;
+    color: #999999;
     font-size: 0.9rem;
 }
 
@@ -395,28 +398,22 @@ button:hover {
 
 .btn-out {
     width: 100%;
-    background: linear-gradient(to bottom, #1F2122, #424A51);
-    color: white;
-    border: 1px solid rgb(133, 133, 133);
-    padding: 15px 0px;
+    background: white;
+    border: 1px solid rgb(103, 103, 103);
+    padding: 12px 0px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
 }
 
-.btn-get {
-    width: 100%;
-    background: linear-gradient(to bottom, #102837, #1A4F6D);
-    border: 1px solid rgb(133, 133, 133);
-    color: white;
-    padding: 15px 0px;
+
+.btn-out:hover {
+    transform: translateY(-1px);
 }
 
 .btn-edit {
-    color: #A19C99;
     background: none;
     border: none;
     font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.btn-edit:hover {
-    color: rgb(181, 181, 181);
 }

@@ -5,21 +5,30 @@ import { MainContext } from '../contexts/MainContextApp';
 import axios from 'axios';
 import { CONFIG } from '../config';
 import { showInfoToast } from '../utils/showInfoToast';
+import { useForm } from 'react-hook-form';
 export const GameApp = () => {
     const navigate = useNavigate();
     const [optionActive, setOptionActive] = useState('problem');
-    const { id } = useParams();
-    const { challenge, owner } = useContext(MainContext);
+    const { id, index } = useParams();
+    const { register, handleSubmit } = useForm();
+    const { challenge, setChallenge, owner, socket } = useContext(MainContext);
     const [isLoading, setIsLoading] = useState(false);
+
     if (!challenge) {
-        return navigate('/admin/dashboard')
+        navigate('/admin/dashboard')
+        return;
     }
-    const sendResult = () => {
+    const sendResult = (data) => {
         if (!isLoading) {
             setIsLoading(true);
-            axios.post(`${CONFIG.uri}/results/register`, { user: owner._id, task: challenge.tasks[id] })
+            axios.post(`${CONFIG.uri}/results/register`, { result: data.code, title: challenge.tasks[index].title, lenguaje: challenge.lenguaje, challenge: challenge._id, user: owner._id, task: challenge.tasks[index], time: 12 })
                 .then(res => {
-                    navigate('/admin/challenges');
+                    const { score } = res.data;
+                    const tasks = [...challenge.tasks];
+                    tasks[index].score = score;
+                    setChallenge({ ...challenge, tasks });
+                    socket.emit('send_result');
+                    navigate(`/admin/challenges/${id}`);
                 })
                 .catch(error => {
                     console.log(error);
@@ -30,18 +39,18 @@ export const GameApp = () => {
     }
     return (
         <div>
-            <div className="container">
+            <div className="container inter">
                 <br />
                 <div className='mb-3' style={{ display: 'flex', color: '#717171', fontWeight: 'bold', alignItems: 'center' }}>
-                    <span style={{ cursor: 'pointer' }} onClick={() => navigate('/admin/challenges')} className='me-2'>Todos los desafios</span>
-                    <i class="me-2 fa-solid fa-chevron-right"></i>
-                    <span style={{ cursor: 'pointer' }}>Ejercicio {Number(id) + 1}</span>
+                    <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/challenges/${id}`)} className='me-2'>Todos los desafios</span>
+                    <i className="me-2 fa-solid fa-chevron-right"></i>
+                    <span style={{ cursor: 'pointer' }}>Ejercicio {Number(index) + 1}</span>
                 </div>
             </div>
             <hr />
-            <div className='container'>
+            <div className='container inter'>
                 <div className='pe-3'>
-                    <h3>{challenge.tasks[id].title}</h3>
+                    <h3 className='fw-bold'>{challenge.tasks[index].title}</h3>
                     <div className='content-menu mt-3'>
                         <div>
                             <button
@@ -53,37 +62,41 @@ export const GameApp = () => {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '70% 30%' }}>
                         <div>
-                            <p className='mt-4' style={{ color: '#39424E' }}>{challenge.tasks[id].description}</p>
+                            <p className='mt-4' style={{ color: '#39424E' }}>{challenge.tasks[index].description}</p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E' }}>Formato de entrada</h6>
-                            <p style={{ color: '#39424E' }}>{challenge.tasks[id].format_input}</p>
+                            <p style={{ color: '#39424E' }}>{challenge.tasks[index].format_input}</p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E' }}>Restricciones</h6>
-                            <p>{challenge.tasks[id].restriction}</p>
+                            <p>{challenge.tasks[index].restriction}</p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E', marginTop: '15px' }}>Formato de salida</h6>
-                            <p>{challenge.tasks[id].format_output}</p>
+                            <p>{challenge.tasks[index].format_output}</p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E' }}>Ejemplo de entrada 1</h6>
                             <div style={{ background: '#F4FAFF', padding: '15px 10px' }}>
-                                <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[id].example_input.replace(/\n/g, '<br />') }}></p>
+                                <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[index].example_input.replace(/\n/g, '<br />') }}></p>
                             </div>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E', marginTop: '15px' }}>Ejemplo de salida</h6>
                             <div style={{ background: '#F4FAFF', padding: '15px 10px' }}>
-                                <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[id].example_output.replace(/\n/g, '<br />') }}></p>
+                                <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[index].example_output.replace(/\n/g, '<br />') }}></p>
                             </div>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E', marginTop: '15px' }}>Explicación</h6>
-                            <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[id].explanation.replace(/\n/g, '<br />') }}></p>
+                            <p className='ms-2' dangerouslySetInnerHTML={{ __html: challenge.tasks[index].explanation.replace(/\n/g, '<br />') }}></p>
                         </div>
                         <div>
 
                         </div>
                     </div>
                     <br />
-                    <textarea placeholder='Pega el código aqui..' type="text" multiple className='inp-editor' style={{ height: '300px' }} />
-                    <div className='text-end mt-2'>
-                        {/* <input type="file" /> */}
-                        <div>
-                            {/* <button className='btn-test'>Test</button> */}
-                            <button className='btn-submit ms-3' onClick={() => navigate('/admin/resume')}>Enviar respuesta</button>
+                    <form onSubmit={handleSubmit(sendResult)}>
+                        <textarea {...register('code', { required: true })} placeholder='Pega el código aqui..' type="text" multiple className='inp-editor' style={{ height: '300px' }} />
+                        <div className='text-end mt-2'>
+                            {/* <input type="file" /> */}
+                            <div>
+                                {/* <button className='btn-test'>Test</button> */}
+                                <button className='btn-submit ms-3' >
+                                    {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar resultado'}
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <br />
                     <br />
                     {/* <h4>Console Input</h4>

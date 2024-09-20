@@ -7,6 +7,7 @@ export const AccepInviteRoomApp = ({ close, code }) => {
     const navigate = useNavigate();
     const acceptinvitation = () => {
         setCodeRoom(code)
+        close();
         socket.emit('accept_invitation', { code, user: { id: owner._id, username: owner.username } });
         navigate('/admin/room');
     }

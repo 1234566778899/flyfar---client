@@ -14,6 +14,8 @@ import { NotFoundApp } from './components/NotFoundApp';
 import { AdminApp } from './components/AdminApp';
 import { ChallengesApp } from './components/ChallengesApp';
 import { ProgressApp } from './components/ProgressApp';
+import { SubmissionApp } from './components/SubmissionApp';
+import { ProfileApp } from './components/ProfileApp';
 
 function App() {
   const firestoreInstance = getAuth(useFirebaseApp());
@@ -25,8 +27,9 @@ function App() {
             <Route exact path='/' element={<LoginApp />} />
             <Route exact path='/login' element={<LoginApp />} />
             <Route exact path='/register' element={<RegisterApp />} />
-            <Route path='/admin/*' element={<AdminRoutes />} />
             <Route path='*' element={<NotFoundApp />} />
+            <Route path='/admin/*' element={<AdminRoutes />} />
+
           </Routes>
         </AuthContextApp>
       </AuthProvider>
@@ -39,10 +42,14 @@ const AdminRoutes = () => (
       <Route path='' element={<AdminApp />}>
         <Route exact path='/dashboard' element={<DashboardApp />} />
         <Route exact path='/room' element={<RoomApp />} />
-        <Route exact path='/progress' element={<ProgressApp />} />
-        <Route exact path='/game/:id' element={<GameApp />} />
-        <Route exact path='/resume' element={<ResumeApp />} />
-        <Route exact path='/challenges' element={<ChallengesApp />} />
+        <Route exact path='/profile' element={<ProfileApp />} />
+        <Route exact path='/progress/:id' element={<ProgressApp />} />
+        <Route exact path='/game/:id/:index' element={<GameApp />} />
+        <Route exact path='/resume/:id' element={<ResumeApp />} />
+        <Route exact path='/challenges/:id' element={<ChallengesApp />} />
+        <Route exact path='/submissions' element={<SubmissionApp />} />
+        <Route exact path='/submissions/:id' element={<SubmissionApp />} />
+        <Route path='*' element={<NotFoundApp />} />
       </Route>
     </Routes>
   </MainContextApp>

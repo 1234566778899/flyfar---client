@@ -6,9 +6,7 @@ import { showInfoToast } from '../utils/showInfoToast';
 import { io } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 export const MainContext = createContext()
-
 const socket = io(`${CONFIG.uri}/`);
-
 export const MainContextApp = ({ children }) => {
     const [owner, setOwner] = useState(null);
     const { user } = useContext(AuthContext);
@@ -18,13 +16,24 @@ export const MainContextApp = ({ children }) => {
     const [friendsActive, setFriendsActive] = useState([]);
     const [settings, setSettings] = useState(null);
     const [challenge, setChallenge] = useState(null);
+    const [started, setStarted] = useState(false);
+    const getFriends = (data) => {
+        axios.get(`${CONFIG.uri}/friends/retrieve/${data._id}`)
+            .then(res => {
+                socket.emit('enter', { ...data, friends: res.data });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     const getUser = () => {
         axios.get(`${CONFIG.uri}/users/retrieve/${user.email}`)
             .then(res => {
                 setOwner(res.data);
+                getFriends(res.data);
             })
             .catch(error => {
-                console.log(error);
                 showInfoToast('Error');
             })
     }
@@ -43,13 +52,22 @@ export const MainContextApp = ({ children }) => {
             socket.on('update_users', data => {
                 setFriendsActive(data);
             })
+            socket.on('online_friends', data => {
+                setFriends(data);
+            })
+            socket.on('send_settings', data => {
+                if (data) {
+                    setSettings(data);
+                }
+            })
         }
         return () => {
             socket.off('update_users');
+            socket.off('send_settings');
         }
     }, [owner])
     return (
-        <MainContext.Provider value={{ challenge, setChallenge, settings, setSettings, owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
+        <MainContext.Provider value={{ getFriends, getUser, started, setStarted, challenge, setChallenge, settings, setSettings, owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
             {children}
         </MainContext.Provider>
     )

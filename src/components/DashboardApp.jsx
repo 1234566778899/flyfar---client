@@ -19,31 +19,11 @@ export const DashboardApp = () => {
     const closeTabFriends = () => setTabListFriends(false);
     const [tabRequest, setTabRequest] = useState(false);
     const closeTabRequest = () => setTabRequest(false);
-    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends } = useContext(MainContext);
+    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, getFriends } = useContext(MainContext);
     const [nameFriend, setNameFriend] = useState('')
-    const [tabInvitation, setTabInvitation] = useState(false);
-    const closeInvitation = () => setTabInvitation(false);
-    const [codeInvitation, setCodeInvitation] = useState('');
-    const getFriends = () => {
-        axios.get(`${CONFIG.uri}/friends/retrieve/${owner._id}`)
-            .then(res => {
-                setFriends(res.data);
-                socket.emit('enter', { ...owner, friends: res.data });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
     useEffect(() => {
         if (owner) {
-            getFriends();
-            socket.on('online_friends', data => {
-                setFriends(data);
-            })
-            socket.on('invite_room', data => {
-                setCodeInvitation(data);
-                setTabInvitation(true);
-            })
+
             socket.on('send_request', data => {
                 if (data.to == user.email) {
                     setTabRequest(true);
@@ -77,57 +57,74 @@ export const DashboardApp = () => {
         socket.emit('create_room', { code, user: { id: owner._id, username: owner.username } });
         navigate('/admin/room')
     }
-
+    const visible = false;
     return user && owner && (
-        <div className='dasboard-content' style={{ fontSize: '0.9rem' }}>
+        <div className='inter' style={{ fontSize: '0.9rem', background: '#F7F8FD' }}>
+            <div className='bg-white pb-1' style={{ borderBottom: '1px solid #EBEBF3' }}>
+                <div className="container">
+                    {
+                        codeRoom == '' && (<div >
+                            <h3 className='fw-bold mt-4'>Bienvenido, {owner.username}</h3>
+                            <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 0 desafios esta semana!</p>
+                        </div>)
+                    }
+                </div>
+            </div>
             <div className="container">
                 {
-                    codeRoom && (<div className='d-flex justify-content-between align-items-center p-3 border my-4'>
-                        <span className='fw-bold'>Volver a la sala</span>
-                        <button className='btn btn-dark' onClick={() => navigate('/admin/room')}>Unirse</button>
-                    </div>)
-                }
-                {
-                    codeRoom == '' && (<div>
-                        <h3 className='fw-bold mt-4'>Bienvenido, {owner.username}</h3>
-                        <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 5 desafios esta semana!</p>
+                    codeRoom && (<div className='bar-wait'>
+                        <span className='fw-bold'>Sala en curso..</span>
+                        <button className='btn-view-challenges' onClick={() => navigate('/admin/room')}>Unirse a la sala</button>
                     </div>)
                 }
 
                 <div style={{ display: 'grid', gridTemplateColumns: '75% 25%' }}>
                     <div className='pe-3'>
-                        <div className='content-dash mt-2'>
-                            <h4>Desafios actuales</h4>
-                            <div style={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <div>
-                                    <span>Algoritmos avanzados</span>
-                                    <div className='bar-box' style={{ background: '#F4F4F5', height: '10px', width: '300px', borderRadius: '10px' }}>
-                                        <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '10px', width: '20%' }} className="progress-box"></div>
-                                    </div>
-                                </div>
-                                <button className='btn-continue'>Continuar</button>
-                            </div>
-                            <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <div>
-                                    <span>Algoritmos avanzados</span>
-                                    <div className='bar-box' style={{ background: '#F4F4F5', height: '10px', width: '300px', borderRadius: '10px' }}>
-                                        <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '10px', width: '80%' }} className="progress-box"></div>
-                                    </div>
-                                </div>
-                                <button className='btn-continue'>Continuar</button>
-                            </div>
-                            <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <div>
-                                    <span>Maching Learning Fundamentals</span>
-                                    <div className='bar-box' style={{ background: '#F4F4F5', height: '10px', width: '300px', borderRadius: '10px' }}>
-                                        <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '10px', width: '40%' }} className="progress-box"></div>
-                                    </div>
-                                </div>
-                                <button className='btn-continue'>Continuar</button>
-                            </div>
+                        <br />
+                        <h5 className='fw-bold'>Prueba inicial</h5>
+
+                        <div className='card-profile' style={{ background: 'black', color: 'white' }}>
+                            <h5 className='fw-bold'>Evalúa tu Nivel de Programación</h5>
+                            <p>Antes de comenzar con los desafíos, realiza esta prueba inicial para conocer tu nivel actual en programación.</p>
+                            <button className='btn-t'>Iniciar prueba</button>
                         </div>
+
+                        {
+                            visible && (
+                                <div className='content-dash mt-2'>
+                                    <h4 className='fw-bold'>Desafios actuales</h4>
+                                    <div style={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <span>Algoritmos avanzados</span>
+                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
+                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '20%' }} className="progress-box"></div>
+                                            </div>
+                                        </div>
+                                        <button className='btn-continue'>Continuar</button>
+                                    </div>
+                                    <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <span>Algoritmos avanzados</span>
+                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
+                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '80%' }} className="progress-box"></div>
+                                            </div>
+                                        </div>
+                                        <button className='btn-continue'>Continuar</button>
+                                    </div>
+                                    <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <span>Maching Learning Fundamentals</span>
+                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
+                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '40%' }} className="progress-box"></div>
+                                            </div>
+                                        </div>
+                                        <button className='btn-continue'>Continuar</button>
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div className='content-dash mt-4'>
-                            <h4>Actividad reciente</h4>
+                            <h4 className='fw-bold'>Actividad reciente</h4>
                             <ul className='mt-3'>
                                 <li>Completaste Data Structure</li>
                                 <li className='mt-1'>Earn 'Code NInja' Badge</li>
@@ -143,26 +140,26 @@ export const DashboardApp = () => {
                                     <input type="text" placeholder='Buscar amigos' />
                                     <i className="fa-solid fa-magnifying-glass me-2"></i>
                                 </div>
-                                <button className='btn btn-dark' onClick={() => setTabActive(true)}>
-                                    <i className="fa-solid fa-user-plus"></i>
-                                </button>
+                                <button
+                                    onClick={() => setTabActive(true)}
+                                    className='btn-add-user'><i className="fa-solid fa-user-plus"></i></button>
                             </div>
                             {
                                 friends.slice(0, 4).map((x, index) => (
                                     <div key={index} style={{ display: 'flex', marginTop: '15px', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '2px' }} src="https://vivolabs.es/wp-content/uploads/2022/03/perfil-hombre-vivo.png" alt="img" />
+                                            <img style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '2px' }} src={x.photo || 'https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg'} alt="img" />
                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                <span className='ms-2' style={{ color: 'white' }}>{x.username}</span>
+                                                <span className='ms-2 fw-bold'>{x.username}</span>
                                                 {
                                                     x.online ? (<span className='ms-2' style={{ fontSize: '0.7rem', fontWeight: 'bold', color: '#2E87BA' }}>En linea</span>) : (<span className='ms-2' style={{ fontSize: '0.7rem', color: 'gray', fontWeight: 'bold' }}>Desconectado</span>)
                                                 }
                                             </div>
                                         </div>
                                         <div>
-                                            <button className='btn-join'>
+                                            {/* <button className='btn-join'>
                                                 <i className="fa-solid fa-plus"></i>
-                                            </button>
+                                            </button> */}
                                         </div>
                                     </div>
                                 ))
@@ -173,7 +170,7 @@ export const DashboardApp = () => {
                                 </div>)
                             }
                         </div>
-                        <button className='btn-start mt-2' onClick={() => goRoom()}>EMPEZAR DESAFIO</button>
+                        <button className='btn-main w-100 py-3 mt-2' onClick={() => goRoom()}>Iniciar un desafio</button>
                     </div>
                 </div>
             </div>
@@ -186,9 +183,7 @@ export const DashboardApp = () => {
             {
                 tabRequest && (<AcceptRequestApp friend={nameFriend} socket={socket} owner={owner} close={closeTabRequest} getFriends={getFriends} />)
             }
-            {
-                tabInvitation && (<AccepInviteRoomApp close={closeInvitation} code={codeInvitation} />)
-            }
+
             <br />
             <br />
         </div>

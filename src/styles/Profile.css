@@ -1,0 +1,63 @@
+.card-profile {
+    background-color: white;
+    border: 1px solid #EBEBF3;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.enlace {
+    color: #408CFF;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.enlace:hover {
+    text-decoration: underline;
+}
+
+.img-profile {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: contain;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.img-profile:hover {
+    filter: brightness(0.8);
+}
+
+.tab-profile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tab-profile>div {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+}
+
+.tab-profile input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #9091A8;
+    border-radius: 7px;
+    padding: 7px 10px;
+    outline: none;
+}
+
+.tab-profile input:focus {
+    border: 2px solid #408CFF;
+}

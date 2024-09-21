@@ -10,14 +10,13 @@ export const SubmissionApp = () => {
     const { challenge, owner } = useContext(MainContext);
     const [submissions, setSubmissions] = useState([]);
     const [visibles, setVisibles] = useState(submissions.map(x => false));
-    const { id } = useParams();
+    const { taskId, challengeId } = useParams();
     const getSubmissions = () => {
         axios.post(`${CONFIG.uri}/results/retrieve`, { user: owner._id, challenge: challenge._id })
             .then(res => {
                 setSubmissions(res.data);
             })
             .catch(error => {
-                console.log(error);
                 showInfoToast('Error');
             })
     }
@@ -34,7 +33,7 @@ export const SubmissionApp = () => {
             <div className="container inter">
                 <br />
                 <div className='mb-3' style={{ display: 'flex', color: '#717171', fontWeight: 'bold', alignItems: 'center' }}>
-                    <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/challenges/${id}`)} className='me-2'>Todos los desafios</span>
+                    <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/challenges/${challengeId}`)} className='me-2'>Todos los desafios</span>
                     <i className="me-2 fa-solid fa-chevron-right"></i>
                     <span style={{ cursor: 'pointer' }}>Envios</span>
                 </div>
@@ -54,7 +53,7 @@ export const SubmissionApp = () => {
                                 <td className='text-center'>Puntaje</td>
                             </tr>
                             {
-                                submissions.filter(x => (id ? x.task == id : true)).map((x, idx) => (
+                                submissions.filter(x => (taskId ? x.task == taskId : true)).map((x, idx) => (
                                     <tr key={x._id}>
                                         <td className='py-3' style={{ color: '#2D74FF' }}>
                                             {x.title}

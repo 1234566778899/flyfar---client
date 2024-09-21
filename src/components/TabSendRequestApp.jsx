@@ -14,14 +14,14 @@ export const TabSendRequestApp = ({ close, user, socket, owner }) => {
                 setIsLoading(false);
                 return showInfoToast('Email inválido');
             }
-            axios.post(`${CONFIG.uri}/friends/send_request`, { user: user.email, friend: data.email })
+            axios.post(`${CONFIG.uri}/friends/send_request`, { userId: owner._id, friend: data.email })
                 .then(res => {
+                    showInfoToast('Solicitud enviada');
                     socket.emit('request_friend', { from: owner, to: data.email });
                     close()
                 })
                 .catch(error => {
                     setIsLoading(false);
-                    console.log(error);
                     if (error.response) {
                         showInfoToast(error.response.data.error);
                     }

@@ -31,7 +31,6 @@ export const GameApp = () => {
                     navigate(`/admin/challenges/${id}`);
                 })
                 .catch(error => {
-                    console.log(error);
                     setIsLoading(false);
                     showInfoToast('Error');
                 })
@@ -102,7 +101,6 @@ export const GameApp = () => {
                     {/* <h4>Console Input</h4>
                 <textarea type="text" multiple className='inp-editor' style={{ height: '200px' }} /> */}
                 </div>
-
             </div>
         </div>
     )

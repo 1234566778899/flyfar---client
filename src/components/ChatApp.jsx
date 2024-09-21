@@ -35,7 +35,7 @@ export const ChatApp = ({ socket, owner, codeRoom }) => {
             </div>
             <form className='inp-chat' onSubmit={handleSubmit(sendMessage)}>
                 <div style={{ color: '#87D2D3' }}>(Sala):</div>
-                <input type="text"{...register('message', { required: 'true' })} />
+                <input type="text" placeholder='Escribe un mensaje' {...register('message', { required: 'true' })} />
             </form>
         </div>
     )

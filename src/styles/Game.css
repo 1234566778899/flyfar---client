@@ -55,7 +55,7 @@
     align-items: center;
 }
 
-.item-challenge button {
+.btn-challenge {
     background: #135181;
     color: white;
     padding: 7px 12px;
@@ -63,6 +63,12 @@
     font-size: 0.9rem;
     border-radius: 3px;
     outline: none;
+}
+
+.btn-challenge-solved {
+    background: #e6e6e6;
+    color: black;
+    border: 1px solid gray;
 }
 
 .btn-view-challenges {
@@ -96,4 +102,38 @@
     text-align: center;
     border-radius: 5px;
     color: #8f8f8f;
+}
+
+.tab-confirm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tab-confirm>div {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.tab-confirm .btn-accept {
+    padding: 5px 15px;
+    background-color: #135181;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+.tab-confirm .btn-cancel {
+    padding: 5px 12px;
+    background-color: #ededed;
+    border: 1px solid gray;
+    border-radius: 3px;
 }

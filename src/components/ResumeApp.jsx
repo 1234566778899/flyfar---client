@@ -8,22 +8,21 @@ import { MainContext } from '../contexts/MainContextApp'
 export const ResumeApp = () => {
     const { id } = useParams();
     const [ranking, setRanking] = useState([]);
-    const { setCodeRoom, setFriendsActive, setStarted } = useContext(MainContext);
+    const { setCodeRoom, setFriendsActive, setStarted, setChallenge } = useContext(MainContext);
     const getRanking = () => {
         axios.get(`${CONFIG.uri}/results/ranking/${id}`)
             .then(res => {
                 setRanking(res.data);
             })
             .catch(error => {
-                console.log(error);
                 showInfoToast('Error');
             })
     }
     useEffect(() => {
         getRanking();
         setCodeRoom(false);
-        setFriendsActive([]);
         setStarted(false);
+        setChallenge(null);
     }, [])
     return (
         <div style={{ fontSize: '0.9rem' }}>

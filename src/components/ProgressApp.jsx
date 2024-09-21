@@ -16,7 +16,6 @@ export const ProgressApp = () => {
                 setRanking(res.data);
             })
             .catch(error => {
-                console.log(error);
                 showInfoToast('Error');
             })
     }

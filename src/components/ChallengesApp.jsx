@@ -20,6 +20,13 @@ export const ChallengesApp = () => {
                 })
         }
     }
+    const resolvProblem = (score, idx) => {
+        if (score == 20) {
+            showInfoToast('Desafio completado');
+        } else {
+            navigate(`/admin/game/${challenge._id}/${idx}`)
+        }
+    }
     useEffect(() => {
         getChallenge();
     }, [])
@@ -43,14 +50,14 @@ export const ChallengesApp = () => {
                                         {
                                             x.score != undefined && (
                                                 <span onClick={() => navigate(`/admin/submissions/${x._id}`)} style={{ cursor: 'pointer' }}>
-                                                    <i class="fa-regular fa-comment-dots me-1"></i>
+                                                    <i className="fa-regular fa-comment-dots me-1"></i>
                                                     Ver comentarios
                                                 </span>
                                             )
                                         }
                                     </div>
                                     <div>
-                                        <button onClick={() => navigate(`/admin/game/${challenge._id}/${idx}`)}>Resolver problema</button>
+                                        <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, idx)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Completado')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +73,7 @@ export const ChallengesApp = () => {
                             <span style={{ color: '#135181', fontWeight: 'bold' }}>Clasificación actual</span>
                         </button><br />
                         <button
-                            onClick={() => navigate('/admin/submissions')}
+                            onClick={() => navigate(`/admin/submissions/${challenge._id}`)}
                             className='btn-c mt-2'><i style={{ color: '#505050' }} className="fa-solid fa-chart-simple me-2"></i>
                             <span style={{ color: '#135181', fontWeight: 'bold' }}>Revisar envios</span>
                         </button>

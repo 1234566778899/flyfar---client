@@ -47,8 +47,8 @@ const AdminRoutes = () => (
         <Route exact path='/game/:id/:index' element={<GameApp />} />
         <Route exact path='/resume/:id' element={<ResumeApp />} />
         <Route exact path='/challenges/:id' element={<ChallengesApp />} />
-        <Route exact path='/submissions' element={<SubmissionApp />} />
-        <Route exact path='/submissions/:id' element={<SubmissionApp />} />
+        <Route exact path='/submissions/:challengeId' element={<SubmissionApp />} />
+        <Route exact path='/submissions/:challengeId/:taskId' element={<SubmissionApp />} />
         <Route path='*' element={<NotFoundApp />} />
       </Route>
     </Routes>

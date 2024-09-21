@@ -4,12 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from './../contexts/AuthContextApp';
 import { TabSendRequestApp } from './TabSendRequestApp';
 import { TabListFriendsApp } from './TabListFriendsApp';
-import { AcceptRequestApp } from './AcceptRequestApp';
-import axios from 'axios';
-import { CONFIG } from '../config';
 import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
-import { AccepInviteRoomApp } from './AccepInviteRoomApp';
+
 export const DashboardApp = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -17,32 +13,15 @@ export const DashboardApp = () => {
     const closeTab = () => setTabActive(false);
     const [tabListFriends, setTabListFriends] = useState(false);
     const closeTabFriends = () => setTabListFriends(false);
-    const [tabRequest, setTabRequest] = useState(false);
-    const closeTabRequest = () => setTabRequest(false);
-    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, getFriends } = useContext(MainContext);
-    const [nameFriend, setNameFriend] = useState('')
+    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends } = useContext(MainContext);
+
     useEffect(() => {
         if (owner) {
-
-            socket.on('send_request', data => {
-                if (data.to == user.email) {
-                    setTabRequest(true);
-                    setNameFriend(data.from);
-                }
-            })
             socket.on('out_friend', data => {
                 setFriends(prev => (prev.map(x => (x._id == data ? { ...x, online: false } : x))))
             })
             socket.on('entering', data => {
                 setFriends(prev => (prev.map(x => (x._id == data ? { ...x, online: true } : x))))
-            })
-            socket.on('status_request', data => {
-                if (data.from == owner._id) {
-                    showInfoToast(data.status == 'accepted' ? `${data.to.name} ha aceptado tu solicitud de amistad` : `${data.to.name} ha rechazado tu solicitud de amistad`);
-                    if (data.status == 'accepted') {
-                        getFriends()
-                    }
-                }
             })
         }
         return () => {
@@ -77,7 +56,6 @@ export const DashboardApp = () => {
                         <button className='btn-view-challenges' onClick={() => navigate('/admin/room')}>Unirse a la sala</button>
                     </div>)
                 }
-
                 <div style={{ display: 'grid', gridTemplateColumns: '75% 25%' }}>
                     <div className='pe-3'>
                         <br />
@@ -180,10 +158,6 @@ export const DashboardApp = () => {
             {
                 tabListFriends && (<TabListFriendsApp friends={friends} close={closeTabFriends} />)
             }
-            {
-                tabRequest && (<AcceptRequestApp friend={nameFriend} socket={socket} owner={owner} close={closeTabRequest} getFriends={getFriends} />)
-            }
-
             <br />
             <br />
         </div>

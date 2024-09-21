@@ -41,7 +41,6 @@ export const RegisterApp = () => {
                         })
                         .catch(error => {
                             showInfoToast('Error');
-                            console.log(error);
                         })
                 })
                 .catch((error) => {

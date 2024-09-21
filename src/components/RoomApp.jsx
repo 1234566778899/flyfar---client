@@ -10,7 +10,7 @@ import axios from 'axios';
 import { CONFIG } from '../config';
 export const RoomApp = () => {
     const navigate = useNavigate();
-    const { socket, owner, setCodeRoom, friendsActive, codeRoom, setChallenge } = useContext(MainContext);
+    const { socket, owner, setCodeRoom, friendsActive, codeRoom } = useContext(MainContext);
     const [tabFriends, setTabFriends] = useState(false);
     const [tabSettings, settabSettings] = useState(false);
     const closeTabSettings = () => settabSettings(false);
@@ -29,13 +29,12 @@ export const RoomApp = () => {
                 setIsLoading(false);
                 return showInfoToast('Debe configurar el desafio');
             }
-            axios.post(`${CONFIG.uri}/challenge/generate`, { ...settings, users: friendsActive })
+            axios.post(`${CONFIG.uri}/challenge/generate`, { ...settings, users: friendsActive, code: codeRoom })
                 .then(res => {
                     setIsLoading(false);
                     socket.emit('create-challenge', res.data._id)
                 })
                 .catch(error => {
-                    console.log(error);
                     setIsLoading(false);
                     showInfoToast('Error');
                 })

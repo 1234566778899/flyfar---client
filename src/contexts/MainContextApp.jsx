@@ -23,7 +23,7 @@ export const MainContextApp = ({ children }) => {
                 socket.emit('enter', { ...data, friends: res.data });
             })
             .catch(error => {
-                console.log(error);
+                showInfoToast('Error');
             })
     }
 

@@ -48,7 +48,7 @@ export const LoginApp = () => {
     };
 
     return (
-        <div className='login-content' style={{ fontSize: '0.9rem' }}>
+        <div className='login-content inter' style={{ fontSize: '0.9rem' }}>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-4"></div>

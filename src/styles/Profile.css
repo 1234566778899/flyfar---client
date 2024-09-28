@@ -61,3 +61,19 @@ textarea {
 .tab-profile input:focus {
     border: 2px solid #408CFF;
 }
+
+.btn-infor {
+    padding: 3px 10px;
+    border: none;
+    background-color: #408CFF;
+    border-radius: 3px;
+    color: white;
+}
+
+.btn-delete {
+    padding: 3px 10px;
+    border: none;
+    background-color: #ff404d;
+    border-radius: 3px;
+    color: white;
+}

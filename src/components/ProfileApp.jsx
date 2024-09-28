@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import '../styles/Profile.css'
-import { TabEditNameApp } from './TabEditNameApp';
-import { TabPersonalApp } from './TabPersonalApp';
-import { TabSkillApp } from './TabSkillApp';
-import { TabBiografiApp } from './TabBiografiApp';
-import { TabEducationApp } from './TabEducationApp';
+import moment from 'moment';
+import { TabEditNameApp } from './tabs/TabEditNameApp';
+import { TabPersonalApp } from './tabs/TabPersonalApp';
+import { TabSkillApp } from './tabs/TabSkillApp';
+import { TabBiografiApp } from './tabs/TabBiografiApp';
+import { TabEducationApp } from './tabs/TabEducationApp';
+import { TabPhotoApp } from './tabs/TabPhotoApp';
 import { MainContext } from '../contexts/MainContextApp';
-import { TabPhotoApp } from './TabPhotoApp';
 export const ProfileApp = () => {
     const [tab1, setTab1] = useState(false);
     const [tab2, setTab2] = useState(false);
@@ -77,7 +78,7 @@ export const ProfileApp = () => {
                                         owner.country && (<div className='mt-1'><i className="fa-solid fa-location-dot me-2"></i>Perú</div>)
                                     }
                                     {
-                                        owner.birthdate && (<div className='mt-1'><i className="fa-solid fa-calendar-days me-2"></i>12-09-2001</div>)
+                                        owner.birthdate && (<div className='mt-1'><i className="fa-solid fa-calendar-days me-2"></i>{moment(owner.birthdate).format('DD/MM/YYYY')}</div>)
                                     }
                                 </div>
                             </div>
@@ -127,7 +128,7 @@ export const ProfileApp = () => {
                             </div>
                         </div>
                         <div>
-                            <div className='card-profile mt-4' style={{ position: 'relative' }}>
+                            <div className='card-profile mt-2' style={{ position: 'relative' }}>
                                 <span onClick={() => setTab4(true)} className='enlace' style={{ position: 'absolute', right: 20 }} >+ {owner.biografy ? 'Editar' : 'Añadir'} biografia</span>
                                 <h5 className='fw-bold'><i className="fa-solid fa-heart me-2"></i>Biografía</h5>
                                 {
@@ -140,6 +141,7 @@ export const ProfileApp = () => {
                                 {
                                     !owner.university && (<p style={{ fontSize: '0.9rem', color: '#797983' }}>Ingrese datos sobre sus estudios, es muy importante para nosotros</p>)
                                 }
+
                                 {
                                     owner.university && (
                                         <div style={{ fontSize: '0.9rem', display: 'flex' }}>

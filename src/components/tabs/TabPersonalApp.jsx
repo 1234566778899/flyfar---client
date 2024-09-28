@@ -1,14 +1,22 @@
 import axios from 'axios';
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
-import { CONFIG } from '../config';
-import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
+import moment from 'moment';
+import { MainContext } from '../../contexts/MainContextApp';
+import { CONFIG } from '../../config';
+import { showInfoToast } from '../../utils/showInfoToast';
 
-export const TabEditNameApp = ({ close }) => {
+export const TabPersonalApp = ({ close }) => {
     const { register, handleSubmit } = useForm();
     const { owner, getUser } = useContext(MainContext);
     const update = (data) => {
+        if (data.birthdate) {
+            const d = new Date(data.birthdate);
+            if (d.getFullYear() > 2015) {
+                showInfoToast('Fecha de nacimiento inválido');
+                return;
+            }
+        }
         axios.put(`${CONFIG.uri}/users/update/${owner._id}`, data)
             .then(x => {
                 getUser();
@@ -27,16 +35,20 @@ export const TabEditNameApp = ({ close }) => {
                         style={{ position: 'absolute', right: 20, cursor: 'pointer' }} className="fa-solid fa-xmark"></i>
                     <h5 className='fw-bold'>Información personal</h5>
                     <div className='mt-3'>
-                        <span>Primer nombre</span>
-                        <input defaultValue={owner.name} type="text" {...register('name', { required: true })} />
+                        <span>Correo electrónico</span>
+                        <input defaultValue={owner.email} type="text" {...register('email', { required: true })} />
                     </div>
                     <div className='mt-2'>
-                        <span>Apellido</span>
-                        <input defaultValue={owner.lname} type="text" {...register('lname', { required: true })} />
+                        <span>Pais</span>
+                        <input type="text" defaultValue={owner.country}{...register('country', { required: true })} />
                     </div>
                     <div className='mt-2'>
-                        <span>Alias</span>
-                        <input defaultValue={owner.username} type="text" {...register('username', { required: true })} />
+                        <span>Número de teléfono</span>
+                        <input defaultValue={owner.phone} type="text"{...register('phone', { required: true })} />
+                    </div>
+                    <div className='mt-2'>
+                        <span>Fecha de nacimiento</span>
+                        <input defaultValue={moment(owner.birthdate).format('YYYY-MM-DD')} type="date" {...register('birthdate', { required: true })} />
                     </div>
                     <div className='text-end mt-3'>
                         <button className='btn-view-challenges'>Guardar</button>

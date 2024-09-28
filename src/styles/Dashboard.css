@@ -189,3 +189,32 @@
 .btn-noti:hover {
     filter: brightness(0.9);
 }
+
+.tab-test {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.tab-test>div {
+    background-color: white;
+    padding: 25px;
+    width: 500px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.tab-test button {
+    width: 100%;
+    background: rgb(47, 47, 47);
+    border: none;
+    color: white;
+    padding: 12px 0;
+    border-radius: 3px;
+}

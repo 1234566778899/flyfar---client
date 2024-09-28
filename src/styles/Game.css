@@ -113,7 +113,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .tab-confirm>div {
@@ -136,4 +136,18 @@
     background-color: #ededed;
     border: 1px solid gray;
     border-radius: 3px;
+}
+
+.btn-send {
+    width: 100%;
+    padding: 10px 0px;
+    color: white;
+    background: rgb(47, 47, 47);
+    border: 1px solid rgb(0, 98, 16);
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-send:hover {
+    background-color: rgb(59, 59, 59);
 }

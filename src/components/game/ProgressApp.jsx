@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { CONFIG } from '../config';
-import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
+import { CONFIG } from '../../config';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from '../../utils/showInfoToast';
 
 export const ProgressApp = () => {
     const navigate = useNavigate();
@@ -91,7 +91,7 @@ export const ProgressApp = () => {
                             <span>No hay ningún envio todavía</span>
                         </div>
                         <div className="text-center mt-3">
-                            <button className='btn-view-challenges' onClick={() => navigate(`/admin/challenges`)}>Ver desafios</button>
+                            <button className='btn-view-challenges' onClick={() => navigate(`/admin/challenges/${id}`)}>Ver desafios</button>
                         </div>
                     </div>)
                 }

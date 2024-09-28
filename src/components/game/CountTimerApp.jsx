@@ -12,9 +12,7 @@ export const CountTimerApp = ({ creationTime, minutes, challengeId }) => {
         const timeLeftMs = totalTimeMs - timeElapsed;
         return timeLeftMs > 0 ? timeLeftMs : 0;
     };
-
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
-
     useEffect(() => {
         if (timeLeft <= 0) {
             navigate(`/admin/resume/${challengeId}`)
@@ -31,7 +29,6 @@ export const CountTimerApp = ({ creationTime, minutes, challengeId }) => {
         const seconds = Math.floor((timeLeft / 1000) % 60);
         return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
     };
-
     return (
         <span>Tiempo restante: {formatTime()}</span>
     );

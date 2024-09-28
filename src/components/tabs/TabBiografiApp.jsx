@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { CONFIG } from '../config';
-import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
+import { CONFIG } from '../../config';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from '../../utils/showInfoToast';
 
 export const TabBiografiApp = ({ close }) => {
     const { register, handleSubmit } = useForm();

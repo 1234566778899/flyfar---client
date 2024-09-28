@@ -13,7 +13,7 @@ export const MainContextApp = ({ children }) => {
     const [codeRoom, setCodeRoom] = useState(false);
     const [friends, setFriends] = useState([]);
     const navigate = useNavigate();
-    const [friendsActive, setFriendsActive] = useState([]);
+    const [friendsActive, setFriendsActive] = useState(null);
     const [settings, setSettings] = useState(null);
     const [challenge, setChallenge] = useState(null);
     const [started, setStarted] = useState(false);
@@ -67,7 +67,7 @@ export const MainContextApp = ({ children }) => {
         }
     }, [owner])
     return (
-        <MainContext.Provider value={{ getFriends, getUser, started, setStarted, challenge, setChallenge, settings, setSettings, owner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
+        <MainContext.Provider value={{ getFriends, getUser, started, setStarted, challenge, setChallenge, settings, setSettings, owner, setOwner, socket, codeRoom, setCodeRoom, friends, setFriends, friendsActive, setFriendsActive }}>
             {children}
         </MainContext.Provider>
     )

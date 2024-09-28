@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { MainContext } from '../contexts/MainContextApp'
-import { useNavigate, useParams } from 'react-router-dom';
-import { CONFIG } from '../config';
 import axios from 'axios';
-import { showInfoToast } from '../utils/showInfoToast';
+import { CONFIG } from '../../config';
+import { useNavigate, useParams } from 'react-router-dom';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from './../../utils/showInfoToast';
 
-export const ChallengesApp = () => {
+export const InitialTestApp = () => {
     const navigate = useNavigate();
     const { challenge, setChallenge } = useContext(MainContext);
     const { id } = useParams();
@@ -34,7 +34,7 @@ export const ChallengesApp = () => {
         <div className='container inter'>
             <br />
             <hr />
-            <h4 className='fw-bold'>Desafios</h4>
+            <h4 className='fw-bold'>Prueba inicial</h4>
             <hr />
             <div style={{ display: 'grid', gridTemplateColumns: '70% 30%', gap: '20px' }}>
                 <div>
@@ -66,18 +66,15 @@ export const ChallengesApp = () => {
 
                 </div>
                 <div>
-                    <h5 style={{ fontWeight: 'bold' }}>Ranking actual: 2</h5>
-                    <div className='mt-4'>
-                        <button className='btn-c' onClick={() => navigate(`/admin/progress/${challenge._id}`)}>
-                            <i style={{ color: '#505050' }} className="fa-solid fa-trophy me-2"></i>
-                            <span style={{ color: '#135181', fontWeight: 'bold' }}>Clasificación actual</span>
-                        </button><br />
+                    <h5 style={{ fontWeight: 'bold' }}>Puntaje promedio: -</h5>
+                    <div className='mt-2'>
                         <button
                             onClick={() => navigate(`/admin/submissions/${challenge._id}`)}
                             className='btn-c mt-2'><i style={{ color: '#505050' }} className="fa-solid fa-chart-simple me-2"></i>
                             <span style={{ color: '#135181', fontWeight: 'bold' }}>Revisar envios</span>
                         </button>
                     </div>
+                    <button className='mt-5 btn-send'>Enviar prueba</button>
                 </div>
             </div>
         </div>

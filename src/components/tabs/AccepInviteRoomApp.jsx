@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { MainContext } from '../contexts/MainContextApp';
 import { useNavigate } from 'react-router-dom';
+import { MainContext } from '../../contexts/MainContextApp';
 
 export const AccepInviteRoomApp = ({ close, code }) => {
     const { socket, owner, setCodeRoom } = useContext(MainContext);

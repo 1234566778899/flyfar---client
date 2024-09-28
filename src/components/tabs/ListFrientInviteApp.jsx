@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from '../../utils/showInfoToast';
 
 export const ListFrientInviteApp = ({ close, socket }) => {
     const { friends, codeRoom } = useContext(MainContext);

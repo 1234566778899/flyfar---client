@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { CONFIG } from '../config'
 import { useForm } from 'react-hook-form'
-import { showInfoToast } from './../utils/showInfoToast';
+import { showInfoToast } from './../../utils/showInfoToast';
+import { CONFIG } from '../../config';
 
 export const TabSendRequestApp = ({ close, user, socket, owner }) => {
     const { register, handleSubmit } = useForm();
@@ -36,9 +36,9 @@ export const TabSendRequestApp = ({ close, user, socket, owner }) => {
                     <input className='mt-2' type="text" {...register('email', { required: true })} placeholder='Correo eletrónico aqui' />
                     <div className="d-flex mt-3">
                         <button type="submit" className="me-2 btn-accept w-100">
-                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'ACEPTAR'}
+                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Aceptar'}
                         </button>
-                        <button type='button' className='ms-2 btn-cancel w-100 ' onClick={() => close()}>CANCELAR</button>
+                        <button type='button' className='ms-2 btn-cancel w-100 ' onClick={() => close()}>Cancelar</button>
                     </div>
                 </form>
             </div>

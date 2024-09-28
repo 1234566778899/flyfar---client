@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
-import { MainContext } from '../contexts/MainContextApp';
-import { showInfoToast } from '../utils/showInfoToast';
 import axios from 'axios';
-import { CONFIG } from '../config';
+import { MainContext } from '../../contexts/MainContextApp';
+import { CONFIG } from '../../config';
+import { showInfoToast } from '../../utils/showInfoToast';
 
 export const TabSkillApp = ({ close }) => {
     const { register, handleSubmit } = useForm();

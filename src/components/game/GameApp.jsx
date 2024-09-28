@@ -1,27 +1,43 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import '../styles/Game.css'
-import { MainContext } from '../contexts/MainContextApp';
+import '../../styles/Game.css'
+import { MainContext } from '../../contexts/MainContextApp';
 import axios from 'axios';
-import { CONFIG } from '../config';
-import { showInfoToast } from '../utils/showInfoToast';
-import { useForm } from 'react-hook-form';
+import { CONFIG } from '../../config';
+import { showInfoToast } from '../../utils/showInfoToast';
+import Editor from '@monaco-editor/react';
+import moment from 'moment';
 export const GameApp = () => {
     const navigate = useNavigate();
     const [optionActive, setOptionActive] = useState('problem');
     const { id, index } = useParams();
-    const { register, handleSubmit } = useForm();
     const { challenge, setChallenge, owner, socket } = useContext(MainContext);
     const [isLoading, setIsLoading] = useState(false);
-
-    if (!challenge) {
-        navigate('/admin/dashboard')
-        return;
+    const [code, setCode] = useState('')
+    const getChallenge = () => {
+        if (!challenge) {
+            axios.get(`${CONFIG.uri}/challenge/${id}`)
+                .then(res => {
+                    setChallenge(res.data);
+                })
+                .catch(error => {
+                    showInfoToast('Error');
+                })
+        }
     }
-    const sendResult = (data) => {
+    useEffect(() => {
+        getChallenge();
+    }, [])
+    const sendResult = () => {
         if (!isLoading) {
             setIsLoading(true);
-            axios.post(`${CONFIG.uri}/results/register`, { result: data.code, title: challenge.tasks[index].title, lenguaje: challenge.lenguaje, challenge: challenge._id, user: owner._id, task: challenge.tasks[index], time: 12 })
+            if (code == '') {
+                showInfoToast('Debe completar el ejercicio');
+                setIsLoading(false);
+                return;
+            }
+            const time = moment().diff(challenge.createdAt, 'seconds');
+            axios.post(`${CONFIG.uri}/results/register`, { result: code, title: challenge.tasks[index].title, lenguaje: challenge.lenguaje, challenge: challenge._id, user: owner._id, task: challenge.tasks[index], time })
                 .then(res => {
                     const { score } = res.data;
                     const tasks = [...challenge.tasks];
@@ -36,8 +52,9 @@ export const GameApp = () => {
                 })
         }
     }
-    return (
-        <div>
+
+    return challenge && (
+        <div  >
             <div className="container inter">
                 <br />
                 <div className='mb-3' style={{ display: 'flex', color: '#717171', fontWeight: 'bold', alignItems: 'center' }}>
@@ -61,7 +78,11 @@ export const GameApp = () => {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '70% 30%' }}>
                         <div>
-                            <p className='mt-4' style={{ color: '#39424E' }}>{challenge.tasks[index].description}</p>
+                            <p
+                                className='mt-4'
+                                style={{ color: '#39424E' }}
+                                dangerouslySetInnerHTML={{ __html: challenge.tasks[index].description }}>
+                            </p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E' }}>Formato de entrada</h6>
                             <p style={{ color: '#39424E' }}>{challenge.tasks[index].format_input}</p>
                             <h6 style={{ fontWeight: 'bold', color: '#39424E' }}>Restricciones</h6>
@@ -84,24 +105,25 @@ export const GameApp = () => {
                         </div>
                     </div>
                     <br />
-                    <form onSubmit={handleSubmit(sendResult)}>
-                        <textarea {...register('code', { required: true })} placeholder='Pega el código aqui..' type="text" multiple className='inp-editor' style={{ height: '300px' }} />
-                        <div className='text-end mt-2'>
-                            {/* <input type="file" /> */}
-                            <div>
-                                {/* <button className='btn-test'>Test</button> */}
-                                <button className='btn-submit ms-3' >
-                                    {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar resultado'}
-                                </button>
-                            </div>
+                    <div className='mb-2'>Pega el código aqui..</div>
+                    <Editor
+                        height="300px"
+                        defaultLanguage={challenge.lenguaje}
+                        defaultValue={code}
+                        theme="vs-dark"
+                        onChange={setCode}
+                    />
+                    <div className='text-end mt-2'>
+                        <div>
+                            <button onClick={() => sendResult()} className='btn-submit ms-3' >
+                                {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar resultado'}
+                            </button>
                         </div>
-                    </form>
+                    </div>
                     <br />
                     <br />
-                    {/* <h4>Console Input</h4>
-                <textarea type="text" multiple className='inp-editor' style={{ height: '200px' }} /> */}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

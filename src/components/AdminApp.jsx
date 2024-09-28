@@ -1,25 +1,25 @@
 import React, { useContext, useState, useEffect } from 'react';
 import '../styles/Dashboard.css';
+import axios from 'axios';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContextApp';
-import { MenuApp } from './MenuApp';
-import { MainContext } from '../contexts/MainContextApp';
-import { TabNotificationApp } from './TabNotificationApp';
 import { showInfoToast } from '../utils/showInfoToast';
-import axios from 'axios';
+import { AccepInviteRoomApp } from './tabs/AccepInviteRoomApp';
+import { TabConfirmSendApp } from './tabs/TabConfirmSendApp';
+import { MainContext } from '../contexts/MainContextApp';
 import { CONFIG } from '../config';
-import { CountTimerApp } from './CountTimerApp';
-import { ConfirmApp } from './ConfirmApp';
+import { CountTimerApp } from './game/CountTimerApp';
+import { TabNotificationApp } from './tabs/TabNotificationApp';
+import { MenuApp } from './MenuApp';
+import { ConfirmApp } from './tabs/ConfirmApp';
 
 export const AdminApp = () => {
     const { user } = useContext(AuthContext);
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
-    const { challenge, setCodeRoom, setChallenge, owner, socket, getFriends } = useContext(MainContext);
-    const [seconds, setSeconds] = useState(null);
+    const { challenge, setCodeRoom, setChallenge, owner, socket, getFriends, codeRoom } = useContext(MainContext);
     const [tabInvitation, setTabInvitation] = useState(false);
     const closeInvitation = () => setTabInvitation(false);
-    const [codeInvitation, setCodeInvitation] = useState('');
     const [tabNotification, settabNotification] = useState(false);
     const closeTabNotification = () => settabNotification(false);
     const [nameFriend, setNameFriend] = useState('')
@@ -38,10 +38,20 @@ export const AdminApp = () => {
             })
     }
     useEffect(() => {
+        if (challenge) {
+            socket.on('finished', () => {
+                navigate(`/admin/resume/${challenge._id}`)
+            })
+        }
+        return () => {
+            socket.off('finished');
+        }
+    }, [challenge])
+    useEffect(() => {
         if (owner) {
             getNotifications();
             socket.on('invite_room', data => {
-                setCodeInvitation(data);
+                setCodeRoom(data);
                 setTabInvitation(true);
             })
             socket.on('send_request', data => {
@@ -90,6 +100,7 @@ export const AdminApp = () => {
         setCodeRoom(null);
         setChallenge(null);
         closeTabConfirm();
+        socket.emit('out_room');
         navigate('/admin/dashboard')
     }
     return user && owner && (
@@ -117,9 +128,8 @@ export const AdminApp = () => {
                                         !challenge && (
                                             <ul className='menu' style={{ fontSize: '0.95rem' }}>
                                                 <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
-                                                <li>Comunidad</li>
-                                                <li>Mi progreso</li>
-                                                <li>Clasificación</li>
+                                                <li onClick={() => navigate('/admin/tasks')}>Mis desafios</li>
+                                                <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
                                             </ul>
                                         )
                                     }
@@ -166,6 +176,9 @@ export const AdminApp = () => {
             </div>
             {
                 tabConfirm && <ConfirmApp close={closeTabConfirm} fnAccept={outGame} />
+            }
+            {
+                tabInvitation && <AccepInviteRoomApp code={codeRoom} close={closeInvitation} />
             }
         </>
     );

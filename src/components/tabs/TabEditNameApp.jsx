@@ -1,11 +1,11 @@
+import axios from 'axios';
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
-import { CONFIG } from '../config';
-import { showInfoToast } from '../utils/showInfoToast';
-import { MainContext } from '../contexts/MainContextApp';
-import axios from 'axios';
+import { CONFIG } from '../../config';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from '../../utils/showInfoToast';
 
-export const TabEducationApp = ({ close }) => {
+export const TabEditNameApp = ({ close }) => {
     const { register, handleSubmit } = useForm();
     const { owner, getUser } = useContext(MainContext);
     const update = (data) => {
@@ -21,22 +21,22 @@ export const TabEducationApp = ({ close }) => {
     }
     return (
         <div className='tab-profile inter'>
-            <div style={{ width: '600px', fontSize: '0.95rem', position: 'relative' }}>
+            <div style={{ width: '400px', fontSize: '0.95rem', position: 'relative' }}>
                 <form onSubmit={handleSubmit(update)}>
                     <i onClick={() => close()}
                         style={{ position: 'absolute', right: 20, cursor: 'pointer' }} className="fa-solid fa-xmark"></i>
-                    <h5 className='fw-bold'>Agregar educación</h5>
+                    <h5 className='fw-bold'>Información personal</h5>
                     <div className='mt-3'>
-                        <span>Escuela/Universidad</span>
-                        <input defaultValue={owner.university} type="text" {...register('university', { required: true })} placeholder='¿En que universidad estas estudiando?' />
+                        <span>Primer nombre</span>
+                        <input defaultValue={owner.name} type="text" {...register('name', { required: true })} />
                     </div>
                     <div className='mt-2'>
-                        <span>Lugar</span>
-                        <input defaultValue={owner.addressUniversity} {...register('addressUniversity', { required: true })} type="text" placeholder='Distrito..' />
+                        <span>Apellido</span>
+                        <input defaultValue={owner.lname} type="text" {...register('lname', { required: true })} />
                     </div>
                     <div className='mt-2'>
-                        <span>Carrera</span>
-                        <input defaultValue={owner.profession} type="text" placeholder='Ingeniería de..' {...register('profession', { required: true })} />
+                        <span>Alias</span>
+                        <input defaultValue={owner.username} type="text" {...register('username', { required: true })} />
                     </div>
                     <div className='text-end mt-3'>
                         <button className='btn-view-challenges'>Guardar</button>

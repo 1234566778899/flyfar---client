@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 export const ConfirmApp = ({ close, fnAccept }) => {
     const [hoveredButton, setHoveredButton] = useState(null); // Estado para saber cuál botón está siendo hovereado
 
@@ -11,7 +10,7 @@ export const ConfirmApp = ({ close, fnAccept }) => {
                     {hoveredButton === 'accept' && <span style={{ fontSize: '3rem' }}>😟</span>}
                     {!hoveredButton && (<span style={{ fontSize: '3rem' }}>🥲</span>)}
                 </div>
-                <h3 className='fw-bold'>¿Estas seguro de salir?</h3>
+                <h3 className='fw-bold inter'>¿Estas seguro de salir?</h3>
                 <div
                     className='mt-4'
                     style={{

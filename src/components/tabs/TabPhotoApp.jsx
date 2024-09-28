@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { CONFIG } from '../config';
 import axios from 'axios';
-import { showInfoToast } from '../utils/showInfoToast';
-import { MainContext } from '../contexts/MainContextApp';
+import { MainContext } from '../../contexts/MainContextApp';
+import { showInfoToast } from '../../utils/showInfoToast';
+import { CONFIG } from '../../config';
 
 export const TabPhotoApp = ({ close }) => {
     const [photo, setPhoto] = useState(null);

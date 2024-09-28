@@ -1,21 +1,28 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { LoginApp } from './components/LoginApp';
-import { RegisterApp } from './components/RegisterApp';
+import { LoginApp } from './components/auth/LoginApp';
+import { RegisterApp } from './components/auth/RegisterApp';
 import { AuthProvider, useFirebaseApp } from 'reactfire';
-import { AuthContextApp } from './contexts/AuthContextApp';
 import { getAuth } from 'firebase/auth';
-import { DashboardApp } from './components/DashboardApp';
-import { RoomApp } from './components/RoomApp';
-import { GameApp } from './components/GameApp';
-import { ResumeApp } from './components/ResumeApp';
-import { MainContextApp } from './contexts/MainContextApp';
+import { AuthContextApp } from './contexts/AuthContextApp';
+import { RoomApp } from './components/game/RoomApp';
+import { ProgressApp } from './components/game/ProgressApp';
+import { GameApp } from './components/game/GameApp';
+import { ResumeApp } from './components/game/ResumeApp';
+import { InitialTestApp } from './components/game/InitialTestApp';
+import { SubmissionApp } from './components/game/SubmissionApp';
 import { NotFoundApp } from './components/NotFoundApp';
-import { AdminApp } from './components/AdminApp';
-import { ChallengesApp } from './components/ChallengesApp';
-import { ProgressApp } from './components/ProgressApp';
-import { SubmissionApp } from './components/SubmissionApp';
+import { ChallengesApp } from './components/game/ChallengesApp';
+import { TopUsersApp } from './components/TopUsersApp';
 import { ProfileApp } from './components/ProfileApp';
+import { ListFriendsApp } from './components/ListFriendsApp';
+import { ProfileInfoApp } from './components/ProfileInfoApp';
+import { AdminApp } from './components/AdminApp';
+import { DashboardApp } from './components/DashboardApp';
+import { MainContextApp } from './contexts/MainContextApp';
+import { DetailsApp } from './components/game/DetailsApp';
+import { TasksApp } from './components/game/TasksApp';
+
 
 function App() {
   const firestoreInstance = getAuth(useFirebaseApp());
@@ -44,9 +51,15 @@ const AdminRoutes = () => (
         <Route exact path='/room' element={<RoomApp />} />
         <Route exact path='/profile' element={<ProfileApp />} />
         <Route exact path='/progress/:id' element={<ProgressApp />} />
+        <Route exact path='/friends' element={<ListFriendsApp />} />
         <Route exact path='/game/:id/:index' element={<GameApp />} />
         <Route exact path='/resume/:id' element={<ResumeApp />} />
+        <Route exact path='/test/:id' element={<InitialTestApp />} />
+        <Route exact path='/user/:email' element={<ProfileInfoApp />} />
+        <Route exact path='/ranking' element={<TopUsersApp />} />
         <Route exact path='/challenges/:id' element={<ChallengesApp />} />
+        <Route exact path='/tasks' element={<TasksApp />} />
+        <Route exact path='/details/:id' element={<DetailsApp />} />
         <Route exact path='/submissions/:challengeId' element={<SubmissionApp />} />
         <Route exact path='/submissions/:challengeId/:taskId' element={<SubmissionApp />} />
         <Route path='*' element={<NotFoundApp />} />

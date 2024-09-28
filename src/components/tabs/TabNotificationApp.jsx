@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useContext, useEffect } from 'react'
-import { CONFIG } from '../config'
 import moment from 'moment'
-import { MainContext } from '../contexts/MainContextApp'
-import { showInfoToast } from '../utils/showInfoToast'
+import { CONFIG } from '../../config';
+import { showInfoToast } from '../../utils/showInfoToast';
+import { MainContext } from '../../contexts/MainContextApp';
 export const TabNotificationApp = ({ close, notifications, setNotifications }) => {
     const { owner, socket, getFriends } = useContext(MainContext);
     const changeStatusVisible = (id) => {

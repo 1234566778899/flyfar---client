@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { CONFIG } from '../config';
-import { showInfoToast } from './../utils/showInfoToast';
-import { MainContext } from '../contexts/MainContextApp';
+import { CONFIG } from '../../config';
+import { showInfoToast } from '../../utils/showInfoToast';
+import { MainContext } from '../../contexts/MainContextApp';
+import { formatMinutes } from '../../utils/formatMinutes';
 
 export const SubmissionApp = () => {
     const navigate = useNavigate();
@@ -78,7 +79,7 @@ export const SubmissionApp = () => {
                                             }
                                         </td>
                                         <td className='py-3 text-center'>{x.lenguaje}</td>
-                                        <td className='py-3 text-center'>{x.time}</td>
+                                        <td className='py-3 text-center'>{formatMinutes(x.time)}</td>
                                         <td className='py-3 text-center'>{x.description ? x.description : '-'}</td>
                                         <td className='py-3 text-center'>{x.score}</td>
                                     </tr>
@@ -93,7 +94,7 @@ export const SubmissionApp = () => {
                             <span>No tienes ningún envio todavia</span>
                         </div>
                         <div className="text-center mt-3">
-                            <button className='btn-view-challenges' onClick={() => navigate(`/admin/challenges`)}>Ver desafios</button>
+                            <button className='btn-view-challenges' onClick={() => navigate(`/admin/challenges/${challengeId}`)}>Ver desafios</button>
                         </div>
                     </div>)
                 }

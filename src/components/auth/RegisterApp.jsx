@@ -2,10 +2,10 @@ import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from '
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Login.css';
-import { showInfoToast } from '../utils/showInfoToast';
+import '../../styles/Login.css';
+import { showInfoToast } from '../../utils/showInfoToast';
 import axios from 'axios';
-import { CONFIG } from './../config';
+import { CONFIG } from '../../config';
 
 export const RegisterApp = () => {
     const auth = getAuth();

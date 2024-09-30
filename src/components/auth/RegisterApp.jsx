@@ -40,6 +40,7 @@ export const RegisterApp = () => {
                             navigate('/login');
                         })
                         .catch(error => {
+                            setIsLoading(false);
                             showInfoToast('Error');
                         })
                 })

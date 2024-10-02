@@ -146,10 +146,9 @@ export const ResumeApp = () => {
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                         <div >
-                            <button className='btn-view' onClick={() => navigate((`/admin/details/${id}`))}>Ver detalles de los desafios</button>
                             <button
                                 onClick={() => playAgain()}
-                                className='btn-try ms-3'>Jugar otra vez</button>
+                                className='btn-try'>Jugar otra vez</button>
                         </div>
                         <button className='btn-try'>Compartir tus resultados<i className="fa-solid fa-share-nodes ms-2"></i></button>
                     </div>

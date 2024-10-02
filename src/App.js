@@ -26,6 +26,7 @@ import { GameOneApp } from './components/game/GameOneApp';
 import { SendsApp } from './components/game/SendsApp';
 import { GameTestApp } from './components/game/GameTestApp';
 import { SubmissionTestApp } from './components/game/SubmissionTestApp';
+import { HomeApp } from './components/HomeApp';
 
 
 function App() {
@@ -35,9 +36,10 @@ function App() {
       <AuthProvider sdk={firestoreInstance}>
         <AuthContextApp>
           <Routes>
-            <Route exact path='/' element={<LoginApp />} />
+            <Route exact path='/' element={<HomeApp />} />
             <Route exact path='/login' element={<LoginApp />} />
             <Route exact path='/register' element={<RegisterApp />} />
+            <Route exact path='/home' element={<HomeApp />} />
             <Route path='*' element={<NotFoundApp />} />
             <Route path='/admin/*' element={<AdminRoutes />} />
 

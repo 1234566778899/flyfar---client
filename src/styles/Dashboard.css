@@ -136,11 +136,13 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    align-items: center;
     cursor: pointer;
 }
 
 .menu li {
-    padding: 5px 15px;
+    padding: 5px 0px;
+    padding-right: 15px;
 }
 
 .tab-noti {

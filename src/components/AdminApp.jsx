@@ -127,7 +127,10 @@ export const AdminApp = () => {
                                     {
                                         !challenge && (
                                             <ul className='menu' style={{ fontSize: '0.95rem' }}>
-                                                <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
+                                                <li onClick={() => navigate('/home')}>
+                                                    <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
+                                                </li>
+                                                <li onClick={() => navigate('/admin/dahboard')}>Dashboard</li>
                                                 <li onClick={() => navigate('/admin/tasks')}>Mis desafios</li>
                                                 <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
                                             </ul>

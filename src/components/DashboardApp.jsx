@@ -19,11 +19,22 @@ export const DashboardApp = () => {
     const [tabTest, setTabTest] = useState(false);
     const closeTabTest = () => setTabTest(false);
     const closeTabFriends = () => setTabListFriends(false);
+    const [tasksPending, setTasksPending] = useState(null);
     const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, challenge, setFriendsActive } = useContext(MainContext);
+    const getTaksPending = (userId) => {
+        axios.get(`${CONFIG.uri}/tasks/pending/${userId}`)
+            .then(res => {
+                setTasksPending(res.data);
+            })
+            .catch(error => {
+                showInfoToast('Error');
+            })
+    }
     const generateInitialTest = (lenguaje) => {
         axios.post(`${CONFIG.uri}/challenge/generate/test`, { lenguaje, user: { id: owner._id, username: owner.username } })
             .then(res => {
-                navigate(`/admin/challenges/${res.data}`);
+                setCodeRoom(false);
+                navigate(`/admin/test/${res.data}`);
             })
             .catch(error => {
                 console.log(error);
@@ -32,6 +43,7 @@ export const DashboardApp = () => {
     }
     useEffect(() => {
         if (owner) {
+            getTaksPending(owner._id);
             socket.on('out_friend', data => {
                 setFriends(prev => (prev.map(x => (x._id == data ? { ...x, online: false } : x))))
             })
@@ -52,7 +64,7 @@ export const DashboardApp = () => {
         socket.emit('create_room', { code, user: { id: owner._id, username: owner.username } });
         navigate('/admin/room')
     }
-    return user && owner && (
+    return (
         <div className='inter' style={{ fontSize: '0.9rem', background: '#F7F8FD' }}>
             <div className='bg-white pb-1' style={{ borderBottom: '1px solid #EBEBF3' }}>
                 <div className="container">
@@ -89,45 +101,42 @@ export const DashboardApp = () => {
                         }
                         {
                             owner.test && (
-                                <div className='content-dash'>
+                                <div className='content-dash' style={{ minHeight: '240px' }}>
                                     <h4 className='fw-bold'>Desafios actuales</h4>
-                                    <div style={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div>
-                                            <span>Algoritmos avanzados</span>
-                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
-                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '20%' }} className="progress-box"></div>
+                                    {
+                                        tasksPending && tasksPending.map(x => (
+                                            <div key={x._id} style={{ display: 'flex', marginTop: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <div>
+                                                    <span>{x.title}</span>
+                                                    <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
+                                                        <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '20%' }} className="progress-box"></div>
+                                                    </div>
+                                                </div>
+                                                <button className='btn-continue' onClick={() => navigate(`/admin/game/${x._id}`)}>Continuar</button>
                                             </div>
-                                        </div>
-                                        <button className='btn-continue'>Continuar</button>
-                                    </div>
-                                    <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div>
-                                            <span>Algoritmos avanzados</span>
-                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
-                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '80%' }} className="progress-box"></div>
+                                        ))
+                                    }
+                                    {
+                                        tasksPending && tasksPending.length == 0 && (
+                                            <div className='mt-3'>
+                                                <span className='me-2'>Aún no has iniciado ningún desafio</span>
+                                                <a href='#' onClick={() => navigate('/admin/tasks')}>Iniciar con los desafios individuales</a>
                                             </div>
-                                        </div>
-                                        <button className='btn-continue'>Continuar</button>
-                                    </div>
-                                    <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div>
-                                            <span>Maching Learning Fundamentals</span>
-                                            <div className='bar-box' style={{ background: '#F4F4F5', height: '8px', width: '300px', borderRadius: '10px' }}>
-                                                <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '8px', width: '40%' }} className="progress-box"></div>
-                                            </div>
-                                        </div>
-                                        <button className='btn-continue'>Continuar</button>
-                                    </div>
+                                        )
+                                    }
+                                    {
+                                        tasksPending && tasksPending.length > 4 && (
+                                            <div style={{ cursor: 'pointer' }} className='text-center mt-3' onClick={() => navigate('/admin/tasks')}>Ver todos</div>
+                                        )
+                                    }
                                 </div>
+
                             )
                         }
-                        <div className='content-dash mt-2'>
+                        <div className='content-dash mt-2' style={{ minHeight: '220px' }}>
                             <h4 className='fw-bold'>Actividad reciente</h4>
                             <ul className='mt-3'>
-                                <li>Completaste Data Structure</li>
-                                <li className='mt-1'>Earn 'Code NInja' Badge</li>
-                                <li className='mt-1'>Joined 'Python Enthusiast' group</li>
-                                <li className='mt-1'>Completaste Data Structure</li>
+                                <li>No tiene ninguna activad reciente</li>
                             </ul>
                         </div>
                     </div>
@@ -161,6 +170,14 @@ export const DashboardApp = () => {
                                         </div>
                                     </div>
                                 ))
+                            }
+                            {
+                                friends.length == 0 && (
+                                    <p className='mt-3 text-center'>Aún no tiene ningun amigo agregado.
+                                        <br />
+                                        <a href="#" onClick={() => setTabActive(true)}>Añadir amigo</a>
+                                    </p>
+                                )
                             }
                             {
                                 friends.length > 4 && (<div className='text-center mt-3'>

@@ -22,6 +22,10 @@ import { DashboardApp } from './components/DashboardApp';
 import { MainContextApp } from './contexts/MainContextApp';
 import { DetailsApp } from './components/game/DetailsApp';
 import { TasksApp } from './components/game/TasksApp';
+import { GameOneApp } from './components/game/GameOneApp';
+import { SendsApp } from './components/game/SendsApp';
+import { GameTestApp } from './components/game/GameTestApp';
+import { SubmissionTestApp } from './components/game/SubmissionTestApp';
 
 
 function App() {
@@ -59,8 +63,12 @@ const AdminRoutes = () => (
         <Route exact path='/ranking' element={<TopUsersApp />} />
         <Route exact path='/challenges/:id' element={<ChallengesApp />} />
         <Route exact path='/tasks' element={<TasksApp />} />
+        <Route exact path='/game/:taskId' element={<GameOneApp />} />
+        <Route exact path='/game/test/:taskId' element={<GameTestApp />} />
         <Route exact path='/details/:id' element={<DetailsApp />} />
+        <Route exact path='/sends/:taskId' element={<SendsApp />} />
         <Route exact path='/submissions/:challengeId' element={<SubmissionApp />} />
+        <Route exact path='/submissions/test/:challengeId' element={<SubmissionTestApp />} />
         <Route exact path='/submissions/:challengeId/:taskId' element={<SubmissionApp />} />
         <Route path='*' element={<NotFoundApp />} />
       </Route>

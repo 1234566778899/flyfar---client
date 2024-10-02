@@ -8,24 +8,9 @@ import { TabConfirmSendApp } from '../tabs/TabConfirmSendApp';
 
 export const ChallengesApp = () => {
     const navigate = useNavigate();
-    const { challenge, setChallenge, owner, setOwner, socket } = useContext(MainContext);
+    const { challenge, setChallenge, codeRoom, socket } = useContext(MainContext);
     const { id } = useParams();
-    const [tabConfirmSend, setTabConfirmSend] = useState(false);
-    const closeTabConfirmSend = () => setTabConfirmSend(false);
     const [finished, setFinished] = useState(false);
-    const sendTest = () => {
-        axios.put(`${CONFIG.uri}/users/test/${owner._id}`)
-            .then(res => {
-                navigate('/admin/dashboard')
-                setChallenge(null);
-                showInfoToast('Prueba enviada correctamente');
-                setOwner({ ...owner, test: true });
-            })
-            .catch(error => {
-                console.log(error);
-                showInfoToast('Error');
-            })
-    }
     const getChallenge = () => {
         if (!challenge) {
             axios.get(`${CONFIG.uri}/challenge/${id}`)
@@ -38,11 +23,11 @@ export const ChallengesApp = () => {
                 })
         }
     }
-    const resolvProblem = (score, idx) => {
+    const resolvProblem = (score, id) => {
         if (score == 20) {
             showInfoToast('Desafio completado');
         } else {
-            navigate(`/admin/game/${challenge._id}/${idx}`)
+            navigate(`/admin/game/${challenge._id}/${id}`)
         }
     }
     const check = () => {
@@ -80,20 +65,24 @@ export const ChallengesApp = () => {
                                             }
                                         </div>
                                         <div>
-                                            <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, idx)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Completado')}</button>
+                                            <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, x._id)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Completado')}</button>
                                         </div>
                                     </div>
                                 </div>
                             ))
                         }
-                        <div className='text-end'>
-                            <button
-                                onClick={() => check()}
-                                className='btn-challenge' style={{ background: `${finished ? 'green' : ''}` }}>
-                                {finished && <i className="fa-solid fa-check me-2"></i>}
-                                {finished ? 'Esperando a los demas' : 'Marcar como terminando'}</button>
-                        </div>
-
+                        {
+                            codeRoom && (
+                                <div className='text-end'>
+                                    <button
+                                        onClick={() => check()}
+                                        className='btn-challenge' style={{ background: `${finished ? 'green' : ''}` }}>
+                                        {finished && <i className="fa-solid fa-check me-2"></i>}
+                                        {finished ? 'Esperando a los demas' : 'Marcar como terminando'}</button>
+                                </div>
+                            )
+                        }
+                        <br />
                     </div>
                     <div>
                         {
@@ -116,17 +105,10 @@ export const ChallengesApp = () => {
                                 <span style={{ color: '#135181', fontWeight: 'bold' }}>Revisar envios</span>
                             </button>
                         </div>
-                        {
-                            challenge.code == '000000' && (<button
-                                onClick={() => setTabConfirmSend(true)}
-                                className='mt-4 w-100 btn-test'> Enviar prueba</button>)
-                        }
                     </div>
                 </div>
             </div>
-            {
-                tabConfirmSend && (<TabConfirmSendApp close={closeTabConfirmSend} fnConfirm={sendTest} />)
-            }
+
         </>
     )
 }

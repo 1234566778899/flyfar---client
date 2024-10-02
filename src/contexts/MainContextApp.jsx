@@ -6,7 +6,7 @@ import { showInfoToast } from '../utils/showInfoToast';
 import { io } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 export const MainContext = createContext()
-const socket = io(`${CONFIG.uri}/`);
+const socket = io(`${CONFIG.uri}`);
 export const MainContextApp = ({ children }) => {
     const [owner, setOwner] = useState(null);
     const { user } = useContext(AuthContext);

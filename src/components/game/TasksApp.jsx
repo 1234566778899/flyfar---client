@@ -5,6 +5,7 @@ import axios from 'axios';
 import { CONFIG } from '../../config';
 import { showInfoToast } from '../../utils/showInfoToast';
 
+
 export const TasksApp = () => {
     const navigate = useNavigate();
     const [taks, setTaks] = useState(null);
@@ -24,17 +25,26 @@ export const TasksApp = () => {
             getTaks();
         }
     }, [])
-    const resolvProblem = (score, idx) => {
+    const resolvProblem = (score, task) => {
         if (score == 20) {
-            showInfoToast('Desafio completado');
+            updateTask(task._id);
         } else {
-            //  navigate(`/admin/game/${challenge._id}/${idx}`)
+            navigate(`/admin/game/${task._id}`)
         }
+    }
+    const updateTask = (id) => {
+        axios.put(`${CONFIG.uri}/tasks/${id}`)
+            .then(res => {
+                setTaks(prev => prev.map(x => x._id == id ? ({ ...x, finished: true }) : x));
+            })
+            .catch(error => {
+                showInfoToast('Error');
+            })
     }
     if (!taks && owner.favoriteLenguaje && owner.test) {
         return (
             <div className='loading'>
-                <span>Cargando..</span>
+                <span>Cargando desafios..</span>
             </div>
         )
     }
@@ -70,7 +80,7 @@ export const TasksApp = () => {
                 taks && (
                     <div>
                         {
-                            taks.map((x, idx) => (
+                            taks.filter(x => !x.finished).map((x, idx) => (
                                 <div key={idx} className='item-c mt-3'>
                                     <div className='item-challenge'>
                                         <div>
@@ -80,7 +90,9 @@ export const TasksApp = () => {
                                             </p>
                                             {
                                                 x.score != undefined && (
-                                                    <span style={{ cursor: 'pointer' }}>
+                                                    <span
+                                                        onClick={() => navigate(`/admin/sends/${x._id}`)}
+                                                        style={{ cursor: 'pointer' }}>
                                                         <i className="fa-regular fa-comment-dots me-1"></i>
                                                         Ver comentarios
                                                     </span>
@@ -88,7 +100,7 @@ export const TasksApp = () => {
                                             }
                                         </div>
                                         <div>
-                                            <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, idx)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Completado')}</button>
+                                            <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, x)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Marcar como terminado')}</button>
                                         </div>
                                     </div>
                                 </div>

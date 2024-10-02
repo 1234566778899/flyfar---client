@@ -119,7 +119,7 @@ export const AdminApp = () => {
                                                     <span className='ms-2'>Salir</span>
                                                 </button>
                                                 <span className='ms-3' >
-                                                    <CountTimerApp challengeId={challenge._id} creationTime={challenge.createdAt} minutes={challenge.time} />
+                                                    <CountTimerApp challengeId={challenge._id} creationTime={challenge.updatedAt} minutes={challenge.time} />
                                                 </span>
                                             </div>
                                         )

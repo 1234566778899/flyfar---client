@@ -8,16 +8,16 @@ import { showInfoToast } from '../../utils/showInfoToast';
 import Editor from '@monaco-editor/react';
 import moment from 'moment';
 import { SubmissionOneApp } from './SubmissionOneApp';
-export const GameApp = () => {
+export const GameOneApp = () => {
     const navigate = useNavigate();
     const [optionActive, setOptionActive] = useState('problem');
-    const { id, index } = useParams();
-    const { challenge, setChallenge, owner, socket } = useContext(MainContext);
+    const { taskId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [code, setCode] = useState('')
     const [task, setTask] = useState(null);
+    const { owner } = useContext(MainContext);
+    const [code, setCode] = useState('');
     const getTask = () => {
-        axios.get(`${CONFIG.uri}/tasks/${index}`)
+        axios.get(`${CONFIG.uri}/tasks/${taskId}`)
             .then(res => {
                 setTask(res.data);
             })
@@ -36,17 +36,11 @@ export const GameApp = () => {
                 setIsLoading(false);
                 return;
             }
-            const time = moment().diff(challenge.createdAt, 'seconds');
-            axios.post(`${CONFIG.uri}/results/register`, { result: code, title: task.title, lenguaje: challenge.lenguaje, challenge: challenge._id, user: owner._id, task, time })
+            axios.post(`${CONFIG.uri}/results/add`, { result: code, title: task.title, lenguaje: owner.favoriteLenguaje, user: owner._id, task })
                 .then(res => {
-                    const { score } = res.data;
-                    const tasks = [...challenge.tasks].map(x => x._id == index ? ({ ...x, score }) : x);
-                    setChallenge({ ...challenge, tasks });
-                    socket.emit('send_result');
-                    navigate(`/admin/challenges/${id}`);
+                    navigate(`/admin/tasks`);
                 })
                 .catch(error => {
-                    console.log(error);
                     setIsLoading(false);
                     showInfoToast('Error');
                 })
@@ -58,9 +52,9 @@ export const GameApp = () => {
             <div className="container inter">
                 <br />
                 <div className='mb-3' style={{ display: 'flex', color: '#717171', fontWeight: 'bold', alignItems: 'center' }}>
-                    <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/challenges/${id}`)} className='me-2'>Todos los desafios</span>
+                    <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/tasks`)} className='me-2'>Todos los desafios</span>
                     <i className="me-2 fa-solid fa-chevron-right"></i>
-                    <span style={{ cursor: 'pointer' }}>{task.title}</span>
+                    <span style={{ cursor: 'pointer' }}>Ejercicio</span>
                 </div>
             </div>
             <hr />
@@ -111,7 +105,7 @@ export const GameApp = () => {
                                 <div className='mb-2'>Pega el código aqui..</div>
                                 <Editor
                                     height="300px"
-                                    defaultLanguage={'cpp'}
+                                    defaultLanguage={owner.favoriteLenguaje}
                                     defaultValue={code}
                                     theme="vs-dark"
                                     onChange={setCode}
@@ -119,7 +113,7 @@ export const GameApp = () => {
                                 <div className='text-end mt-2'>
                                     <div>
                                         <button onClick={() => sendResult()} className='btn-submit ms-3' >
-                                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar resultado'}
+                                            {isLoading ? (<span><i className="fa-solid fa-spinner icon-load me-2"></i>Verificando resultado</span>) : 'Enviar resultado'}
                                         </button>
                                     </div>
                                 </div>
@@ -128,7 +122,7 @@ export const GameApp = () => {
                     }
                     {
                         optionActive == 'sends' && (
-                            <SubmissionOneApp taskId={index} />
+                            <SubmissionOneApp taskId={taskId} />
                         )
                     }
                     <br />

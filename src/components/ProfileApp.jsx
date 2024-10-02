@@ -47,7 +47,7 @@ export const ProfileApp = () => {
                                 <div className='mt-3' style={{ fontSize: '0.9rem' }}>
                                     <div className='mt-1'>
                                         <i className="fa-regular fa-envelope me-2"></i>
-                                        ordazhoyos2001@gmail.com</div>
+                                        {owner.email}</div>
                                     {
                                         !owner.phone && (
                                             <div className='mt-1' style={{ color: '#797983' }}>

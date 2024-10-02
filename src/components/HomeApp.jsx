@@ -70,7 +70,7 @@ export const HomeApp = () => {
                     <div>
                         <img style={{ height: '200px' }} src={require('../assets/p3.png')} alt="img" />
                         <h4 className='fw-bold mt-3'>Gana recompensas y comparte tus logros en redes sociales</h4>
-                        <p>Desafía a otros usuarios en emocionantes desafíos grupales y demuestra quién es el mejor programador</p>
+                        <p>Obtén puntos, medallas e insignias por tus logros y presume de ellos en tus perfiles sociales</p>
                     </div>
                 </div>
             </section>

@@ -69,7 +69,7 @@ export const TopUsersApp = () => {
                                     <td >{x.userDetails.email || '-'}</td>
                                     <td >{moment(x.userDetails.createdAt).format('DD-MM-YYYY')}</td>
                                     <td >
-                                        <span style={{ background: 'green', padding: '3px 10px', color: 'white', borderRadius: '3px' }}>{x.averageScore}</span>
+                                        <span style={{ background: 'green', padding: '3px 10px', color: 'white', borderRadius: '3px' }}>{x.averageScore ? x.averageScore.toFixed(2) : 0}</span>
                                     </td>
                                 </tr>
                             ))

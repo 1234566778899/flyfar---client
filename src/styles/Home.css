@@ -36,13 +36,13 @@
       list-style: none;
   }
 
-  nav a {
+  .ancla {
       color: white;
       text-decoration: none;
       transition: text-decoration 3s ease;
   }
 
-  nav a:hover {
+  .ancla:hover {
       text-decoration: underline;
       color: white;
   }

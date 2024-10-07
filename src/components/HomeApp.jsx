@@ -16,10 +16,10 @@ export const HomeApp = () => {
                         </div>
                         <ul style={{ cursor: 'pointer' }}>
                             <li>
-                                <a href="#inicio">Inicio</a>
+                                <a className='ancla' href="#inicio">Inicio</a>
                             </li>
                             <li>
-                                <a href="#desafios">Desafios</a>
+                                <a className='ancla' href="#desafios">Desafios</a>
                             </li>
                             {/* <li>
                                 <a href="#rankings">Rankings</a>

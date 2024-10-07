@@ -35,7 +35,11 @@ export const ListFriendsApp = () => {
                         ))
                     }
                 </tbody>
+
             </table>
+            {
+                friends.length == 0 && <p className='text-center'>Aún no tienes ningún amigo en la lista..</p>
+            }
         </div>
     )
 }

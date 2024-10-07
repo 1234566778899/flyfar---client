@@ -21,10 +21,22 @@ export const DashboardApp = () => {
     const closeTabFriends = () => setTabListFriends(false);
     const [tasksPending, setTasksPending] = useState(null);
     const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, challenge, setFriendsActive } = useContext(MainContext);
+    const [countWeek, setCountWeek] = useState(0);
+    const [currentScore, setCurrentScore] = useState(0);
     const getTaksPending = (userId) => {
         axios.get(`${CONFIG.uri}/tasks/pending/${userId}`)
             .then(res => {
                 setTasksPending(res.data);
+            })
+            .catch(error => {
+                showInfoToast('Error');
+            })
+    }
+    const getCountTaskWeek = (id) => {
+        axios.get(`${CONFIG.uri}/results/count_week/${id}`)
+            .then(res => {
+                setCountWeek(res.data.count);
+                setCurrentScore(res.data.score);
             })
             .catch(error => {
                 showInfoToast('Error');
@@ -44,6 +56,7 @@ export const DashboardApp = () => {
     useEffect(() => {
         if (owner) {
             getTaksPending(owner._id);
+            getCountTaskWeek(owner._id);
             socket.on('out_friend', data => {
                 setFriends(prev => (prev.map(x => (x._id == data ? { ...x, online: false } : x))))
             })
@@ -71,7 +84,7 @@ export const DashboardApp = () => {
                     {
                         !codeRoom && !challenge && (<div >
                             <h3 className='fw-bold mt-4'>Bienvenido, {owner.username}</h3>
-                            <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste 0 desafios esta semana!</p>
+                            <p style={{ opacity: '0.8', fontSize: '0.9rem   ' }}>Completaste {countWeek} {countWeek == 1 ? 'desafio' : 'desafios'} esta semana!</p>
                         </div>)
                     }
                 </div>
@@ -101,6 +114,18 @@ export const DashboardApp = () => {
                         }
                         {
                             owner.test && (
+                                <div className="content-dash mb-2">
+                                    <div className='bar-progress'>
+                                        <div style={{ width: `${currentScore * 100 / 5000}%` }}>
+
+                                        </div>
+                                    </div>
+                                    <p className='mt-2 fw-bold' style={{ fontSize: '1rem' }}>Your score: {currentScore}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            owner.test && (
                                 <div className='content-dash' style={{ minHeight: '240px' }}>
                                     <h4 className='fw-bold'>Desafios actuales</h4>
                                     {
@@ -119,8 +144,8 @@ export const DashboardApp = () => {
                                     {
                                         tasksPending && tasksPending.length == 0 && (
                                             <div className='mt-3'>
-                                                <span className='me-2'>Aún no has iniciado ningún desafio</span>
-                                                <a href='#' onClick={() => navigate('/admin/tasks')}>Iniciar con los desafios individuales</a>
+                                                <span className='me-2'>No tienes ningún desafío pendiente</span>
+                                                <a href='#' onClick={() => navigate('/admin/tasks')}>Completar desafios individuales</a>
                                             </div>
                                         )
                                     }
@@ -133,12 +158,6 @@ export const DashboardApp = () => {
 
                             )
                         }
-                        <div className='content-dash mt-2' style={{ minHeight: '220px' }}>
-                            <h4 className='fw-bold'>Actividad reciente</h4>
-                            <ul className='mt-3'>
-                                <li>No tiene ninguna activad reciente</li>
-                            </ul>
-                        </div>
                     </div>
                     <div>
                         <div className="content-friends mt-4" style={{ height: '400px' }}>

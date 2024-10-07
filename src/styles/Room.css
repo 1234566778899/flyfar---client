@@ -281,9 +281,10 @@ button:hover {
     width: 500px;
     position: relative;
     box-shadow: 0px 0px 10px #4da9e7;
+
 }
 
-.tab-accept-room .info {
+.tab-accept-room .info-c {
     background-color: #0B0C0D;
 }
 

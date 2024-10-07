@@ -14,9 +14,9 @@ export const AccepInviteRoomApp = ({ close, code }) => {
     return (
         <div className='tab-accept-room'>
             <div >
-                <div className='info' style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '5px' }}>
+                <div className='info-c' style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '5px' }}>
                     <div style={{ color: '#ABABAB' }}>ID SALA : {code}</div>
-                    <div style={{ color: 'white', fontSize: '1.2rem', letterSpacing: '1px', fontWeight: 'bold' }}>DESAFIO GRUPAL</div>
+                    <div style={{ color: 'white', fontSize: '1.2rem', fontWeight: 'bold' }}>DESAFIO GRUPAL</div>
                 </div>
                 <div className='options'>
                     <button className='btn-accept' onClick={() => acceptinvitation()}>ACEPTAR</button>

@@ -58,7 +58,7 @@ export const RegisterApp = () => {
     return (
         <div className="login-content" style={{ fontSize: '0.9rem' }}>
             <div className="container">
-                <button className='btn-back mt-2'><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
+                <button className='btn-back mt-2' onClick={() => navigate('/home')}><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
                 <div className="row justify-content-center">
                     <div className="col-md-4"></div>
                     <div className="col-md-4">

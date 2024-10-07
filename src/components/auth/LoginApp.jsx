@@ -73,7 +73,7 @@ export const LoginApp = () => {
                     <span style={{ '--i': 28 }}></span>
                 </div>
                 <div className="container">
-                    <button className='btn-back'><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
+                    <button className='btn-back' onClick={() => navigate('/home')}><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
                     <div className="row justify-content-center">
                         <div className="col-md-4"></div>
                         <div className="col-md-4">

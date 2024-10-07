@@ -14,7 +14,7 @@ export const HomeApp = () => {
                             <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
                             <span className='ms-2' style={{ fontSize: '1.1rem' }}>Flyfire</span>
                         </div>
-                        <ul style={{ cursor: 'pointer' }}>
+                        <ul className='menu-home'>
                             <li>
                                 <a className='ancla' href="#inicio">Inicio</a>
                             </li>
@@ -33,8 +33,8 @@ export const HomeApp = () => {
                         </ul>
                     </nav>
                     <div style={{ flexDirection: 'column', color: 'white', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <h2 className='text-center fw-bold' style={{ fontSize: '4rem', width: '60%' }}>¡Bienvenido a nuestra plataforma de desafíos!</h2>
-                        <p>Aquí podrás poner a prueba tus habilidades de programación y competir con otros estudiantes universitarios.</p>
+                        <h1 className='text-center fw-bold title-main'>¡Bienvenido a nuestra plataforma de desafíos!</h1>
+                        <p className='description-main'>Aquí podrás poner a prueba tus habilidades de programación y competir con otros estudiantes universitarios.</p>
                         <div>
                             <a style={{ fontSize: '1rem', textDecoration: 'none' }} href='#desafios' className='btn-r px-4 py-2'>Explorar</a>
                             <button
@@ -49,14 +49,15 @@ export const HomeApp = () => {
             </section>
             <section className='container' id='desafios'>
                 <br />
+                <br />
                 <div className='text-center' style={{ display: 'flex', justifyContent: 'center' }}>
-                    <h1 className='text-center fw-bold' style={{ width: '70%' }}>Desafíos individuales y grupales para poner a prueba tus habilidades de programación</h1>
+                    <h1 className='text-center fw-bold title-info'>Desafíos individuales y grupales para poner a prueba tus habilidades de programación</h1>
                 </div>
                 <br />
                 <br />
                 <br />
                 <br />
-                <div className='text-center' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '30px' }}>
+                <div className='text-center info mb-5'>
                     <div>
                         <img style={{ height: '200px' }} src={require('../assets/p1.png')} alt="img" />
                         <h4 className='fw-bold mt-3'>Mejora tus habilidades de programación y compite</h4>
@@ -73,6 +74,8 @@ export const HomeApp = () => {
                         <p>Obtén puntos, medallas e insignias por tus logros y presume de ellos en tus perfiles sociales</p>
                     </div>
                 </div>
+                <br />
+                <br />
             </section>
         </div>
     )

@@ -113,6 +113,14 @@ export const DashboardApp = () => {
                             )
                         }
                         {
+                            !owner.test && (
+                                <div className='content-dash mt-3'>
+                                    <h5 className='fw-bold'>¿En qué consiste la prueba inicial?</h5>
+                                    <p>La prueba inicial nos permite identificar cuál es tu nivel actual de programación, de esta manera ofrecerte ejercicios personalizados de acuerdo a tu nivel y el lenguaje de programación que más domines. Recuerda que lo importante en la programación no es solo resolver los problemas, sino entender el proceso, aprender de los errores y mejorar continuamente. Esta evaluación abarca varios aspectos fundamentales, como la lógica, algoritmos y manejo del lenguaje, para garantizar que recibas desafíos que se adapten a tus habilidades y te ayuden a progresar de manera efectiva.</p>
+                                </div>
+                            )
+                        }
+                        {
                             owner.test && (
                                 <div className="content-dash mb-2">
                                     <div className='bar-progress'>

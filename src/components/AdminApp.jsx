@@ -155,7 +155,8 @@ export const AdminApp = () => {
                                         tabNotification && (<TabNotificationApp setNotifications={setNotifications} notifications={notifications} close={closeTabNotification} />)
                                     }
                                 </div>
-                                <img className='profile-img' src={owner.photo || 'https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg'} alt="img" />
+                                <img
+                                    className='profile-img' src={owner.photo || 'https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg'} alt="img" />
                                 <div>
                                     <button
                                         onClick={() => setIsVisible(!isVisible)}

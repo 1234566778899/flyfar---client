@@ -15,6 +15,7 @@ export const ResumeApp = () => {
     const getRanking = () => {
         axios.get(`${CONFIG.uri}/results/ranking/${id}`)
             .then(res => {
+                console.log(res.data)
                 setRanking(res.data);
                 getResult(res.data)
             })
@@ -47,38 +48,55 @@ export const ResumeApp = () => {
                 {
                     ranking.length > 1 && (
                         <div>
-                            <h4 className='text-center'>💥Ganadores💥</h4>
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '50px', marginTop: '20px' }}>
                                 {
                                     ranking[0] && (
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                            <div className='avatar'>
-                                                <span style={{ fontSize: '2.5rem' }}>1</span>
+                                        <div className='caja'>
+                                            <div className='foto'>
+                                                <div>
+
+                                                </div>
+                                                <img src={ranking[0].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                                <div c className='name-resume mt-2 text-center'>{ranking[0].user}</div>
                                             </div>
-                                            <span className='fw-bold mt-1'>{ranking[0].user}</span>
-                                            <span>{ranking[0].total} points</span>
+                                            <div className='puesto'>
+                                                <span>1</span>
+                                            </div>
+                                            <div className='points'>Score: {ranking[0].total}</div>
                                         </div>
                                     )
                                 }
                                 {
                                     ranking[1] && (
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                            <div className='avatar'>
-                                                <span style={{ fontSize: '2.5rem' }}>2</span>
+                                        <div className='caja'>
+                                            <div className='foto'>
+                                                <div>
+
+                                                </div>
+                                                <img src={ranking[1].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                                <div className='name-resume mt-2 text-center'>{ranking[1].user}</div>
                                             </div>
-                                            <span className='fw-bold mt-1'>{ranking[1].user}</span>
-                                            <span>{ranking[1].total} points</span>
+                                            <div className='puesto'>
+                                                <span>2</span>
+                                            </div>
+                                            <div className='points'>Score: {ranking[1].total}</div>
                                         </div>
                                     )
                                 }
                                 {
                                     ranking[2] && (
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                            <div className='avatar'>
-                                                <span style={{ fontSize: '2.5rem' }}>3</span>
+                                        <div className='caja'>
+                                            <div className='foto'>
+                                                <div>
+
+                                                </div>
+                                                <img src={ranking[2].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                                <div className='name-resume mt-2 text-center'>{ranking[2].user}</div>
                                             </div>
-                                            <span className='fw-bold'>{ranking[2].user}</span>
-                                            <span>{ranking[2].total} points</span>
+                                            <div className='puesto'>
+                                                <span>3</span>
+                                            </div>
+                                            <div className='points'>Score: {ranking[2].total}</div>
                                         </div>
                                     )
                                 }

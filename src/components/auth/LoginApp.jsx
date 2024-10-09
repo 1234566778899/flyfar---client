@@ -50,30 +50,8 @@ export const LoginApp = () => {
     return (
         <>
             <div className='login-content inter' style={{ fontSize: '0.9rem' }}>
-                <div className="bubbles">
-                    <span style={{ '--i': 11 }}></span>
-                    <span style={{ '--i': 12 }}></span>
-                    <span style={{ '--i': 24 }}></span>
-                    <span style={{ '--i': 10 }}></span>
-                    <span style={{ '--i': 14 }}></span>
-                    <span style={{ '--i': 23 }}></span>
-                    <span style={{ '--i': 18 }}></span>
-                    <span style={{ '--i': 16 }}></span>
-                    <span style={{ '--i': 19 }}></span>
-                    <span style={{ '--i': 20 }}></span>
-                    <span style={{ '--i': 22 }}></span>
-                    <span style={{ '--i': 25 }}></span>
-                    <span style={{ '--i': 18 }}></span>
-                    <span style={{ '--i': 21 }}></span>
-                    <span style={{ '--i': 15 }}></span>
-                    <span style={{ '--i': 13 }}></span>
-                    <span style={{ '--i': 26 }}></span>
-                    <span style={{ '--i': 17 }}></span>
-                    <span style={{ '--i': 13 }}></span>
-                    <span style={{ '--i': 28 }}></span>
-                </div>
                 <div className="container">
-                    <button className='btn-back' onClick={() => navigate('/home')}><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
+                    <button className='btn-back mt-2' onClick={() => navigate('/home')}><i className="fa-solid fa-arrow-left me-2"></i>Home</button>
                     <div className="row justify-content-center">
                         <div className="col-md-4"></div>
                         <div className="col-md-4">

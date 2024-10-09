@@ -12,7 +12,6 @@ export const RegisterApp = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
-
     useEffect(() => {
         // if (auth.currentUser && auth.currentUser.emailVerified) {
         //     navigate('/dashboard');
@@ -31,6 +30,11 @@ export const RegisterApp = () => {
     const signUp = (data) => {
         if (!isLoading) {
             setIsLoading(true);
+            if (!data.terms) {
+                showInfoToast('Debe aceptar los terminos y condiciones');
+                setIsLoading(false);
+                return;
+            }
             createUserWithEmailAndPassword(auth, data.email, data.password)
                 .then(async (res) => {
                     axios.post(`${CONFIG.uri}/users/register`, data)
@@ -58,7 +62,7 @@ export const RegisterApp = () => {
     return (
         <div className="login-content" style={{ fontSize: '0.9rem' }}>
             <div className="container">
-                <button className='btn-back mt-2' onClick={() => navigate('/home')}><i class="fa-solid fa-arrow-left me-2"></i>Home</button>
+                <button className='btn-back mt-2' onClick={() => navigate('/home')}><i className="fa-solid fa-arrow-left me-2"></i>Home</button>
                 <div className="row justify-content-center">
                     <div className="col-md-4"></div>
                     <div className="col-md-4">
@@ -120,6 +124,15 @@ export const RegisterApp = () => {
                                         />
                                         {errors.confirmPassword && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.confirmPassword.message}</p>}
                                     </div>
+                                    <div className="mb-3" style={{ display: 'flex', alignItems: 'center' }}>
+                                        <div style={{ width: '20px' }}>
+                                            <input type="checkbox" {...register('terms')} />
+                                        </div>
+                                        <label htmlFor="terminos" className='ms-2 text-white'> Acepto las
+                                            <a className='text-white' target='_bank' href='politycs'> Políticas de privacidad</a> y los
+                                            <a className='text-white' target='_bank' href='terms'> terminos y condiciones</a>
+                                        </label>
+                                    </div>
                                     <button type="submit" style={{ letterSpacing: '1px' }} className='btn-login'>
                                         {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Registrarse'}
                                     </button>
@@ -130,6 +143,7 @@ export const RegisterApp = () => {
                                 </div>
                             </div>
                         </div>
+                        <br />
                     </div>
                     <div className="col-md-4"></div>
                 </div>

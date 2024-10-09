@@ -27,6 +27,8 @@ import { SendsApp } from './components/game/SendsApp';
 import { GameTestApp } from './components/game/GameTestApp';
 import { SubmissionTestApp } from './components/game/SubmissionTestApp';
 import { HomeApp } from './components/HomeApp';
+import { TermsApp } from './components/TermsApp';
+import { PolitycsApp } from './components/PolitycsApp';
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
             <Route exact path='/login' element={<LoginApp />} />
             <Route exact path='/register' element={<RegisterApp />} />
             <Route exact path='/home' element={<HomeApp />} />
+            <Route exact path='/terms' element={<TermsApp />} />
+            <Route exact path='/politycs' element={<PolitycsApp />} />
             <Route path='*' element={<NotFoundApp />} />
             <Route path='/admin/*' element={<AdminRoutes />} />
 

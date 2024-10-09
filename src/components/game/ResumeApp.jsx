@@ -15,7 +15,6 @@ export const ResumeApp = () => {
     const getRanking = () => {
         axios.get(`${CONFIG.uri}/results/ranking/${id}`)
             .then(res => {
-                console.log(res.data)
                 setRanking(res.data);
                 getResult(res.data)
             })

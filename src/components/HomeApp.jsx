@@ -77,6 +77,59 @@ export const HomeApp = () => {
                 <br />
                 <br />
             </section>
-        </div>
+            <footer className='bg-dark text-white py-5  '>
+                <div class="container">
+                    <div className='row'>
+                        <div className='col-md-3'>
+                            <h3 >Sobre FlyFar</h3>
+                            <p class="text-sm">
+                                FlyFar es una plataforma innovadora que utiliza inteligencia artificial generativa para crear desafíos de programación personalizados para estudiantes universitarios, ayudándolos a mejorar sus habilidades en programación de manera eficiente y entretenida.
+                            </p>
+                        </div>
+                        <div className='col-md-3'>
+                            <h3 className='ms-3'>Accesos rápidos</h3>
+                            <ul style={{ listStyle: 'none' }}>
+                                <li class="mb-2"><a href="terms" target='_blank' class="text-white">Términos y condiciones</a></li>
+                                <li class="mb-2"><a href="politycs" target='_blank' class="text-white">Politicas de privacidad</a></li>
+                                <li class="mb-2"><a href="#asks" class="text-white">Preguntas frecuentes</a></li>
+                                <li class="mb-2"><a href="#contact" class="text-white">Contáctanos</a></li>
+                            </ul>
+                        </div>
+                        <div className='col-md-3'>
+                            <h3>Contacto</h3>
+                            <p >Email: <a href="mailto:support@comyapp.com" class="text-white">ordazhoyos2001@gmail.com</a></p>
+                            <p >Teléfono: +51 904 435631</p>
+                            <p >Dirección: Lima, Perú</p>
+                        </div>
+                        <div className='col-md-3'>
+                            <h3 className='ms-3'>Follow Us</h3>
+                            <div>
+                                <ul style={{ listStyle: 'none' }}>
+                                    <li class="mb-2">
+                                        <a href="#" className='text-white' >
+                                            <i class="fab fa-facebook fa-lg text-white me-2"></i>Facebook</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" className='text-white'>
+                                            <i class="fab fa-twitter fa-lg text-white me-2"></i>Twiter</a></li>
+                                    <li class="mb-2">
+                                        <a href="#" className='text-white'>
+                                            <i class="fab fa-instagram fa-lg text-white me-2"></i>Instagram</a></li>
+                                    <li class="mb-2">
+                                        <a href="#" className='text-white' >
+                                            <i class="fa-brands fa-tiktok text-white me-2"></i>Tiktok</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div >
+                    <p className='text-center mt-4'>&copy; 2024 Flyfar. All rights reserved.</p>
+                </div>
+            </footer >
+
+        </div >
     )
 }

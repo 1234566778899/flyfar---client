@@ -53,13 +53,13 @@ export const ResumeApp = () => {
                                         <div>
 
                                         </div>
-                                        <img src={ranking[0].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
-                                        <div c className='name-resume mt-2 text-center'>{ranking[0] ? ranking[0].user : '-'}</div>
+                                        <img src={ranking[1].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                        <div c className='name-resume mt-2 text-center'>{ranking[1] ? ranking[1].user : '-'}</div>
                                     </div>
                                     <div className='puesto' style={{ height: '84px' }}>
                                         <span>2</span>
                                     </div>
-                                    <div className='points'>Score: {ranking[0] ? ranking[0].total : '-'}</div>
+                                    <div className='points'>Score: {ranking[1] ? ranking[1].total : '-'}</div>
                                 </div>
 
                                 <div className='caja'>
@@ -67,7 +67,7 @@ export const ResumeApp = () => {
                                         <div>
 
                                         </div>
-                                        <img src={ranking[1].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                        <img src={ranking[0].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
                                         <div className='name-resume mt-2 text-center'>{ranking[0].user}</div>
                                     </div>
                                     <div className='puesto' style={{ height: '108px', fontSize: '3rem' }}>
@@ -80,7 +80,7 @@ export const ResumeApp = () => {
                                         <div>
 
                                         </div>
-                                        <img src={ranking[0].photo || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
+                                        <img src={(ranking[2] && ranking[2].photo) || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'} alt="img" />
                                         <div className='name-resume mt-2 text-center'>{ranking[2] ? ranking[2].user : '-'}</div>
                                     </div>
                                     <div className='puesto'>

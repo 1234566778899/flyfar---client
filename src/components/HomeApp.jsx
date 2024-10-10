@@ -102,7 +102,7 @@ export const HomeApp = () => {
                             <p >Dirección: Lima, Perú</p>
                         </div>
                         <div className='col-md-3'>
-                            <h3 className='ms-3'>Follow Us</h3>
+                            <h3 className='ms-3'>Redes sociales</h3>
                             <div>
                                 <ul style={{ listStyle: 'none' }}>
                                     <li class="mb-2">

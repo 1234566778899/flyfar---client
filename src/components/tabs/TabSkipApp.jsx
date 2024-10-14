@@ -4,13 +4,13 @@ export const TabSkipApp = ({ close, fnAccept }) => {
 
     return (
         <div className='tab-confirm inter'>
-            <div>
+            <div style={{ width: '400px' }}>
                 <div className='text-center'>
                     {hoveredButton === 'cancel' && <span style={{ fontSize: '3rem' }}>🙃</span>}
                     {hoveredButton === 'accept' && <span style={{ fontSize: '3rem' }}>😟</span>}
                     {!hoveredButton && (<span style={{ fontSize: '3rem' }}>🥲</span>)}
                 </div>
-                <h3 className='fw-bold inter'>¿Estas seguro de salir?</h3>
+                <h3 className='fw-bold inter text-center'>¿Estas seguro de eliminar este desafío?</h3>
                 <div
                     className='mt-4'
                     style={{

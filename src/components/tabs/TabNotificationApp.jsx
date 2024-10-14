@@ -71,7 +71,7 @@ export const TabNotificationApp = ({ close, notifications, setNotifications }) =
                                 }
                                 {
                                     x.type == 'rejected' && (
-                                        <span style={{ color: 'red' }}>Kely ha rechazado tu solicitud de amistad.
+                                        <span style={{ color: 'red' }}>{x.from.username} ha rechazado tu solicitud de amistad.
                                             <span className='ms-1' style={{ color: 'gray', fontSize: '0.9rem' }}>{moment(x.createdAt).fromNow()}</span>
                                             {
                                                 !x.seen && (
@@ -86,7 +86,7 @@ export const TabNotificationApp = ({ close, notifications, setNotifications }) =
                                 }
                                 {
                                     x.type == 'accepted' && (
-                                        <span style={{ color: 'green' }}>Kely ha aceptado tu solicitud de amistad.
+                                        <span style={{ color: 'green' }}>{x.from.username} ha aceptado tu solicitud de amistad.
                                             <span className='ms-1' style={{ color: 'gray', fontSize: '0.9rem' }}>{moment(x.createdAt).fromNow()}</span>
                                             {
                                                 !x.seen && (

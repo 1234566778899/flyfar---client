@@ -144,7 +144,7 @@ export const RoomApp = () => {
                                     }
                                     {
                                         challenge && (
-                                            <button className='btn-main w-100 py-3 mt-1' style={{ letterSpacing: '1px' }} onClick={() => navigate(`/admin/challenges/${challenge._id}`)}>Continuar partida
+                                            <button className='btn-main w-100 pt-3 mt-1' style={{ letterSpacing: '1px' }} onClick={() => navigate(`/admin/challenges/${challenge._id}`)}>Continuar partida
                                             </button>
                                         )
                                     }

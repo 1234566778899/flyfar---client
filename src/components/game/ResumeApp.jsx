@@ -12,6 +12,7 @@ export const ResumeApp = () => {
     const navigate = useNavigate();
     const { setStarted, setChallenge, owner, socket } = useContext(MainContext);
     const [result, setResult] = useState({ score: 0, time: 0 });
+    const [presicion, setPresicion] = useState(0)
     const getRanking = () => {
         axios.get(`${CONFIG.uri}/results/ranking/${id}`)
             .then(res => {
@@ -23,12 +24,15 @@ export const ResumeApp = () => {
                 showInfoToast('Error');
             })
     }
-
+    const shareResult = () => {
+        showInfoToast('Muy pronto tendremos esta funcionalidad');
+    }
     const getResult = (data) => {
         const me = data.find(x => x.user == owner.username);
         if (!me) return;
         const max = me.tasks.reduce((maxTime, task) => Math.max(maxTime, task.time || 0), -1);
         const sum = me.tasks.reduce((s, task) => s + (task.score || 0), 0);
+        setPresicion(me.total ? me.total / 20 * 100 : 0)
         setResult({ time: max, score: sum / me.tasks.length });
     }
     useEffect(() => {
@@ -61,7 +65,6 @@ export const ResumeApp = () => {
                                     </div>
                                     <div className='points'>Score: {ranking[1] ? ranking[1].total : '-'}</div>
                                 </div>
-
                                 <div className='caja'>
                                     <div className='foto'>
                                         <div>
@@ -113,7 +116,7 @@ export const ResumeApp = () => {
                                     <td>{x.user}</td>
                                     <td>{x.total}</td>
                                     <td>{formatMinutes(x.time)}</td>
-                                    <td>{100}%</td>
+                                    <td>{x.total ? x.total / 20 * 100 : 0}%</td>
                                     <td></td>
                                 </tr>
                             ))
@@ -145,7 +148,7 @@ export const ResumeApp = () => {
                         <div className='room-item mt-3 w-100'>
                             <h4 style={{ fontWeight: 'bold' }}>Presición</h4>
                             <span style={{ fontSize: '2rem' }}>
-                                {ranking.length == 0 ? 0 : 85}%</span>
+                                {ranking.length == 0 ? 0 : presicion}%</span>
                             <div className='bar-box' style={{ background: '#F4F4F5', height: '10px', borderRadius: '10px' }}>
                                 <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '10px', width: '20%' }} className="progress-box"></div>
                             </div>
@@ -157,7 +160,7 @@ export const ResumeApp = () => {
                                 onClick={() => playAgain()}
                                 className='btn-try'>Jugar otra vez</button>
                         </div>
-                        <button className='btn-try'>Compartir tus resultados<i className="fa-solid fa-share-nodes ms-2"></i></button>
+                        <button className='btn-try' onClick={() => shareResult()}>Compartir tus resultados<i className="fa-solid fa-share-nodes ms-2"></i></button>
                     </div>
                 </div>
             </div>

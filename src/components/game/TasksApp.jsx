@@ -4,12 +4,15 @@ import { MainContext } from '../../contexts/MainContextApp';
 import axios from 'axios';
 import { CONFIG } from '../../config';
 import { showInfoToast } from '../../utils/showInfoToast';
+import { TabSkipApp } from '../tabs/TabSkipApp';
 
 
 export const TasksApp = () => {
     const navigate = useNavigate();
     const [taks, setTaks] = useState(null);
     const { owner } = useContext(MainContext);
+    const [tabskipt, setTabskipt] = useState({ active: false, id: null });
+    const closeTabSkip = () => setTabskipt({ active: false, id: null });
     const getTaks = () => {
         axios.get(`${CONFIG.uri}/challenge/generate/individual/${owner._id}`)
             .then(res => {
@@ -33,9 +36,13 @@ export const TasksApp = () => {
         }
     }
     const updateTask = (id) => {
+        id = id || tabskipt.id;
         axios.put(`${CONFIG.uri}/tasks/${id}`)
             .then(res => {
                 setTaks(prev => prev.map(x => x._id == id ? ({ ...x, finished: true }) : x));
+                if (tabskipt.id) {
+                    setTabskipt({ active: false, id: null })
+                }
             })
             .catch(error => {
                 showInfoToast('Error');
@@ -48,6 +55,7 @@ export const TasksApp = () => {
             </div>
         )
     }
+
     return (
         <div className='container'>
             {
@@ -78,11 +86,14 @@ export const TasksApp = () => {
             }
             {
                 taks && (
-                    <div>
-                        {
-                            taks.filter(x => !x.finished).map((x, idx) => (
-                                <div key={idx} className='item-c mt-3'>
-                                    <div className='item-challenge'>
+                    <>
+                        <h3 className='mt-3 fw-bold'>Desafios individuales</h3>
+                        <p>Tienes un máximo de 10 desafíos individuales. Al completar uno, se generará automáticamente otro. También puedes eliminar desafíos. Si deseas generar un nuevo desafío después de eliminar uno, deberás recargar la página.</p>
+                        <br />
+                        <div>
+                            {
+                                taks.filter(x => !x.finished).map((x) => (
+                                    <div key={x._id} style={{ position: 'relative' }} className='item-c mt-3 item-challenge'>
                                         <div>
                                             <h5 style={{ color: '#135181', fontWeight: 'bold' }}>{x.title}</h5>
                                             <p className='mt-3'
@@ -102,14 +113,26 @@ export const TasksApp = () => {
                                         <div>
                                             <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, x)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Marcar como terminado')}</button>
                                         </div>
+                                        {
+                                            (!x.score || x.score != 20) && (
+                                                <button onClick={() => setTabskipt({ active: true, id: x._id })} className='btn-skip'>
+                                                    <i className="fa-solid fa-xmark me-2"></i>
+                                                    Omitir
+                                                </button>
+                                            )
+                                        }
                                     </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+
+                                ))
+                            }
+                        </div>
+                    </>
                 )
             }
             <br />
+            {
+                tabskipt.active && (<TabSkipApp close={closeTabSkip} fnAccept={updateTask} />)
+            }
         </div>
     )
 }

@@ -131,7 +131,7 @@ export const AdminApp = () => {
                                                     <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
                                                 </li>
                                                 <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
-                                                <li onClick={() => navigate('/admin/tasks')}>Mis desafios</li>
+                                                <li onClick={() => navigate('/admin/tasks')}>Desafios Individuales</li>
                                                 <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
                                             </ul>
                                         )

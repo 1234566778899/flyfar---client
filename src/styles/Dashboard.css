@@ -235,3 +235,11 @@
     background-color: rgb(76, 110, 184);
     transition: width 0.3s ease;
 }
+
+.btn-view-sends {
+    background: rgb(76, 110, 184);
+    border: none;
+    color: white;
+    padding: 5px 7px;
+    border-radius: 3px;
+}

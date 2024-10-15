@@ -133,6 +133,7 @@ export const AdminApp = () => {
                                                 <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
                                                 <li onClick={() => navigate('/admin/tasks')}>Desafios Individuales</li>
                                                 <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
+                                                <li onClick={() => navigate('/admin/history')}>Historial</li>
                                             </ul>
                                         )
                                     }

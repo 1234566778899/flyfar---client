@@ -29,6 +29,8 @@ import { SubmissionTestApp } from './components/game/SubmissionTestApp';
 import { HomeApp } from './components/HomeApp';
 import { TermsApp } from './components/TermsApp';
 import { PolitycsApp } from './components/PolitycsApp';
+import { HistoryApp } from './components/HistoryApp';
+import { SendsHistoryApp } from './components/SendsHistoryApp';
 
 
 function App() {
@@ -73,6 +75,8 @@ const AdminRoutes = () => (
         <Route exact path='/game/test/:taskId' element={<GameTestApp />} />
         <Route exact path='/details/:id' element={<DetailsApp />} />
         <Route exact path='/sends/:taskId' element={<SendsApp />} />
+        <Route exact path='/sends/history/:taskId' element={<SendsHistoryApp />} />
+        <Route exact path='/history' element={<HistoryApp />} />
         <Route exact path='/submissions/:challengeId' element={<SubmissionApp />} />
         <Route exact path='/submissions/test/:challengeId' element={<SubmissionTestApp />} />
         <Route exact path='/submissions/:challengeId/:taskId' element={<SubmissionApp />} />

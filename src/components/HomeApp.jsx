@@ -92,7 +92,10 @@ export const HomeApp = () => {
                                 <li className="mb-2"><a href="terms" target='_blank' className="text-white">Términos y condiciones</a></li>
                                 <li className="mb-2"><a href="politycs" target='_blank' className="text-white">Politicas de privacidad</a></li>
                                 <li className="mb-2"><a href="#asks" className="text-white">Preguntas frecuentes</a></li>
-                                <li className="mb-2"><a href="#contact" className="text-white">Contáctanos</a></li>
+                                <li className="mb-2">
+                                    <a href="https://wa.me/+51904435631" target="_blank" rel="noopener noreferrer" className="text-white">Contáctanos</a>
+                                </li>
+
                             </ul>
                         </div>
                         <div className='col-md-3'>

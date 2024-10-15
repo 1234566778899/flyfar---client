@@ -143,7 +143,7 @@ export const AdminApp = () => {
                                 <div>
                                     <div className='btn-noti' onClick={() => settabNotification(true)}>
                                         {
-                                            notifications.length > 0 && (
+                                            notifications.filter(x => !x.seen).length > 0 && (
                                                 <div className='badget'>
                                                     <span>1</span>
                                                 </div>

@@ -29,8 +29,6 @@ export const TabNotificationApp = ({ close, notifications, setNotifications }) =
                 showInfoToast('Error');
             })
     }
-    useEffect(() => {
-    }, [notifications])
     return (
         <div className='tab-noti' style={{ fontSize: '0.95rem' }}>
             <div style={{ backgroundColor: 'black', padding: '10px 10px' }}>

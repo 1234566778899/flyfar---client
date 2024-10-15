@@ -212,7 +212,7 @@ export const DashboardApp = () => {
                                 </div>)
                             }
                         </div>
-                        <button className='btn-main w-100 py-3 mt-2' onClick={() => goRoom()}>Iniciar desafio grupal</button>
+                        <button className='btn-main w-100 py-3 mt-2' onClick={() => goRoom()}>Iniciar desafio</button>
                     </div>
                 </div>
             </div>

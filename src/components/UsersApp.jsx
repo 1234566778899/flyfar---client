@@ -26,6 +26,7 @@ export const UsersApp = () => {
             <table className='table'>
                 <tbody>
                     <tr className='fw-bold'>
+                        <td>N°</td>
                         <td>Nombre de usuario</td>
                         <td>Nombre</td>
                         <td>Apellido</td>
@@ -35,8 +36,9 @@ export const UsersApp = () => {
                         <td>Ejercicios resueltos</td>
                     </tr>
                     {
-                        users.map(x => (
+                        users.map((x, idx) => (
                             <tr style={{ fontSize: '0.9rem' }} key={x.userId}>
+                                <td>{idx + 1}</td>
                                 <td>{x.username}</td>
                                 <td>{x.name || '-'}</td>
                                 <td>{x.lname || '-'}</td>

@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CONFIG } from '../config'
 import { useNavigate } from 'react-router-dom'
 import { showInfoToast } from '../utils/showInfoToast'
-import moment from 'moment/moment'
-import { useForm } from 'react-hook-form'
 import { MainContext } from '../contexts/MainContextApp'
+import { AuthContext } from '../contexts/AuthContextApp'
 
 export const TopUsersApp = () => {
     const [ranking, setRanking] = useState(null)
-    const { socket, user, owner } = useContext(MainContext);
+    const { socket, owner } = useContext(MainContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const getRanking = () => {
         axios.get(`${CONFIG.uri}/results/ranking`)
@@ -57,6 +57,14 @@ export const TopUsersApp = () => {
     return (
         <div className='container'>
             <br />
+            {
+                isLoading && (
+                    <div className='tab-loading'>
+                        <i className="fa-solid fa-spinner icon-load me-2"></i>
+                        Cargando
+                    </div>
+                )
+            }
             <h4 className='fw-bold'>Clasificación de usuarios</h4>
             <hr />
             {
@@ -94,9 +102,10 @@ export const TopUsersApp = () => {
                                     </td>
                                     <td >
                                         <button
-                                            onClick={() => sendRequest(x.email)}
-                                            type="submit" className="me-2 btn-request w-100">
-                                            {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Enviar solicitud'}
+                                            onClick={() => sendRequest(x.userDetails.email)}
+                                            type="submit" className="me-2 btn-request">
+                                            Enviar solicitud
+                                            <i className="ms-2 fa-solid fa-plus"></i>
                                         </button>
                                     </td>
                                 </tr>

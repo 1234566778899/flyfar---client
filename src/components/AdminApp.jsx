@@ -103,6 +103,13 @@ export const AdminApp = () => {
         socket.emit('out_room');
         navigate('/admin/dashboard')
     }
+    if (!owner) {
+        return (
+            <div className='loading'>
+                <i className="fa-solid fa-spinner icon-load me-2"></i>
+                Loading</div>
+        )
+    }
     return user && owner && (
         <>
             <div>

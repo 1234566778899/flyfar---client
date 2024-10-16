@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { showInfoToast } from '../../utils/showInfoToast';
 
-export const TabConfTestApp = ({ close, fnConfirm }) => {
+export const TabConfTestApp = ({ close, fnConfirm, isLoading }) => {
     const [lenguaje, setLenguaje] = useState('');
     return (
         <div className='tab-test'>
@@ -19,7 +19,12 @@ export const TabConfTestApp = ({ close, fnConfirm }) => {
                         <option value="Javascript">Javascript</option>
                     </select>
                 </div>
-                <button onClick={() => lenguaje == '' ? showInfoToast('Debe seleccionar un lenguaje') : fnConfirm(lenguaje)} className='mt-3'>Iniciar prueba</button>
+                <button onClick={() => lenguaje == '' ? showInfoToast('Debe seleccionar un lenguaje') : fnConfirm(lenguaje)} className='mt-3'>
+                    {
+                        isLoading && (<i className="fa-solid fa-spinner icon-load me-2"></i>)
+                    }
+                    Iniciar sesión
+                </button>
             </div>
         </div>
     )

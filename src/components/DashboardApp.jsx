@@ -23,6 +23,7 @@ export const DashboardApp = () => {
     const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, challenge, setFriendsActive } = useContext(MainContext);
     const [countWeek, setCountWeek] = useState(0);
     const [currentScore, setCurrentScore] = useState(0);
+    const [isLoadingTest, setIsLoadingTest] = useState(false);
     const getTaksPending = (userId) => {
         axios.get(`${CONFIG.uri}/tasks/pending/${userId}`)
             .then(res => {
@@ -43,15 +44,19 @@ export const DashboardApp = () => {
             })
     }
     const generateInitialTest = (lenguaje) => {
-        axios.post(`${CONFIG.uri}/challenge/generate/test`, { lenguaje, user: { id: owner._id, username: owner.username } })
-            .then(res => {
-                setCodeRoom(false);
-                navigate(`/admin/test/${res.data}`);
-            })
-            .catch(error => {
-                console.log(error);
-                showInfoToast('Error');
-            })
+        if (!isLoadingTest) {
+            setIsLoadingTest(true);
+            axios.post(`${CONFIG.uri}/challenge/generate/test`, { lenguaje, user: { id: owner._id, username: owner.username } })
+                .then(res => {
+                    setCodeRoom(false);
+                    navigate(`/admin/test/${res.data}`);
+                })
+                .catch(error => {
+                    console.log(error);
+                    setIsLoadingTest(false);
+                    showInfoToast('Error');
+                })
+        }
     }
     useEffect(() => {
         if (owner) {
@@ -220,7 +225,7 @@ export const DashboardApp = () => {
                 tabActive && (<TabSendRequestApp close={closeTab} user={user} socket={socket} owner={owner} />)
             }
             {
-                tabTest && (<TabConfTestApp close={closeTabTest} fnConfirm={generateInitialTest} />)
+                tabTest && (<TabConfTestApp close={closeTabTest} isLoading={isLoadingTest} fnConfirm={generateInitialTest} />)
             }
             {
                 tabListFriends && (<TabListFriendsApp friends={friends} close={closeTabFriends} />)

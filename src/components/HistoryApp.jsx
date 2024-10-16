@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { showInfoToast } from '../utils/showInfoToast'
 
 export const HistoryApp = () => {
-    const [results, setResults] = useState([])
+    const [results, setResults] = useState(null)
     const { owner } = useContext(MainContext);
     const [paginate, setPaginate] = useState(1);
     const navigate = useNavigate();
@@ -25,7 +25,14 @@ export const HistoryApp = () => {
     useEffect(() => {
         getResults();
     }, [paginate])
-    return (
+    if (!results) {
+        return (
+            <div className='loading'>
+                <i className="fa-solid fa-spinner icon-load me-2"></i> Cargando
+            </div>
+        )
+    }
+    return results && (
         <div className='container inter'>
             <br />
             <h4 className='fw-bold'>Historial de envios</h4>

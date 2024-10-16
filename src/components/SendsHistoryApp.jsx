@@ -28,6 +28,14 @@ export const SendsHistoryApp = () => {
     useEffect(() => {
         getSubmission()
     }, [])
+    if (!submissions) {
+        return (
+            <div className='loading'>
+                <i className="fa-solid fa-spinner icon-load me-2"></i>
+                Cargando
+            </div>
+        )
+    }
     return submissions && (
         <div className="container inter">
             <div className="container inter">

@@ -31,6 +31,7 @@ import { TermsApp } from './components/TermsApp';
 import { PolitycsApp } from './components/PolitycsApp';
 import { HistoryApp } from './components/HistoryApp';
 import { SendsHistoryApp } from './components/SendsHistoryApp';
+import { UsersApp } from './components/UsersApp';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<HomeApp />} />
             <Route exact path='/login' element={<LoginApp />} />
+            <Route exact path='/users' element={<UsersApp />} />
             <Route exact path='/register' element={<RegisterApp />} />
             <Route exact path='/home' element={<HomeApp />} />
             <Route exact path='/terms' element={<TermsApp />} />

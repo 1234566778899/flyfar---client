@@ -43,7 +43,7 @@ export const UsersApp = () => {
                                 <td>{x.name || '-'}</td>
                                 <td>{x.lname || '-'}</td>
                                 <td>{x.email}</td>
-                                <td>{moment(x.createdAt).subtract(5, 'hours').format('DD-MM-YYYY hh:mm:ss')}</td>
+                                <td>{moment(x.createdAt).format('DD-MM-YYYY hh:mm:ss')}</td>
                                 <td>{x.test ? 'Sí' : 'No'}</td>
                                 <td>{x.totalEjerciciosUnicos}</td>
                             </tr>

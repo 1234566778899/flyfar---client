@@ -97,6 +97,10 @@
       align-items: center;
   }
 
+  .header {
+      background-image: linear-gradient(to bottom, black, rgb(1, 12, 67));
+  }
+
   @media screen and (max-width:720px) {
 
       .info {

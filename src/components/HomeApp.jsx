@@ -6,8 +6,7 @@ export const HomeApp = () => {
     const navigate = useNavigate();
     return (
         <div className='contenido inter' id='inicio'>
-            <section className='contenedor'>
-                <video src={fondoVideo} autoPlay loop muted></video>
+            <section className='contenedor header' >
                 <div className="container" style={{ height: '100%' }}>
                     <nav>
                         <div style={{ display: 'flex', alignItems: 'center' }}>

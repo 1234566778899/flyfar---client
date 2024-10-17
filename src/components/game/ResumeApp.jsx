@@ -114,7 +114,7 @@ export const ResumeApp = () => {
                                 <tr key={idx}>
                                     <td>{idx + 1}</td>
                                     <td>{x.user}</td>
-                                    <td>{x.total}</td>
+                                    <td>{x.total.toFixed(1)}</td>
                                     <td>{formatMinutes(x.time)}</td>
                                     <td>{x.total ? x.total / 20 * 100 : 0}%</td>
                                     <td></td>

@@ -29,7 +29,7 @@ export const ProfileApp = () => {
                 <div className='container pb-5' >
                     <br />
                     <h3 className='fw-bold'>Mi perfil</h3>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '20px' }}>
+                    <div className='box-profile'>
                         <div>
                             <div className='card-profile mt-2' style={{ position: 'relative' }}>
                                 <i

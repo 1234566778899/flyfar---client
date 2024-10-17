@@ -91,13 +91,17 @@ export const LoginApp = () => {
                                             />
                                             {errors.password && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.password.message}</p>}
                                         </div>
-                                        <button type="submit" className="mt-2 btn-login" style={{ letterSpacing: '1px' }}>
+                                        <div className='text-end mt-2'>
+                                            <Link style={{ color: '#06BEFF' }} to='/forget'>¿Olvidaste tu contraseña?</Link>
+                                        </div>
+                                        <button type="submit" className="mt-3 btn-login" style={{ letterSpacing: '1px' }}>
                                             {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Iniciar sesión'}
                                         </button>
                                     </form>
                                     <hr />
-                                    <div className="text-center mt-3">
-                                        <p><span style={{ color: 'white' }}>¿No tienes una cuenta?</span> <Link style={{ color: '#06BEFF' }} to="/register">Regístrate aquí</Link></p>
+                                    <div className="text-center">
+
+                                        <p className='mt-2'><span style={{ color: 'white' }}>¿No tienes una cuenta?</span> <Link style={{ color: '#06BEFF' }} to="/register">Regístrate aquí</Link></p>
                                     </div>
                                 </div>
                             </div>

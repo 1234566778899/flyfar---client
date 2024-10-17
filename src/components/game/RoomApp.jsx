@@ -72,7 +72,7 @@ export const RoomApp = () => {
             {
                 friendsActive && (
                     <div className='content-room inter'>
-                        <div className='container' style={{ display: 'grid', fontSize: '0.9rem', gridTemplateColumns: '70% 30%' }}>
+                        <div className='container box-room'>
                             <div className='pe-3 mt-4'>
                                 <div className='card-joins'>
                                     <h5 className='fw-bold'>Participantes</h5>
@@ -131,7 +131,9 @@ export const RoomApp = () => {
                                 </div>
                             </div>
                             <div className='mt-4'>
-                                <ChatApp socket={socket} owner={owner} codeRoom={codeRoom} />
+                                <div className='chat-room'>
+                                    <ChatApp socket={socket} owner={owner} codeRoom={codeRoom} />
+                                </div>
                                 <div className="mt-1">
                                     <button className='btn-out mt-1' style={{ letterSpacing: '1px' }} onClick={() => outRoom()}>Abandonar sala
                                         <i className="fa-solid fa-xmark ms-2"></i>

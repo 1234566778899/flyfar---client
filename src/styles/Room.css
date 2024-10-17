@@ -466,3 +466,21 @@ button:hover {
     justify-content: center;
     height: calc(100vh - 200px);
 }
+
+.box-room {
+    display: grid;
+    font-size: 0.9rem;
+    grid-template-columns: 70% 30%;
+}
+
+@media screen and (max-width:720px) {
+    .box-room {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 80px;
+    }
+
+    .chat-room {
+        display: none;
+    }
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/Home.css'
-import fondoVideo from '../assets/fondo.mp4';
 import { useNavigate } from 'react-router-dom';
 export const HomeApp = () => {
     const navigate = useNavigate();

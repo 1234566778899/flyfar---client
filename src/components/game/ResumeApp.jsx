@@ -133,7 +133,7 @@ export const ResumeApp = () => {
                     <div style={{ display: 'flex', gap: '20px' }}>
                         <div className='room-item mt-3 w-100'>
                             <h4 className='fw-bold'>Puntaje promedio</h4>
-                            <span style={{ fontSize: '2rem' }}>{result.score}</span>
+                            <span style={{ fontSize: '2rem' }}>{result.score ? result.score.toFixed(1) : 0}</span>
                             <div className='bar-box' style={{ background: '#F4F4F5', height: '10px', borderRadius: '10px' }}>
                                 <div style={{ background: '#000', marginTop: '2px', borderRadius: '10px', height: '10px', width: '20%' }} className="progress-box"></div>
                             </div>

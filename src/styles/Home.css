@@ -98,7 +98,7 @@
   }
 
   .header {
-      background-image: linear-gradient(to bottom, black, rgb(1, 12, 67));
+      background-image: linear-gradient(to bottom, black, rgb(1, 12, 67), rgb(17, 69, 124));
   }
 
   @media screen and (max-width:720px) {

@@ -8,7 +8,7 @@ import { AuthContext } from '../contexts/AuthContextApp'
 
 export const TopUsersApp = () => {
     const [ranking, setRanking] = useState(null)
-    const { socket, owner } = useContext(MainContext);
+    const { socket, owner, friends } = useContext(MainContext);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const getRanking = () => {
@@ -43,6 +43,9 @@ export const TopUsersApp = () => {
                 })
         }
     }
+    const isFriend = (email) => {
+        return friends.map(x => x.email).includes(email);
+    }
     useEffect(() => {
         getRanking();
     }, [])
@@ -54,7 +57,7 @@ export const TopUsersApp = () => {
             </div>
         )
     }
-    return (
+    return friends && ranking && (
         <div className='container'>
             <br />
             {
@@ -84,29 +87,35 @@ export const TopUsersApp = () => {
                 ranking.length > 0 && <table className='table'>
                     <tbody>
                         <tr className='fw-bold'>
+                            <td>N°</td>
                             <td>Nombre de usuario</td>
                             <td>Nombre</td>
                             <td>Apellido</td>
                             <td>Puntaje</td>
-                            <td>Agregar amigo</td>
+                            <td className='text-center'>Agregar amigo</td>
                         </tr>
                         {
-                            ranking.map(x => (
+                            ranking.map((x, idx) => (
                                 <tr key={x.userId} style={{ fontSize: '0.90rem' }}>
 
+                                    <td >{idx + 1}</td>
                                     <td >{x.userDetails.username}</td>
                                     <td >{x.userDetails.name || '-'}</td>
                                     <td >{x.userDetails.lname || '-'}</td>
                                     <td >
                                         <span style={{ background: 'green', padding: '3px 10px', color: 'white', borderRadius: '3px' }}>{x.averageScore ? x.averageScore : 0}</span>
                                     </td>
-                                    <td >
-                                        <button
-                                            onClick={() => sendRequest(x.userDetails.email)}
-                                            type="submit" className="me-2 btn-request">
-                                            Enviar solicitud
-                                            <i className="ms-2 fa-solid fa-plus"></i>
-                                        </button>
+                                    <td className='text-center' >
+                                        {
+                                            !isFriend(x.userDetails.email) && (<button
+                                                onClick={() => sendRequest(x.userDetails.email)}
+                                                type="submit" className="btn-request"> <i className="fa-solid fa-plus"></i></button>)
+                                        }
+                                        {
+                                            isFriend(x.userDetails.email) && (<span>Amigos
+                                                <i style={{ fontSize: '0.9rem' }} className="ms-1 fa-solid fa-check"></i>
+                                            </span>)
+                                        }
                                     </td>
                                 </tr>
                             ))

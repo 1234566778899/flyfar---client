@@ -101,7 +101,7 @@ export const DashboardApp = () => {
                         <button className='btn-view-challenges' onClick={() => navigate('/admin/room')}>Unirse a la sala</button>
                     </div>)
                 }
-                <div style={{ display: 'grid', gridTemplateColumns: '75% 25%' }}>
+                <div className='box-dashboard'>
                     <div className='pe-3'>
                         <br />
                         {

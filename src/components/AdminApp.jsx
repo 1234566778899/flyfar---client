@@ -117,36 +117,34 @@ export const AdminApp = () => {
                     <nav style={{ background: '#0E141E', color: 'white', paddingBottom: '10px' }}>
                         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px' }}>
                             {
-                                <div>
-                                    {
-                                        challenge && (
-                                            <div>
-                                                <button className='btn-t' onClick={() => setTabConfirm(true)}>
-                                                    <i className="fa-solid fa-right-from-bracket"></i>
-                                                    <span className='ms-2'>Salir</span>
-                                                </button>
-                                                <span className='ms-3' >
-                                                    <CountTimerApp challengeId={challenge._id} creationTime={challenge.updatedAt} minutes={challenge.time} />
-                                                </span>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        !challenge && (
-                                            <ul className='menu' style={{ fontSize: '0.95rem' }}>
-                                                <li onClick={() => navigate('/home')}>
-                                                    <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
-                                                </li>
-                                                <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
-                                                <li onClick={() => navigate('/admin/tasks')}>Desafios Individuales</li>
-                                                <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
-                                                <li onClick={() => navigate('/admin/history')}>Historial</li>
-                                            </ul>
-                                        )
-                                    }
-                                </div>
+                                challenge && (
+                                    <div>
+                                        <button className='btn-t' onClick={() => setTabConfirm(true)}>
+                                            <i className="fa-solid fa-right-from-bracket"></i>
+                                            <span className='ms-2'>Salir</span>
+                                        </button>
+                                        <span className='ms-3' >
+                                            <CountTimerApp challengeId={challenge._id} creationTime={challenge.updatedAt} minutes={challenge.time} />
+                                        </span>
+                                    </div>
+                                )
                             }
+                            {
+                                !challenge && (
+                                    <div style={{ display: 'flex' }}>
+                                        <span onClick={() => navigate('/home')}>
+                                            <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
+                                        </span>
+                                        <ul className='menu' style={{ fontSize: '0.95rem' }}>
+                                            <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>
+                                            <li onClick={() => navigate('/admin/tasks')}>Desafios Individuales</li>
+                                            <li onClick={() => navigate('/admin/ranking')}>Clasificación</li>
+                                            <li onClick={() => navigate('/admin/history')}>Historial</li>
+                                        </ul>
+                                    </div>
 
+                                )
+                            }
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <div>
                                     <div className='btn-noti' onClick={() => settabNotification(true)}>

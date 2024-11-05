@@ -1,10 +1,34 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MainContext } from '../contexts/MainContextApp';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { CONFIG } from '../config';
+import { showInfoToast } from '../utils/showInfoToast';
 
 export const ListFriendsApp = () => {
-    const { friends } = useContext(MainContext);
+    const { friends, getFriends, owner } = useContext(MainContext);
+    const [duplicado, setDuplicado] = useState([]);
+    useEffect(() => {
+        if (friends) {
+            setDuplicado([...friends].map(x => ({ ...x, deleted: false })))
+        }
+    }, [friends])
+    const showBoton = (idx) => {
+        const aux = [...duplicado];
+        aux[idx].deleted = !aux[idx].deleted;
+        setDuplicado(aux);
+    }
+    const deleteFriend = (id) => {
+        axios.delete(`${CONFIG.uri}/friends/${id}`)
+            .then(res => {
+                getFriends(owner);
+                showInfoToast('Amistad eliminada');
+            })
+            .catch(error => {
+                showInfoToast('Error');
+            })
+    }
     const navigate = useNavigate();
     return (
         <div className='container inter'>
@@ -20,8 +44,8 @@ export const ListFriendsApp = () => {
                         <td className='fw-bold'>Opciones</td>
                     </tr>
                     {
-                        friends.map(x => (
-                            <tr key={x._id}>
+                        duplicado.map((x, idx) => (
+                            <tr key={x.id}>
                                 <td>{x.username}</td>
                                 <td>{moment(x.createdAt).fromNow()}</td>
                                 <td>0</td>
@@ -29,7 +53,21 @@ export const ListFriendsApp = () => {
                                     <button
                                         onClick={() => navigate(`/admin/user/${x.email}`)}
                                         className='btn-infor'><i className="fa-solid fa-circle-info"></i></button>
-                                    <button className='btn-delete ms-2'><i className="fa-solid fa-user-minus"></i></button>
+                                    {
+                                        !x.deleted && (<button onClick={() => showBoton(idx)} className='btn-delete ms-2'><i className="fa-solid fa-user-minus"></i></button>)
+                                    }
+                                    {
+                                        x.deleted && (
+                                            <>
+                                                <button onClick={() => deleteFriend(x.id)} className='ms-2 btn-add-use' style={{ fontSize: '0.7rem' }}>
+                                                    <i className="fa-solid fa-check"></i>
+                                                </button>
+                                                <button onClick={() => showBoton(idx)} className='ms-2 btn-add-use' style={{ fontSize: '0.7rem' }}>
+                                                    <i className="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </>
+                                        )
+                                    }
                                 </td>
                             </tr>
                         ))

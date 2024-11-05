@@ -20,7 +20,7 @@ export const DashboardApp = () => {
     const closeTabTest = () => setTabTest(false);
     const closeTabFriends = () => setTabListFriends(false);
     const [tasksPending, setTasksPending] = useState(null);
-    const { owner, socket, codeRoom, setCodeRoom, friends, setFriends, challenge, setFriendsActive } = useContext(MainContext);
+    const { owner, socket, codeRoom, setCodeRoom, getFriends, friends, setFriends, challenge, setFriendsActive } = useContext(MainContext);
     const [countWeek, setCountWeek] = useState(0);
     const [currentScore, setCurrentScore] = useState(0);
     const [isLoadingTest, setIsLoadingTest] = useState(false);
@@ -81,6 +81,18 @@ export const DashboardApp = () => {
         setFriendsActive([{ id: owner._id, username: owner.username }])
         socket.emit('create_room', { code, user: { id: owner._id, username: owner.username } });
         navigate('/admin/room')
+    }
+    const deleteFriend = (id) => {
+        axios.delete(`${CONFIG.uri}/friends/${id}`)
+            .then(res => {
+                getFriends(owner);
+                closeTabFriends();
+                showInfoToast('Amistad eliminada');
+            })
+            .catch(error => {
+                console.log(error);
+                showInfoToast('Error');
+            })
     }
     return (
         <div className='inter' style={{ fontSize: '0.9rem', background: '#F7F8FD' }}>
@@ -228,7 +240,7 @@ export const DashboardApp = () => {
                 tabTest && (<TabConfTestApp close={closeTabTest} isLoading={isLoadingTest} fnConfirm={generateInitialTest} />)
             }
             {
-                tabListFriends && (<TabListFriendsApp friends={friends} close={closeTabFriends} />)
+                tabListFriends && (<TabListFriendsApp friends={friends} close={closeTabFriends} onConfirm={deleteFriend} />)
             }
             <br />
             <br />

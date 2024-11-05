@@ -12,7 +12,7 @@ export const TabSendRequestApp = ({ close, user, socket, owner }) => {
             setIsLoading(true);
             if (data.email == user.email) {
                 setIsLoading(false);
-                return showInfoToast('Email inválido');
+                return showInfoToast('No puede enviarse a si mismo');
             }
             axios.post(`${CONFIG.uri}/friends/send_request`, { userId: owner._id, friend: data.email })
                 .then(res => {

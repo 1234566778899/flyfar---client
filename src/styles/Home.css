@@ -50,27 +50,41 @@
   .btn-r {
       border: 1px solid white;
       color: white;
-      padding: 5px 12px;
-      background: none;
+      padding: 10px 20px;
+      background-image: linear-gradient(to right, #0477E4, #178CFA);
+      border: none;
       font-size: 0.9rem;
       transition: background-color 0.3s ease;
   }
 
-  .btn-r:hover {
-      background-color: white;
-      color: black;
+  .btn-explore {
+      border: 1px solid white;
+      color: white;
+      padding: 10px 20px;
+      background-image: linear-gradient(to right, #0477E4, #178CFA);
+      border: none;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
   }
 
   .btn-i {
       font-size: 0.9rem;
-      background-color: black;
+      background-color: #262A33;
+      padding: 10px 30px;
       color: white;
       border: none;
-      padding: 7px 30px;
   }
 
-  .btn-i:hover {
-      background-color: rgb(42, 42, 42);
+  .btn-register {
+      font-size: 0.9rem;
+      background-color: #262A33;
+      padding: 10px 20px;
+      color: white;
+      border: none;
+  }
+
+  .btn-l:hover {
+      filter: brightness(1.1)
   }
 
   .info {
@@ -98,7 +112,7 @@
   }
 
   .header {
-      background-image: linear-gradient(to bottom, black, rgb(1, 12, 67), rgb(17, 69, 124));
+      background-image: linear-gradient(to bottom, black, #1F2229);
   }
 
   .item-friend {

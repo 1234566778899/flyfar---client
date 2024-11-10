@@ -69,10 +69,10 @@ export const RegisterApp = () => {
                         <div className="mt-3 box-login">
                             <div className="card-body">
                                 <div className="text-center">
-                                    <img src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-computer-security-logo-design-png-image_8091046.png" alt="login-img" style={{ width: '60px' }} />
+                                    <img src="https://preview.cruip.com/solid/dist/images/logo.svg" alt="login-img" style={{ width: '40px' }} />
                                 </div>
-                                <h3 className="card-title text-center" style={{ color: 'white', letterSpacing: '1px' }}>Únete a Flyfar</h3>
-                                <p className="text-center" style={{ color: 'gray', letterSpacing: '1px' }}>¡Comienza tu viaje de codificación hoy!</p>
+                                <h3 className="card-title text-center mt-3" style={{ color: 'white', letterSpacing: '1px' }}>Únete a Flyfar</h3>
+                                <p className="text-center" style={{ color: '#8A94A7', letterSpacing: '1px' }}>¡Comienza tu viaje de codificación hoy!</p>
                                 <form className='mt-4' onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mb-3">
                                         <label htmlFor="email" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Correo electrónico</label>

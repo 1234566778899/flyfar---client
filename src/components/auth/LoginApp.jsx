@@ -12,9 +12,9 @@ export const LoginApp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     useEffect(() => {
-        // if (auth.currentUser && auth.currentUser.emailVerified) {
-        //     navigate('/dashboard');
-        // }
+        if (auth.currentUser && auth.currentUser.emailVerified) {
+            navigate('/admin/dashboard');
+        }
     }, [auth, navigate]);
 
     // const validateEmailDomain = (email) => {
@@ -58,7 +58,7 @@ export const LoginApp = () => {
                             <div className="box-login mt-5">
                                 <div className="card-body">
                                     <div className="text-center">
-                                        <img src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-computer-security-logo-design-png-image_8091046.png" alt="login-img" style={{ width: '60px' }} />
+                                        <img src="https://preview.cruip.com/solid/dist/images/logo.svg" alt="login-img" style={{ width: '60px' }} />
                                     </div>
                                     <h3 className="card-title text-center" style={{ color: 'white' }}>Iniciar Sesión</h3>
                                     <form className='mt-3' onSubmit={handleSubmit(onSubmit)}>

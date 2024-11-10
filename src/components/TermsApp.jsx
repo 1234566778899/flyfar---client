@@ -8,7 +8,7 @@ export const TermsApp = () => {
             <div style={{ background: 'black', display: 'flex', alignItems: 'center' }}>
                 <nav className='container'>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
+                        <img style={{ width: '30px' }} src='https://preview.cruip.com/solid/dist/images/logo.svg' alt="logo" />
                         <span className='ms-2' style={{ fontSize: '1.1rem' }}>Flyfire</span>
                     </div>
                     <ul className='menu-home'>

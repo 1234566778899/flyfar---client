@@ -31,7 +31,7 @@
 }
 
 .login-content {
-    background-image: linear-gradient(to bottom, black, rgb(1, 12, 67));
+    background-image: linear-gradient(to bottom, black, #1E2228);
     background-size: cover;
     background-position: center;
     margin: 0;
@@ -78,7 +78,7 @@
 
 
 .btn-login {
-    background: linear-gradient(to right, #06BEFF, #2D74FF);
+    background-image: linear-gradient(to right, #0477E4, #178CFA);
     color: white;
     width: 100%;
     border: none;

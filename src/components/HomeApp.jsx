@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export const HomeApp = () => {
     const navigate = useNavigate();
     return (
-        <div className='contenido inter' id='inicio' style={{ background: '#1E2228', color: 'white' }}>
+        <div className='contenido inter' id='inicio' style={{ background: '#1D2026', color: 'white' }}>
             <section className='contenedor header' >
                 <div className="container" style={{ height: '100%' }}>
                     <nav>

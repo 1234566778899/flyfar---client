@@ -122,10 +122,6 @@
       color: black;
   }
 
-  .item-friend:hover {
-      background-color: rgb(246, 246, 246);
-  }
-
   .item-friend button {
       border-radius: 3px;
   }

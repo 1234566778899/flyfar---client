@@ -1,4 +1,4 @@
 export const CONFIG = {
     //uri: 'http://localhost:4000',
-    uri: 'https://flyfar-backend-abchh5bgh5eqfggs.eastus-01.azurewebsites.net'
+    uri: 'https://flyfire-app-01.rj.r.appspot.com/'
 }

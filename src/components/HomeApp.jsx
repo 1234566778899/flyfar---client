@@ -104,17 +104,17 @@ export const HomeApp = () => {
                                 <ul style={{ listStyle: 'none' }}>
                                     <li className="mb-2">
                                         <a style={{ color: '#8A94A7' }} href="#"  >
-                                            <i style={{ color: '#0270D7' }} className="fab fa-facebook fa-lg me-2"></i>Facebook</a>
+                                            <i style={{ color: 'white' }} className="fab fa-facebook fa-lg me-2"></i>Facebook</a>
                                     </li>
                                     <li className="mb-2">
                                         <a style={{ color: '#8A94A7' }} href="#" >
-                                            <i style={{ color: '#0270D7' }} className="fab fa-twitter fa-lg me-2"></i>Twiter</a></li>
+                                            <i style={{ color: 'white' }} className="fab fa-twitter fa-lg me-2"></i>Twiter</a></li>
                                     <li className="mb-2">
                                         <a style={{ color: '#8A94A7' }} href="#" >
-                                            <i style={{ color: '#0270D7' }} className="fab fa-instagram fa-lg me-2"></i>Instagram</a></li>
+                                            <i style={{ color: 'white' }} className="fab fa-instagram fa-lg me-2"></i>Instagram</a></li>
                                     <li className="mb-2">
                                         <a style={{ color: '#8A94A7' }} href="#"  >
-                                            <i style={{ color: '#0270D7' }} className="fa-brands fa-tiktok me-2"></i>Tiktok</a>
+                                            <i style={{ color: 'white' }} className="fa-brands fa-tiktok me-2"></i>Tiktok</a>
                                     </li>
                                 </ul>
                             </div>

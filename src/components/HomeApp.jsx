@@ -14,14 +14,20 @@ export const HomeApp = () => {
         <div className='inter'>
             <nav style={{ padding: '20px 0px' }}>
                 <div className='container' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <a style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', textDecoration: 'none' }} href='#init'>
                         <img src="https://images.vexels.com/media/users/3/331161/isolated/preview/2a386615007f32659a8112824aea895b-icono-de-chip-de-cpu.png" alt="log" style={{ width: '30px', height: '30px' }} />
                         <span className='ms-2' style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#977EF5' }}>Flyfar</span>
-                    </div>
+                    </a>
                     <div className='nav-items' ref={menuRef}>
-                        <span className='link-span'>Características</span>
-                        <span className='link-span'>Como funciona</span>
-                        <span className='link-span'>Testimonios</span>
+                        <span className='link-span'>
+                            <a href="#about">Características</a>
+                        </span>
+                        <span className='link-span'>
+                            <a href="#uso">Como funciona</a>
+                        </span>
+                        <span className='link-span'>
+                            <a href="#testimonios">Testimonios</a>
+                        </span>
                         <span className='link-span'><button className='btn-register' onClick={() => navigate('/register')}>Registrarse</button></span>
                     </div>
                     {
@@ -44,8 +50,8 @@ export const HomeApp = () => {
                         </h1>
                         <p className='mt-4 main-title' style={{ fontSize: '1.2rem' }}>Aprende a programar con desafíos personalizados a tu nivel, generados por inteligencia artificial, con feedback instantáneo y una experiencia gamificada.</p>
                         <div className='mt-4 main-title'>
-                            <button className='btn-comenzar'>Comenzar gratis</button>
-                            <button className='btn-ver-demo ms-3'>Ver demo <i className="ms-3 fa-solid fa-arrow-right"></i></button>
+                            <button className='btn-comenzar' onClick={() => navigate('/register')}>Comenzar gratis</button>
+                            <button className='btn-ver-demo ms-3' onClick={() => navigate('/register')}>Ver demo <i className="ms-3 fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div className='mt-4 info-main-1'>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -70,7 +76,7 @@ export const HomeApp = () => {
                             </div>
                             <div className='mt-3' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <span style={{ color: '#8C5EF6', background: '#E8DEFD', padding: '3px 7px', borderRadius: '10px', fontWeight: 'bold', fontSize: '0.8rem' }}>Nivel intermedio</span>
-                                <button className='btn-register'>Resolver</button>
+                                <button className='btn-register' onClick={() => navigate('/register')}>Resolver</button>
                             </div>
 
                         </div>
@@ -102,7 +108,7 @@ export const HomeApp = () => {
                     </div>
                 </div>
             </section>
-            <section className='container' style={{ marginTop: '100px' }}>
+            <section id='about' className='container' style={{ marginTop: '100px' }}>
                 <div className='text-info-2'>
                     <h1 className='text-center fw-bold'>Potencia tu Aprendizaje con Tecnología Avanzada</h1>
                     <p className='text-center mt-3' style={{ fontSize: '1.2rem' }}>Nuestra plataforma combina inteligencia artificial con metodologías pedagógicas probadas para acelerar tu dominio de la programación.</p>
@@ -140,7 +146,7 @@ export const HomeApp = () => {
                     </div>
                 </div>
             </section>
-            <section style={{ marginTop: '100px' }}>
+            <section id='uso' style={{ marginTop: '100px' }}>
                 <h2 className='text-center fw-bold'>Cómo Funciona Flyfar</h2>
                 <p className='text-center mt-3' style={{ fontSize: '1.2rem' }}>Un proceso simple y efectivo diseñado para maximizar tu aprendizaje y mantener tu motivación.</p>
                 <br />
@@ -191,7 +197,7 @@ export const HomeApp = () => {
                     </div>
                 </div>
             </section>
-            <section style={{ marginTop: '100px' }}>
+            <section id='testimonios' style={{ marginTop: '100px' }}>
                 <div className='text-info-3'>
                     <h1 className='text-center fw-bold'>Lo Que Dicen Nuestros Usuarios</h1>
                     <p className='text-center mt-3' style={{ fontSize: '1.2rem' }}>Estudiantes y profesores de todo el país confían en Flyfar para mejorar sus habilidades de programación.</p>
@@ -272,10 +278,10 @@ export const HomeApp = () => {
                     <h1 className='fw-bold text-center'>Comienza Tu Viaje de Aprendizaje Hoy</h1>
                     <p className='text-center mt-4' style={{ fontSize: '1.1rem' }}>Únete a miles de estudiantes que están mejorando sus habilidades de programación con desafíos personalizados por IA.</p>
                     <div className='block-btn mt-5'>
-                        <button className='btn-comenzar'>Crear cuenta gratuita</button>
-                        <button className='btn-ver-demo'>Conocer planes premiun <i className="ms-3 fa-solid fa-arrow-right"></i> </button>
+                        <button className='btn-comenzar' onClick={() => navigate('/register')}>Crear cuenta gratuita</button>
+                        <button className='btn-ver-demo' onClick={() => navigate('/register')}>Conocer planes premiun <i className="ms-3 fa-solid fa-arrow-right"></i> </button>
                     </div>
-                    <div className='mt-4' style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+                    <div className='mt-4 section-planes'>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <div className='bola verde'></div>
                             <span className='ms-2'>Sin tarjeta de crédito requerida</span>
@@ -324,9 +330,9 @@ export const HomeApp = () => {
                     <div>
                         <h5 className='fw-bold title-f'>Legal</h5>
                         <div style={{ color: '#9CA3A2' }}>
-                            <p className='link-p'>Términos de Servicio</p>
-                            <p className='link-p'>Política de Privacidad</p>
-                            <p className='link-p'>Cookies</p>
+                            <p className='link-p' onClick={() => navigate('/terms')}>Términos de Servicio</p>
+                            <p className='link-p' onClick={() => navigate('/politycs')}>Política de Privacidad</p>
+                            <p className='link-p' onClick={() => navigate('/')}>Cookies</p>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+.link-span a {
+    color: black;
+    text-decoration: none;
+}
+
 .link-span:hover {
     color: #7E69AB;
 }
@@ -298,7 +303,17 @@ nav {
     display: none;
 }
 
+.section-planes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 @media screen and (max-width: 720px) {
+    .section-planes {
+        flex-direction: column;
+    }
+
     .nav-items {
         display: none;
         flex-direction: column;

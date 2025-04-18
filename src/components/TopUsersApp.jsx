@@ -90,27 +90,27 @@ export const TopUsersApp = () => {
                 ranking.length > 0 && ranking.map((x, index) => (
                     <div className='item-top' key={index}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <div style={{ background: '#9E57F6', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', color: 'white' }}>{index + 1}</div>
+                            <div style={{ background: '#135181', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', color: 'white', fontSize: '0.85rem' }}>{index + 1}</div>
                             <div className='ms-4'>
-                                <span>Usuario</span><br />
+                                <span style={{ fontSize: '0.85rem', color: 'gray', fontWeight: 'bold' }}>Usuario</span><br />
                                 <span className='fw-bold'>{x.userDetails.username}</span>
                             </div>
                         </div>
                         <div>
-                            <span>Nombre</span><br />
+                            <span style={{ fontSize: '0.85rem', color: 'gray', fontWeight: 'bold' }}>Nombre</span><br />
                             <span className='fw-bold'>{x.userDetails.name || '-'}</span>
                         </div>
                         <div>
-                            <span>Apellido</span><br />
+                            <span style={{ fontSize: '0.85rem', color: 'gray', fontWeight: 'bold' }}>Apellido</span><br />
                             <span className='fw-bold'>{x.userDetails.lname || '-'}</span>
                         </div>
                         <div>
-                            <span>Puntaje</span><br />
-                            <span style={{ background: '#13BB7C', padding: '3px 10px', color: 'white', borderRadius: '10px', fontSize: '0.9rem' }}>95</span>
+                            <span style={{ fontSize: '0.85rem', color: 'gray', fontWeight: 'bold' }}>Puntaje</span><br />
+                            <span style={{ background: '#13BB7C', fontWeight: 'bold', padding: '3px 10px', color: 'white', borderRadius: '10px', fontSize: '0.8rem' }}>{x.averageScore}</span>
                         </div>
                         <div>
                             {
-                                !isFriend(x.userDetails.email) && (<button
+                                x.userDetails.email != user.email && !isFriend(x.userDetails.email) && (<button
                                     onClick={() => sendRequest(x.userDetails.email)}
                                     type="submit" className='btn-add-friend'>
                                     <span >
@@ -119,12 +119,15 @@ export const TopUsersApp = () => {
                                 </button>)
                             }
                             {
-                                isFriend(x.userDetails.email) && (<span style={{ color: '#16A34A' }}><i className="me-2 fa-solid fa-circle-check"></i>Amigos</span>)
+                                x.userDetails.email != user.email && isFriend(x.userDetails.email) && (<span style={{ color: '#16A34A' }}><i className="me-2 fa-solid fa-circle-check"></i>Amigos</span>)
+                            }
+                            {
+                                x.userDetails.email == user.email && (<div className='fw-bold'> <i className="me-2 fa-solid fa-user"></i>Tú</div>)
                             }
                         </div>
                     </div>
                 ))
             }
-        </div>
+        </div >
     )
 }

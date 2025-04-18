@@ -68,7 +68,10 @@ export const TopUsersApp = () => {
                     </div>
                 )
             }
-            <h4 className='fw-bold'>Clasificación de usuarios</h4>
+            <h4 className='fw-bold'>
+                <i className="fa-solid fa-trophy"></i>
+                <span className='ms-3'>Clasificación de usuarios</span>
+            </h4>
             <hr />
             {
                 ranking.length == 0 && (
@@ -84,44 +87,43 @@ export const TopUsersApp = () => {
                 )
             }
             {
-                ranking.length > 0 && <table className='table'>
-                    <tbody>
-                        <tr className='fw-bold'>
-                            <td>N°</td>
-                            <td>Nombre de usuario</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Puntaje</td>
-                            <td className='text-center'>Agregar amigo</td>
-                        </tr>
-                        {
-                            ranking.map((x, idx) => (
-                                <tr key={x.userId} style={{ fontSize: '0.90rem' }}>
-
-                                    <td >{idx + 1}</td>
-                                    <td >{x.userDetails.username}</td>
-                                    <td >{x.userDetails.name || '-'}</td>
-                                    <td >{x.userDetails.lname || '-'}</td>
-                                    <td >
-                                        <span style={{ background: 'green', padding: '3px 10px', color: 'white', borderRadius: '3px' }}>{x.averageScore ? x.averageScore : 0}</span>
-                                    </td>
-                                    <td className='text-center' >
-                                        {
-                                            !isFriend(x.userDetails.email) && (<button
-                                                onClick={() => sendRequest(x.userDetails.email)}
-                                                type="submit" className="btn-request"> <i className="fa-solid fa-plus"></i></button>)
-                                        }
-                                        {
-                                            isFriend(x.userDetails.email) && (<span>Amigos
-                                                <i style={{ fontSize: '0.9rem' }} className="ms-1 fa-solid fa-check"></i>
-                                            </span>)
-                                        }
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+                ranking.length > 0 && ranking.map((x, index) => (
+                    <div className='item-top' key={index}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <div style={{ background: '#9E57F6', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', color: 'white' }}>{index + 1}</div>
+                            <div className='ms-4'>
+                                <span>Usuario</span><br />
+                                <span className='fw-bold'>{x.userDetails.username}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span>Nombre</span><br />
+                            <span className='fw-bold'>{x.userDetails.name || '-'}</span>
+                        </div>
+                        <div>
+                            <span>Apellido</span><br />
+                            <span className='fw-bold'>{x.userDetails.lname || '-'}</span>
+                        </div>
+                        <div>
+                            <span>Puntaje</span><br />
+                            <span style={{ background: '#13BB7C', padding: '3px 10px', color: 'white', borderRadius: '10px', fontSize: '0.9rem' }}>95</span>
+                        </div>
+                        <div>
+                            {
+                                !isFriend(x.userDetails.email) && (<button
+                                    onClick={() => sendRequest(x.userDetails.email)}
+                                    type="submit" className='btn-add-friend'>
+                                    <span >
+                                        <i className="fa-solid fa-plus me-2"></i>
+                                        Añadir</span>
+                                </button>)
+                            }
+                            {
+                                isFriend(x.userDetails.email) && (<span style={{ color: '#16A34A' }}><i className="me-2 fa-solid fa-circle-check"></i>Amigos</span>)
+                            }
+                        </div>
+                    </div>
+                ))
             }
         </div>
     )

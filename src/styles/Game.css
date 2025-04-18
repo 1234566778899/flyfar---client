@@ -14,6 +14,27 @@
     font-size: 0.95rem;
 }
 
+.item-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border: 1px solid rgb(239, 239, 239);
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.btn-add-friend {
+    background: none;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.btn-add-friend:hover {
+    background-color: #dfdfdf;
+}
+
 .menu-option:hover {
     color: #1d2228;
 }
@@ -45,8 +66,12 @@
 
 .item-c {
     padding: 20px;
-    border: 1px solid rgb(225, 225, 225);
-    border-radius: 3px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+}
+
+.item-c:hover {
+    box-shadow: 2px 2px 5px #dfdfdf;
 }
 
 .item-challenge {
@@ -56,9 +81,9 @@
 }
 
 .btn-challenge {
-    background: #135181;
-    color: white;
+    background: #F1F5F9;
     padding: 7px 12px;
+    font-weight: bold;
     border: none;
     font-size: 0.9rem;
     border-radius: 3px;
@@ -203,10 +228,33 @@
 }
 
 .btn-skip {
-    position: absolute;
-    bottom: 0;
-    right: 15px;
     border: none;
+    padding: 5px 10px;
     background: none;
-    font-size: 0.8rem;
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 5px;
+}
+
+.btn-skip:hover {
+    background-color: #F1F5F9;
+}
+
+.btn-ver-comment {
+    cursor: pointer;
+    color: #78748B;
+    padding: 3px 6px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+.btn-ver-comment:hover {
+    background-color: #F1F5F9;
+}
+
+.label-score {
+    background-color: #F4F7FA;
+    padding: 4px 8px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 0.85rem;
 }

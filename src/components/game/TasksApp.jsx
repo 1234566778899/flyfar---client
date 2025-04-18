@@ -88,39 +88,37 @@ export const TasksApp = () => {
                 taks && (
                     <>
                         <h3 className='mt-3 fw-bold'>Desafios individuales</h3>
-                        <p>Tienes un máximo de 10 desafíos individuales. Al completar uno, se generará automáticamente otro. También puedes eliminar desafíos. Si deseas generar un nuevo desafío después de eliminar uno, deberás recargar la página.</p>
-                        <br />
+                        <p>Completa desafíos para mejorar tus habilidades. Tienes un máximo de 10 desafíos activos.</p>
                         <div>
                             {
                                 taks.filter(x => !x.finished).map((x) => (
                                     <div key={x._id} style={{ position: 'relative' }} className='item-c mt-3 item-challenge'>
                                         <div>
-                                            <h5 style={{ color: '#135181', fontWeight: 'bold' }}>{x.title}</h5>
-                                            <p className='mt-3'
-                                                style={{ fontWeight: 'bold', fontSize: '0.9rem', color: '#505050' }}>Puntaje: <span style={{ color: '#000' }}>{x.score != undefined ? x.score : '-'}</span>
-                                            </p>
+                                            <h5 className='mb-3' style={{ fontWeight: 'bold' }}>{x.title}</h5>
+                                            {x.score != undefined && (<span className='label-score'>{x.score} Puntos</span>)}
+                                            {x.score == undefined && (<span className='label-score'>Sin intentos</span>)}
                                             {
                                                 x.score != undefined && (
                                                     <span
                                                         onClick={() => navigate(`/admin/sends/${x._id}`)}
-                                                        style={{ cursor: 'pointer' }}>
-                                                        <i className="fa-regular fa-comment-dots me-1"></i>
+                                                        className='ms-3 btn-ver-comment'>
+                                                        <i className="me-2 fa-solid fa-comment"></i>
                                                         Ver comentarios
                                                     </span>
                                                 )
                                             }
                                         </div>
-                                        <div>
+
+                                        <div style={{ display: 'flex', gap: '10px' }}>
+                                            {
+                                                (!x.score || x.score != 20) && (
+                                                    <button title='Omitir desafio' onClick={() => setTabskipt({ active: true, id: x._id })} className='btn-skip'>
+                                                        <i className="fa-solid fa-ban"></i>
+                                                    </button>
+                                                )
+                                            }
                                             <button className={`btn-challenge ${x.score !== undefined ? 'btn-challenge-solved' : ''}`} onClick={() => resolvProblem(x.score, x)}>{x.score == undefined ? 'Resolver problema' : (x.score < 20 ? 'Intentar de nuevo' : 'Marcar como terminado')}</button>
                                         </div>
-                                        {
-                                            (!x.score || x.score != 20) && (
-                                                <button onClick={() => setTabskipt({ active: true, id: x._id })} className='btn-skip'>
-                                                    <i className="fa-solid fa-xmark me-2"></i>
-                                                    Omitir
-                                                </button>
-                                            )
-                                        }
                                     </div>
 
                                 ))

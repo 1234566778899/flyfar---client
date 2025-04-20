@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../styles/Home.css'
 import { useNavigate } from 'react-router-dom';
 export const HomeApp = () => {
@@ -9,6 +9,18 @@ export const HomeApp = () => {
         setMenuOpen(!menuOpen);
         menuRef.current.classList.toggle('menu-active');
     };
+    const [displayedText, setDisplayedText] = useState('');
+    const fullText = `/// Desafío generado por IA según tu nivel\nfunction resolverAlgoritmo(arr) {\n   // ¿Puedes completar esta función para\n // encontrar el elemento que aparece más veces?\n  // Tu código aquí...\n}`;
+
+    useEffect(() => {
+        let index = 0;
+        const interval = setInterval(() => {
+            setDisplayedText(prev => prev + fullText[index]);
+            index++;
+            if (index >= fullText.length - 1) clearInterval(interval);
+        }, 30);
+        return () => clearInterval(interval);
+    }, []);
     const navigate = useNavigate();
     return (
         <div className='inter'>
@@ -67,12 +79,8 @@ export const HomeApp = () => {
                     <div className='main-aux' style={{ position: 'relative' }}>
                         <div className='side-1'></div>
                         <div className='card-code'>
-                            <div className='code'>
-                                <span style={{ color: '#7E69AB' }}>// Desafío generado por IA según tu nivel</span> <br />
-                                <span>function resolverAlgoritmo(arr){' {'}</span> <br />
-                                <span>   // ¿Puedes completar esta función para</span> <br />
-                                <span> // encontrar el elemento que aparece más veces?</span> <br /> <br />
-                                <span>  // Tu código aquí...</span>
+                            <div className="code" style={{ whiteSpace: 'pre-line', fontFamily: 'monospace' }}>
+                                <span style={{ color: '#7E69AB' }}>{displayedText}</span>
                             </div>
                             <div className='mt-3' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <span style={{ color: '#8C5EF6', background: '#E8DEFD', padding: '3px 7px', borderRadius: '10px', fontWeight: 'bold', fontSize: '0.8rem' }}>Nivel intermedio</span>

@@ -51,9 +51,9 @@ export const TopUsersApp = () => {
     }, [])
     if (!ranking) {
         return (
-            <div className='loading'>
-                <i className="fa-solid fa-spinner icon-load me-2"></i>
-                <span>Cargando</span>
+            <div className='loading' style={{ display: 'flex', flexDirection: 'column' }}>
+                <img src={require('../assets/load_animation.gif')} alt="img-animation" style={{ width: '60px' }} />
+                <span>Cargando desafios..</span>
             </div>
         )
     }

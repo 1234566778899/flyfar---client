@@ -241,7 +241,6 @@ button:hover {
     display: flex;
     justify-content: space-between;
     padding: 7px 10px;
-    color: rgb(207, 207, 207);
     cursor: pointer;
     border-radius: 3px;
 }

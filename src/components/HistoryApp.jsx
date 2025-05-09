@@ -25,14 +25,8 @@ export const HistoryApp = () => {
     useEffect(() => {
         getResults();
     }, [paginate])
-    if (!results) {
-        return (
-            <div className='loading'>
-                <i className="fa-solid fa-spinner icon-load me-2"></i> Cargando
-            </div>
-        )
-    }
-    return results && (
+
+    return (
         <div className='container inter'>
             <br />
             <h4 className='fw-bold'>Historial de envios</h4>
@@ -47,7 +41,7 @@ export const HistoryApp = () => {
                         <td style={{ width: '120px' }}>Opciones</td>
                     </tr>
                     {
-                        results.map(({ taskDetails }, idx) => (
+                        results && results.map(({ taskDetails }, idx) => (
                             <tr key={taskDetails._id}>
                                 <td>{idx + 1}</td>
                                 <td>{taskDetails.title}</td>
@@ -63,6 +57,18 @@ export const HistoryApp = () => {
                     }
                 </tbody>
             </table>
+            {
+                !results && (
+                    <div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                        <div style={{ height: '50px' }} className='skeleton'></div>
+                    </div>
+                )
+            }
             {
                 total <= 0 && (
                     <p className='text-center'>No ha realizado ningún envío</p>

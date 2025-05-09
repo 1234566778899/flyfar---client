@@ -11,7 +11,7 @@ export const MainContextApp = ({ children }) => {
     const [owner, setOwner] = useState(null);
     const { user } = useContext(AuthContext);
     const [codeRoom, setCodeRoom] = useState(false);
-    const [friends, setFriends] = useState([]);
+    const [friends, setFriends] = useState(null);
     const navigate = useNavigate();
     const [friendsActive, setFriendsActive] = useState(null);
     const [settings, setSettings] = useState(null);
@@ -22,7 +22,7 @@ export const MainContextApp = ({ children }) => {
             .then(res => {
                 socket.emit('enter', { ...data, friends: res.data });
             })
-            .catch(error => {
+            .catch(_ => {
                 showInfoToast('Error');
             })
     }
@@ -33,7 +33,7 @@ export const MainContextApp = ({ children }) => {
                 setOwner(res.data);
                 getFriends(res.data);
             })
-            .catch(error => {
+            .catch(_ => {
                 showInfoToast('Error');
             })
     }

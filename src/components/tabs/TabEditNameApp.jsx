@@ -10,20 +10,19 @@ export const TabEditNameApp = ({ close }) => {
     const { owner, getUser } = useContext(MainContext);
     const [isLoading, setIsLoading] = useState(false);
     const update = (data) => {
-        if (!isLoading) {
-            setIsLoading(true);
-            axios.put(`${CONFIG.uri}/users/update/${owner._id}`, data)
-                .then(x => {
-                    setIsLoading(false);
-                    getUser();
-                    showInfoToast('Datos actualizados');
-                    close();
-                })
-                .catch(error => {
-                    setIsLoading(false);
-                    showInfoToast('Error');
-                })
-        }
+        if (isLoading) return;
+        setIsLoading(true);
+        axios.put(`${CONFIG.uri}/users/update/${owner._id}`, data)
+            .then(x => {
+                setIsLoading(false);
+                getUser();
+                showInfoToast('Datos actualizados');
+                close();
+            })
+            .catch(error => {
+                setIsLoading(false);
+                showInfoToast('Error');
+            })
     }
 
     return (
@@ -46,7 +45,11 @@ export const TabEditNameApp = ({ close }) => {
                         <input defaultValue={owner.username} type="text" {...register('username', { required: true })} />
                     </div>
                     <div className='text-end mt-3'>
-                        <button className='btn-view-challenges'>Guardar</button>
+                        <button className='btn-view-challenges'>
+                            {
+                                isLoading ? (<span><i className="fa-solid fa-spinner icon-load me-2"></i>Guardando</span>) : (<span>Guardar</span>)
+                            }
+                        </button>
                     </div>
                 </form>
             </div>

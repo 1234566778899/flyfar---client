@@ -38,19 +38,20 @@ export const TasksApp = () => {
     const updateTask = (id) => {
         id = id || tabskipt.id;
         axios.put(`${CONFIG.uri}/tasks/${id}`)
-            .then(res => {
+            .then(_ => {
                 setTaks(prev => prev.map(x => x._id == id ? ({ ...x, finished: true }) : x));
                 if (tabskipt.id) {
                     setTabskipt({ active: false, id: null })
                 }
             })
-            .catch(error => {
+            .catch(_ => {
                 showInfoToast('Error');
             })
     }
     if (!taks && owner.favoriteLenguaje && owner.test) {
         return (
-            <div className='loading'>
+            <div className='loading' style={{ display: 'flex', flexDirection: 'column' }}>
+                <img src={require('../../assets/load_animation.gif')} alt="img-animation" style={{ width: '60px' }} />
                 <span>Cargando desafios..</span>
             </div>
         )

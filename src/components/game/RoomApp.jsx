@@ -140,7 +140,7 @@ export const RoomApp = () => {
                                     </button>
                                     {
                                         !challenge && (
-                                            <button className='btn-main w-100 py-3 mt-1' style={{ letterSpacing: '1px' }} onClick={() => createChallenge()}>{isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Iniciar partida'}
+                                            <button className='btn-main w-100 py-3 mt-1' style={{ letterSpacing: '1px' }} onClick={() => createChallenge()}>{isLoading ? (<span><i className="fa-solid fa-spinner icon-load"></i> Generando desafios</span>) : 'Iniciar partida'}
                                             </button>
                                         )
                                     }

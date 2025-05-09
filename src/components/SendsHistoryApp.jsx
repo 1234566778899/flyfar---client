@@ -74,7 +74,7 @@ export const SendsHistoryApp = () => {
                                                     </div>
                                                     {
                                                         visibles[idx] && (
-                                                            <div style={{ fontSize: '0.9rem' }} className='mt-1'>
+                                                            <div style={{ fontSize: '0.9rem', }} className='mt-1'>
                                                                 {x.comment}
                                                             </div>
                                                         )

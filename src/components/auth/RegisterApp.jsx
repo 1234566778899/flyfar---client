@@ -69,10 +69,9 @@ export const RegisterApp = () => {
                         <div className="mt-3 box-login">
                             <div className="card-body">
                                 <div className="text-center">
-                                    <img src="https://preview.cruip.com/solid/dist/images/logo.svg" alt="login-img" style={{ width: '40px' }} />
+                                    <img src={require('../../assets/logo_white.png')} alt="login-img" style={{ height: '40px' }} />
                                 </div>
-                                <h3 className="card-title text-center mt-3" style={{ color: 'white', letterSpacing: '1px' }}>Únete a Flyfar</h3>
-                                <p className="text-center" style={{ color: '#8A94A7', letterSpacing: '1px' }}>¡Comienza tu viaje de codificación hoy!</p>
+                                <p className="text-center" style={{ color: '#8A94A7', letterSpacing: '1px', marginTop: '10px' }}>¡Comienza tu viaje de codificación hoy!</p>
                                 <form className='mt-4' onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mb-3">
                                         <label htmlFor="email" style={{ color: '#D7D7D7', letterSpacing: '1px', fontSize: '0.8rem' }}>Correo electrónico</label>
@@ -139,7 +138,7 @@ export const RegisterApp = () => {
                                 </form>
                                 <hr />
                                 <div className="text-center mt-3">
-                                    <p><span style={{ color: 'white' }}>¿Ya tienes una cuenta?</span> <Link className='ms-2' style={{ color: '#06BEFF' }} to='/login'>Inicia sesión aquí</Link></p>
+                                    <p><span style={{ color: 'white' }}>¿Ya tienes una cuenta?</span> <Link className='ms-2' style={{ color: 'white' }} to='/login'>Inicia sesión aquí</Link></p>
                                 </div>
                             </div>
                         </div>

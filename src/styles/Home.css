@@ -17,14 +17,14 @@ nav {
 
 .btn-register {
     padding: 7px 15px;
-    background-color: #9B86F5;
+    background-color: black;
     border: none;
     border-radius: 5px;
     color: white;
 }
 
 .btn-comenzar {
-    background-color: #9B86F5;
+    background-color: black;
     border: none;
     color: white;
     border-radius: 5px;
@@ -58,7 +58,7 @@ nav {
 
 
 .code {
-    background-color: #F5F3FE;
+    background-color: #F3F4FC;
     padding: 20px;
     border-radius: 5px;
     font-family: 'Consolas', 'Courier New', monospace;
@@ -90,7 +90,7 @@ nav {
 }
 
 .side-1 {
-    background-color: #DED7FB;
+    background-color: #9cffcf;
     height: 70px;
     width: 50px;
     position: absolute;
@@ -100,7 +100,7 @@ nav {
 }
 
 .side-2 {
-    background-color: #DED7FB;
+    background-color: #baffde;
     height: 100px;
     width: 100px;
     position: absolute;
@@ -142,7 +142,7 @@ nav {
 }
 
 .icon-2 {
-    color: #9B87F5;
+    color: #00BF63;
     background: #F7F5FF;
     padding: 15px 10px;
     border-radius: 50%;
@@ -164,7 +164,7 @@ nav {
 }
 
 .benefit i {
-    color: #9B87F5;
+    color: #00BF63;
     background: #F7F5FF;
     padding: 8px 6px;
     border-radius: 50%;
@@ -191,7 +191,7 @@ nav {
     position: absolute;
     top: -25px;
     left: -25px;
-    background-color: #9B87F5;
+    background-color: #00BF63;
 }
 
 .paso-1 {
@@ -219,7 +219,7 @@ nav {
 .name-letra {
     width: 50px;
     height: 50px;
-    background-color: #9068F6;
+    background-color: #00BF63;
     color: white;
     border-radius: 50%;
     display: flex;

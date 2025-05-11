@@ -8,12 +8,11 @@ export const TermsApp = () => {
             <div style={{ background: 'black', display: 'flex', alignItems: 'center', color: 'white', alignItems: 'center' }}>
                 <nav className='container' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <img style={{ width: '30px' }} src='https://preview.cruip.com/solid/dist/images/logo.svg' alt="logo" />
-                        <span className='ms-2' style={{ fontSize: '1.1rem' }}>Flyfire</span>
+                        <img style={{ height: '25px' }} src={require('../assets/logo_white.png')} alt="logo" />
                     </div>
                     <ul className='mt-3' style={{ display: 'flex', listStyle: 'none', gap: '20px', alignItems: 'center' }}>
                         <li>
-                            <button className='btn-comenzar' onClick={() => navigate('/register')}>Registrarse</button>
+                            <button className='btn-login px-3' onClick={() => navigate('/register')}>Registrarse</button>
                         </li>
                         <li>
                             <button className='btn-ver-demo' onClick={() => navigate('/login')}> Iniciar</button>

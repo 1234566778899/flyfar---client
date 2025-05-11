@@ -27,8 +27,7 @@ export const HomeApp = () => {
             <nav style={{ padding: '20px 0px' }}>
                 <div className='container' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <a style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', textDecoration: 'none' }} href='#init'>
-                        <img src="https://images.vexels.com/media/users/3/331161/isolated/preview/2a386615007f32659a8112824aea895b-icono-de-chip-de-cpu.png" alt="log" style={{ width: '30px', height: '30px' }} />
-                        <span className='ms-2' style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#977EF5' }}>Flyfar</span>
+                        <img src={require('../assets/logo.png')} alt="log" style={{ height: '30px' }} />
                     </a>
                     <div className='nav-items' ref={menuRef}>
                         <span className='link-span'>
@@ -58,7 +57,7 @@ export const HomeApp = () => {
                 <section className='container section-main' id='init'>
                     <div >
                         <h1 className='fw-bold main-title' style={{ fontSize: '3rem' }}>
-                            <span style={{ color: '#9A86F5' }}>Desafíos de Programación <span style={{ color: 'black' }}>Generados por IA para tu Crecimiento</span></span>
+                            <span style={{ color: '#00BF63' }}>Desafíos de Programación <span style={{ color: 'black' }}>Generados por IA para tu Crecimiento</span></span>
                         </h1>
                         <p className='mt-4 main-title' style={{ fontSize: '1.2rem' }}>Aprende a programar con desafíos personalizados a tu nivel, generados por inteligencia artificial, con feedback instantáneo y una experiencia gamificada.</p>
                         <div className='mt-4 main-title'>
@@ -80,10 +79,10 @@ export const HomeApp = () => {
                         <div className='side-1'></div>
                         <div className='card-code'>
                             <div className="code" style={{ whiteSpace: 'pre-line', fontFamily: 'monospace' }}>
-                                <span style={{ color: '#7E69AB' }}>{displayedText}</span>
+                                <span style={{ color: '#4F5059' }}>{displayedText}</span>
                             </div>
                             <div className='mt-3' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ color: '#8C5EF6', background: '#E8DEFD', padding: '3px 7px', borderRadius: '10px', fontWeight: 'bold', fontSize: '0.8rem' }}>Nivel intermedio</span>
+                                <span style={{ color: 'black', background: '#eee', padding: '3px 7px', borderRadius: '10px', fontWeight: 'bold', fontSize: '0.8rem' }}>Nivel intermedio</span>
                                 <button className='btn-register' onClick={() => navigate('/register')}>Resolver</button>
                             </div>
 
@@ -244,7 +243,7 @@ export const HomeApp = () => {
                         </div>
                         <p className='mt-3'>"Lo que más me gusta es el feedback inmediato. No solo me dice si mi solución es correcta, sino que me explica cómo mejorarla. He notado una gran mejora en mis calificaciones desde que comencé a usar la plataforma."</p>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <div className='name-letra'>L</div>
+                            <div className='name-letra'>C</div>
                             <div className='ms-3'>
                                 <span className='fw-bold'>Carlos Rodríguez</span>
                                 <div style={{ fontSize: '0.95rem', color: 'gray' }}>
@@ -266,7 +265,7 @@ export const HomeApp = () => {
                         </div>
                         <p className='mt-3'>"Como profesor, recomiendo Flyfar a todos mis estudiantes. La generación de problemas mediante IA ofrece una variedad infinita de ejercicios que complementan perfectamente mi plan de estudios."</p>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <div className='name-letra'>L</div>
+                            <div className='name-letra'>M</div>
                             <div className='ms-3'>
                                 <span className='fw-bold'>Miguel Ángel Suárez</span>
                                 <div style={{ fontSize: '0.95rem', color: 'gray' }}>
@@ -299,7 +298,7 @@ export const HomeApp = () => {
                             <span className='ms-2'>14 días de acceso completo</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <div className='bola morado'></div>
+                            <div className='bola' style={{ background: 'black' }}></div>
                             <span className='ms-2'>Cancela cuando quieras</span>
                         </div>
                     </div>
@@ -308,7 +307,7 @@ export const HomeApp = () => {
             <footer style={{ background: '#221F26', color: 'white', padding: '50px 0' }}>
                 <div className='container section-footer'>
                     <div>
-                        <h5 style={{ color: '#9983F5', fontWeight: 'bold' }}>Flyfar</h5>
+                        <h5 style={{ color: '#00BF63', fontWeight: 'bold' }}>Flyfar</h5>
                         <p style={{ color: '#9CA3A2' }}>Desafíos de programación personalizados con IA para estudiantes universitarios.</p>
                         <div style={{ display: 'flex', gap: '15px', color: '#9CA3A2', fontSize: '1.3rem' }}>
                             <i className="link-p fa-brands fa-twitter"></i>

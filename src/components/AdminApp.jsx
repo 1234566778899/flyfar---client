@@ -124,9 +124,9 @@ export const AdminApp = () => {
                             }
                             {
                                 !challenge && (
-                                    <div style={{ display: 'flex' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <span style={{ cursor: 'pointer' }} className='me-3' onClick={() => navigate('/admin/dashboard')}>
-                                            <img style={{ width: '30px' }} src={require('../assets/logo.png')} alt="logo" />
+                                            <img style={{ height: '25px' }} src={require('../assets/logo_white.png')} alt="logo" />
                                         </span>
                                         <ul className='menu' style={{ fontSize: '0.95rem' }}>
                                             <li onClick={() => navigate('/admin/dashboard')}>Dashboard</li>

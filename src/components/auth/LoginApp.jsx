@@ -58,25 +58,24 @@ export const LoginApp = () => {
                             <div className="box-login mt-5">
                                 <div className="card-body">
                                     <div className="text-center">
-                                        <img src="https://preview.cruip.com/solid/dist/images/logo.svg" alt="login-img" style={{ width: '60px' }} />
+                                        <img src={require('../../assets/logo_white.png')} alt="login-img" style={{ height: '40px' }} />
                                     </div>
-                                    <h3 className="card-title text-center" style={{ color: 'white' }}>Iniciar Sesión</h3>
-                                    <form className='mt-3' onSubmit={handleSubmit(onSubmit)}>
+                                    <h3 className="card-title text-center" style={{ color: 'white', marginTop: '20px' }}>Iniciar Sesión</h3>
+                                    <form className='mt-4' onSubmit={handleSubmit(onSubmit)}>
                                         <div className="mb-2">
-                                            <label htmlFor="email" style={{ color: '#06BEFF', letterSpacing: '1px', fontSize: '0.65rem', fontWeight: 'bold' }}>CORREO ELECTRÓNICO</label>
+                                            <label htmlFor="email" style={{ color: 'white', letterSpacing: '1px', fontSize: '0.65rem', fontWeight: 'bold' }}>CORREO ELECTRÓNICO</label>
                                             <input
                                                 type="email"
                                                 id="email"
                                                 {...register('email', {
                                                     required: "El correo electrónico es requerido",
-                                                    // validate: validateEmailDomain
                                                 })}
                                             />
                                             {errors.email && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.email.message}</p>}
                                         </div>
                                         <div className="mb-2">
                                             <label htmlFor="password"
-                                                style={{ color: '#D7D7D7', letterSpacing: '1.2px', fontSize: '0.65rem', fontWeight: 'bold' }}
+                                                style={{ color: 'white', letterSpacing: '1.2px', fontSize: '0.65rem', fontWeight: 'bold' }}
                                             >CONTRASEÑA</label>
                                             <input
                                                 type="password"
@@ -92,7 +91,7 @@ export const LoginApp = () => {
                                             {errors.password && <p style={{ color: 'red', fontSize: '0.8rem' }}>{errors.password.message}</p>}
                                         </div>
                                         <div className='text-end mt-2'>
-                                            <Link style={{ color: '#06BEFF' }} to='/forget'>¿Olvidaste tu contraseña?</Link>
+                                            <Link style={{ color: 'white' }} to='/forget'>¿Olvidaste tu contraseña?</Link>
                                         </div>
                                         <button type="submit" className="mt-3 btn-login" style={{ letterSpacing: '1px' }}>
                                             {isLoading ? (<i className="fa-solid fa-spinner icon-load"></i>) : 'Iniciar sesión'}
@@ -101,7 +100,7 @@ export const LoginApp = () => {
                                     <hr />
                                     <div className="text-center">
 
-                                        <p className='mt-2'><span style={{ color: 'white' }}>¿No tienes una cuenta?</span> <Link style={{ color: '#06BEFF' }} to="/register">Regístrate aquí</Link></p>
+                                        <p className='mt-2'><span style={{ color: 'white' }}>¿No tienes una cuenta?</span> <Link style={{ color: 'white' }} to="/register">Regístrate aquí</Link></p>
                                     </div>
                                 </div>
                             </div>
